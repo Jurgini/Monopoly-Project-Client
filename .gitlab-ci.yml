@@ -1,0 +1,35 @@
+image: monitor:howest-java-node:11-azul-alpine-jdk
+stages:
+  - QA
+  - deploy
+
+validateHTML:
+  stage: QA
+  script:
+    - npm install
+    - npm run validate-html
+
+sonar:
+  stage: QA
+  script:
+    - npm install
+    - npm run validate-sonar
+
+deploy:
+  image: monitor:5000/deployproject:2
+  before_script:
+    - echo "we don't need gradle or maven anymore"
+  stage: deploy
+  only:
+    - main
+  except:
+    changes:
+      - documents/**/*
+  script:
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H 172.18.18.201 >> ~/.ssh/known_hosts
+    - scp -qr ./src/* gitlab-runner@172.18.18.201:"/var/www/html/2021-2022/monopoly-${CI_PROJECT_NAMESPACE:(-2)}/"
+  environment: production

@@ -27,7 +27,7 @@ You can **run** the validator and Sonar with CSS and JS rules **locally.** There
 
 If everyone will push to test, the remote will not last.
 
-Please consult the Sonar guide at 
+Please consult the Sonar guide at [https://git.ti.howest.be/TI/2021-2022/s2/programming-project/documentation/monopoly-documentation/-/blob/main/sonar-guide/Sonar%20guide.md](https://git.ti.howest.be/TI/2021-2022/s2/programming-project/documentation/monopoly-documentation/-/blob/main/sonar-guide/Sonar%20guide.md)
 
 ## Client
 In order to help you along with planning, we've provided a client roadmap

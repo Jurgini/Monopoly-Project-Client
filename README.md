@@ -1,16 +1,19 @@
 # Monopoly web project group [number]
 
+## Before you start
+Search for the string XX and **replace it with your group number**.
+
 ## Parent group
 https://git.ti.howest.be/TI/2021-2022/s2/programming-project/projects/group-XX
 
 ## Remote urls
-
+### Your own project
 * https://project-i.ti.howest.be/monopoly-XX/
 * https://project-i.ti.howest.be/monopoly-XX/api/
+
+### Provided API
 * https://project-i.ti.howest.be/monopoly-api-spec/
 
-## Before you start
-* Search for the string XX and replace it with the group number.
 
 ## Please complete the following before committing the final version on the project
 Please **add** any **instructions** required to
@@ -31,6 +34,7 @@ Please consult the Sonar guide at [https://git.ti.howest.be/TI/2021-2022/s2/prog
 
 ## Client
 In order to help you along with planning, we've provided a client roadmap
+[https://git.ti.howest.be/TI/2021-2022/s2/programming-project/documentation/monopoly-documentation/-/blob/main/roadmaps/client-roadmap.md](https://git.ti.howest.be/TI/2021-2022/s2/programming-project/documentation/monopoly-documentation/-/blob/main/roadmaps/client-roadmap.md)
 
 ## File structure
 All files should be places in the `src` directory.

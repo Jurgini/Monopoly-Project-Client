@@ -13,7 +13,7 @@ function fetchFromServer(path, httpVerb, requestBody){
         })
         .then((jsonresponsetoparse) => {
             return jsonresponsetoparse;
-        }); 
+        });
 }
 
 function constructOptions(httpVerb, requestBody){
@@ -31,6 +31,3 @@ function constructOptions(httpVerb, requestBody){
     return options;
 }
 
-function generateVisualAPIErrorInConsole(){
-    console.error('%c%s','background-color: red;color: white','! An error occurred while calling the API');
-}

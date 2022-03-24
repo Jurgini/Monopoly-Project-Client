@@ -3,7 +3,7 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "validate-html": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --Werror --skip-non-html ./src",
+    "validate-html": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --Werror --filterfile .vnuignore --skip-non-html ./src",
     "validate-sonar": "node_modules/sonar-scanner/bin/sonar-scanner",
     "validate-sonar-local-mac": "node_modules/sonar-scanner/bin/sonar-scanner -Dsonar.host.url=https://sonar.ti.howest.be",
     "validate-sonar-local-win": ".\\node_modules\\sonar-scanner\\bin\\sonar-scanner -Dsonar.host.url=https://sonar.ti.howest.be",

@@ -1,7 +1,5 @@
-h1 {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 1rem;
+main {
+    padding: 0 3rem;
 }
 
 #container {
@@ -28,3 +26,8 @@ h1 {
     border-radius: 2rem;
     box-shadow: 0 0 1rem black;
 }
+
+section {
+    text-align: center;
+}
+

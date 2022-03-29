@@ -26,8 +26,23 @@
     <img src="assets/media/logo.png" alt="Monopoly Logo" title="Monopoly Logo">
 </header>
 <main>
-
+    <form method="POST">
+        <div>
+            <label for="join-game-id">Game ID</label>
+            <input type="text" id="join-game-id" name="join-game-id">
+            <input type="submit" id="join-game-button" value="JOIN GAME">
+            <label>OR</label>
+            <label for="create-game"></label>
+            <input type="submit" id="create-game" value="CREATE GAME">
+        </div>
+        <div>
+            <label>GAME SETTINGS</label>
+            <label for="username">Username</label>
+            <input type="text" placeholder="choose your username" id="username" name="username">
+        </div>
+    </form>
 </main>
+<footer></footer>
 
 <div class="errormessages">
     <p></p>

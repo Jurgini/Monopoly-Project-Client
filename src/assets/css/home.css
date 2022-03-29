@@ -1,0 +1,10 @@
+body {
+    width: 100%;
+    margin: auto auto;
+}
+header {
+    text-align: center;
+}
+header img {
+    max-width: 40%;
+}

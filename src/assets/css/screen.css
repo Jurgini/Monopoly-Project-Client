@@ -5,3 +5,12 @@ body {
     background-color: #BFDBAE;
 }
 
+header {
+    background-color: #8FBC72;
+    padding: 1rem;
+    margin-bottom: 1rem
+}
+
+h2 {
+    font-size: 3rem;
+}

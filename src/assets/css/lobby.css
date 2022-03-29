@@ -58,7 +58,7 @@ main {
 .player p {
     padding-top: 30%;
 }
-#host h2 {
+.player #host h2 {
     color: red;
 }
 

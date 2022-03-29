@@ -21,9 +21,10 @@ h1 {
 }
 
 .disabled {
-
+    opacity: 0.5;
 }
 
-.chosen {
-
+.chosen img {
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem black;
 }

@@ -17,11 +17,13 @@ function fetchFromServer(path, httpVerb, requestBody){
 }
 
 function constructOptions(httpVerb, requestBody){
-    const options= {};
-    options.method = httpVerb;
+    const options= {
+        method: httpVerb,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
 
-    options.headers = {};
-    options.headers["Content-Type"] = "application/json";
 
     if(_token !== null) {
         options.headers["Authorization"] = "Bearer " + _token.token;

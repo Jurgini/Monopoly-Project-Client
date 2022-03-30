@@ -14,5 +14,4 @@ function choosePawn(e) {
         o.classList.remove("chosen");
     });
     e.target.closest("figure").classList.add("chosen");
-
 }

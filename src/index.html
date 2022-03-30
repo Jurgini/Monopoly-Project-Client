@@ -8,9 +8,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-
     <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/screen.css">
     <link rel="stylesheet" href="assets/css/home.css">
 
     <script src="assets/js/config.js"></script>
@@ -26,23 +24,42 @@
     <img src="assets/media/logo.png" alt="Monopoly Logo" title="Monopoly Logo">
 </header>
 <main>
-    <form method="POST">
-        <div>
-            <label for="join-game-id">Game ID</label>
-            <input type="text" id="join-game-id" name="join-game-id">
-            <input type="submit" id="join-game-button" value="JOIN GAME">
-            <label>OR</label>
-            <label for="create-game"></label>
-            <input type="submit" id="create-game" value="CREATE GAME">
-        </div>
-        <div>
-            <label>GAME SETTINGS</label>
-            <label for="username">Username</label>
-            <input type="text" placeholder="choose your username" id="username" name="username">
+
+    <form method="POST" id="join-game-container">
+        <div id="flexcontainer">
+            <div>
+                <label class="titles">GAME SETTINGS</label>
+                <label for="username">Username</label>
+                <input type="text" placeholder="choose your username" id="username" name="username">
+            </div>
+
+            <div id="join-lobby-container">
+                <label class="titles">JOIN GAME</label>
+
+                <div id="lobby-overview">
+                    <template>
+                        <div class="available-lobby" data-lobbyid="">
+                            <label><span id="data-lobby-name"></span> - <span id="data-lobby-joined-currently"></span> / <span id="data-lobby-max"></span> players</label>
+                            <input type="submit" class="join-game-button" name="join-game-button" value="JOIN">
+                        </div>
+                    </template>
+                </div>
+
+            </div>
         </div>
     </form>
+    <form method="POST" id="create-game-container">
+        <div id="temp">
+            <label class="titles">CREATE GAME</label>
+            <label for="lobby-name">Lobby Name</label>
+            <input type="text" name="lobby-name" id="lobby-name">
+            <label for="amount-of-players">Amount of players</label>
+            <input type="number" name="amount-of-players" id="amount-of-players">
+            <input type="submit" id="create-game" value="CREATE GAME">
+        </div>
+    </form>
+
 </main>
-<footer></footer>
 
 <div class="errormessages">
     <p></p>

@@ -1,7 +1,9 @@
 body {
     width: 100%;
     margin: auto auto;
-    background-color: #BFDBAE;
+    /*background-color: #BFDBAE;*/
+    background-image: url("../media/background.png");
+    background-blend-mode: soft-light;
 }
 header {
     text-align: center;

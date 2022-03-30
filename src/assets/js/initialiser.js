@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded',init);
 
 function init(){
     testConnection();
-    initLobby()
     loadGames();
     loadAvailableLobbies();
     document.querySelector('form#join-game-container').addEventListener('submit', joinGame);

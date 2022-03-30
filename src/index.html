@@ -16,6 +16,9 @@
     <script src="assets/js/data-connector/error-handler.js"></script>
     <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
 
+    <script src="assets/js/game/renderer.js"></script>
+    <script src="assets/js/game/create-game.js"></script>
+    <script src="assets/js/game/join-game.js"></script>
     <script src="assets/js/initialiser.js"></script>
 
 </head>
@@ -39,7 +42,7 @@
                 <div id="lobby-overview">
                     <template>
                         <div class="available-lobby" data-lobbyid="">
-                            <label><span id="data-lobby-name"></span> - <span id="data-lobby-joined-currently"></span> / <span id="data-lobby-max"></span> players</label>
+                            <label><span class="data-lobby-name"></span> - <span class="data-lobby-joined-currently"></span> / <span class="data-lobby-max"></span> players</label>
                             <input type="submit" class="join-game-button" name="join-game-button" value="JOIN">
                         </div>
                     </template>
@@ -49,12 +52,14 @@
         </div>
     </form>
     <form method="POST" id="create-game-container">
-        <div id="temp">
+        <div>
             <label class="titles">CREATE GAME</label>
             <label for="lobby-name">Lobby Name</label>
             <input type="text" name="lobby-name" id="lobby-name">
+
             <label for="amount-of-players">Amount of players</label>
             <input type="number" name="amount-of-players" id="amount-of-players">
+            
             <input type="submit" id="create-game" value="CREATE GAME">
         </div>
     </form>

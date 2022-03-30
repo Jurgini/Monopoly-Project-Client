@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded",init);
 
 function init() {
     document.querySelectorAll("figure").forEach(figure => {
-        figure.addEventListener("click",choosePawn)
+        figure.addEventListener("click",choosePawn);
     });
 
 

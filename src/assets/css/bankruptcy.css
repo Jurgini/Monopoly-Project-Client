@@ -1,0 +1,33 @@
+main {
+    padding: 0 3rem;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#container figure {
+    width: 20%;
+    padding: 1rem 4rem;
+    box-sizing: border-box;
+    alignment: center;
+}
+
+#container img {
+    width: 100%;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.chosen img {
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem black;
+}
+
+section {
+    text-align: center;
+}

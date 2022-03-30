@@ -12,6 +12,7 @@ main {
     width: 17rem;
     padding: 1rem 4rem;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .chosen img {

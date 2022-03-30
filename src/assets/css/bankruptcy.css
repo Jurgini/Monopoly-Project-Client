@@ -31,3 +31,14 @@ main {
 section {
     text-align: center;
 }
+button {
+    color: white;
+    background: #C70000;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 0;
+    box-shadow: 0 0 1rem black;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+}

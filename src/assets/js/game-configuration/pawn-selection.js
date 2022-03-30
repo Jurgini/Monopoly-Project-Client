@@ -31,7 +31,7 @@ const pawns = [{
     "id": "triangular-ruler",
     "displayName": "Triangular ruler"
 }];
-
+let pawnsCopy;
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -57,6 +57,8 @@ function showPawns() {
 }
 
 function choosePawn(e) {
+    pawnsCopy = Object.assign([],pawns);
+
     document.querySelectorAll(".chosen").forEach(o => {
         o.classList.remove("chosen");
     });
@@ -152,17 +154,17 @@ function savePawn(target) {
 
     let pawnDistribution = [{
         "player": username,
-        "pawn": pawns[target.dataset.id]
+        "pawn": pawnsCopy[target.dataset.id]
     }];
 
-    pawns.splice(parseInt(target.dataset.id),1);
+    pawnsCopy.splice(parseInt(target.dataset.id),1);
 
     for (let key in voorbeeld.players) {
         if (voorbeeld.players[key].name !== username) {
 
             let pawnPlacement = {
                 "player": voorbeeld.players[key].name,
-                "pawn": giveAvailablePawn()
+                "pawn": giveAvailablePawn(pawnsCopy)
             };
             pawnDistribution.push(pawnPlacement);
         }
@@ -172,7 +174,7 @@ function savePawn(target) {
 }
 
 function giveAvailablePawn() {
-    let pawn = pawns[0];
-    pawns.splice(0,1);
+    let pawn = pawnsCopy[0];
+    pawnsCopy.splice(0,1);
     return pawn;
 }

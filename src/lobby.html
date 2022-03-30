@@ -5,43 +5,39 @@
     <title>Title</title>
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="application-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+
+
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/screen.css">
     <link rel="stylesheet" href="assets/css/lobby.css">
+
+    <script src="assets/js/config.js"></script>
+
+    <script src="assets/js/data-connector/error-handler.js"></script>
+    <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/game-configuration/lobby.js"></script>
+
+    <script src="assets/js/initialiser.js"></script>
 
 
 </head>
 <body>
 <header>
     <h2>Lobby</h2>
-    <h3>game id: 0000</h3>
+    <h3>game id: <span id="gameid"></span></h3>
 </header>
-<main class="players">
+<main>
+    <div class="players">
     <template>
         <section class="player">
-            <h2>HOST</h2>
-            <p>Jimmy bean</p>
+            <h2>Player</h2>
+            <p><span class="playername"></span></p>
         </section>
     </template>
-    <section class="player" id="host">
-        <h2>HOST</h2>
-        <p>Jimmy bean</p>
-    </section>
-    <section class="player">
-        <h2>MEMBER</h2>
-        <p>Jimmy bean</p>
-    </section>
-    <section class="player">
-        <h2>MEMBER</h2>
-        <p>Jimmy bean</p>
-    </section>
-    <section class="player">
-        <h2>MEMBER</h2>
-        <p>Jimmy bean</p>
-    </section>
+    </div>
 </main>
-<button onclick="document.location.href = 'configuration.html'">Start Game</button>
 </body>
 </html>

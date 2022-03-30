@@ -9,22 +9,18 @@ main {
 }
 
 #container figure {
-    width: 20%;
+    width: 17rem;
     padding: 1rem 4rem;
     box-sizing: border-box;
-}
-
-#container img {
-    width: 100%;
-}
-
-.disabled {
-    opacity: 0.5;
 }
 
 .chosen img {
     border-radius: 2rem;
     box-shadow: 0 0 1rem black;
+}
+
+#container img {
+    width: 100%;
 }
 
 section {

@@ -6,6 +6,7 @@ body {
     background-image: url("../media/background.png");
     background-blend-mode: soft-light;
     font-family: Arial, sans-serif;
+
 }
 header {
     text-align: center;
@@ -17,32 +18,45 @@ h2 {
     font-size: 3rem;
 }
 
-/* for flexing the 2 forms */
-main {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+/* for flexing game settings and join game container */
+h3 {
+    font-size: 2rem;
+    text-align: center;
+    line-height: 5rem;
 }
 
-/* for flexing game settings and join game container */
-#flexcontainer {
+#container {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: repeat(3, 1fr) ;
     grid-template-areas:
             "gs jg cg";
     grid-column-gap: 2rem;
+    margin: 0 2rem;
+}
+
+#create-game-container {
+    grid-area: cg;
+    line-height: 5rem;
+}
+
+#join-lobby-container {
+    grid-area: jg;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
 }
 
 /* game settings and create game container */
-section, #create-game-container>div {
+section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-}
 
-.titles {
-    font-size: 2rem;
+    background-color: rgba(200,200,200 ,0.20);
+
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
 }
 
 input[type="submit"] {
@@ -61,33 +75,14 @@ input[type="submit"]:hover{
     cursor: pointer;
 }
 
-#create-game-container {
-    grid-area: cg;
-}
-
-#join-lobby-container {
-    grid-area: jg;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    max-width: 21rem;
-    padding-bottom: 2rem;
-}
-
-
-
-#create-game-container {
-    grid-area: cg;
-}
-
 #lobby-overview {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    overflow-y: scroll;
-    height: 20rem;
+    overflow-y: auto;
+    height: 21.5rem;
     padding-right: 1.5rem;
+
 }
 
 .available-lobby {
@@ -98,6 +93,7 @@ input[type="submit"]:hover{
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .available-lobby label {
@@ -109,15 +105,15 @@ input[type="text"], input[type="number"] {
 }
 
 .available-lobby p:nth-of-type(1) {
-
     display: block;
     max-width: 13rem;
     margin-top: 0.6rem;
     margin-left: 1rem;
     margin-bottom: 0.8rem;
-
     overflow: hidden;
     text-overflow: ellipsis;
+    max-height: 1.1rem;
+
 }
 .available-lobby p:nth-of-type(2) {
     margin-bottom: 0.2rem;
@@ -133,6 +129,8 @@ input[type="text"], input[type="number"] {
     max-width: 9rem;
 
 }
+
+/* EVERYTHING ABOUT SCROLL BAR */
 
 /* width */
 #lobby-overview::-webkit-scrollbar {
@@ -155,4 +153,3 @@ input[type="text"], input[type="number"] {
 #lobby-overview::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-

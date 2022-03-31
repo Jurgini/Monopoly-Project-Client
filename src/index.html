@@ -15,6 +15,8 @@
 
     <script src="assets/js/data-connector/error-handler.js"></script>
     <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+
 
     <script src="assets/js/game/renderer.js"></script>
     <script src="assets/js/game/create-game.js"></script>
@@ -27,56 +29,46 @@
     <img src="assets/media/logo.png" alt="Monopoly Logo" title="Monopoly Logo">
 </header>
 <main>
-    <div id="flexcontainer">
+    <div id="container">
         <section id="game-settings-container">
-            <h3 class="titles">GAME SETTINGS</h3>
+            <h3>GAME SETTINGS</h3>
             <label for="username">Username</label>
             <input type="text" placeholder="choose your username" id="username" name="username">
         </section>
 
         <section id="join-lobby-container">
-            <form method="POST" id="join-game-container">
-                <h3 class="titles">JOIN GAME</h3>
+            <form>
+                <h3>JOIN GAME</h3>
 
                 <div id="lobby-overview">
                     <template>
                         <div class="available-lobby" data-lobbyid="">
-                            <label><span class="data-lobby-name"></span> - <span
-                                    class="data-lobby-joined-currently"></span> / <span class="data-lobby-max"></span>
-                                players</label>
+                            <p class="lobby-info"></p>
+                            <p class="lobby-player-info"></p>
                             <input type="submit" class="join-game-button" name="join-game-button" value="JOIN">
                         </div>
                     </template>
-
-                    <!-- DELETE THESE DIVS AFTER! -->
-
-                    <div class="available-lobby" data-lobbyid="">
-                        <div>
-                            <p>my-cool-lobby</p>
-                            <p>6/10</p>
-                        </div>
-                        <input type="submit" class="join-game-button" name="join-game-button" value="JOIN">
-                    </div>
-                    <div class="available-lobby" data-lobbyid="">
-                        <label><span class="data-lobby-name"></span> - <span class="data-lobby-joined-currently"></span>
-                            / <span class="data-lobby-max"></span> players</label>
-                        <input type="submit" class="join-game-button" name="join-game-button" value="JOIN">
-                    </div>
                 </div>
 
 
             </form>
         </section>
-        <section  id="create-game-container">
-            <form method="POST">
+        <section id="create-game-container">
+            <form>
 
-                <h3 class="titles">CREATE GAME</h3>
-                <label for="lobby-name">Lobby Name</label>
-                <input type="text" name="lobby-name" id="lobby-name" required>
-
-                <label for="amount-of-players">Amount of players</label>
-                <input type="number" name="amount-of-players" id="amount-of-players" min="2" max="10" placeholder="4"
-                       required>
+                <h3>CREATE GAME</h3>
+                <!--                <div>-->
+                <!--                    <label for="lobby-name">Lobby Name</label>-->
+                <!--                    <input type="text" name="lobby-name" id="lobby-name" required>-->
+                <!--                </div>-->
+                <div>
+                    <label for="amount-of-players">Amount of players</label>
+                    <input type="number" name="amount-of-players" id="amount-of-players"
+                           min="2"
+                           max="10"
+                           placeholder="4"
+                           required>
+                </div>
 
                 <input type="submit" id="create-game" value="CREATE GAME">
             </form>
@@ -84,6 +76,7 @@
     </div>
 
 </main>
+
 
 <div class="errormessages">
     <p></p>

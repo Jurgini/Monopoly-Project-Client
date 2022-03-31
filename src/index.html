@@ -15,6 +15,8 @@
 
     <script src="assets/js/data-connector/error-handler.js"></script>
     <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+
 
     <script src="assets/js/game/renderer.js"></script>
     <script src="assets/js/game/create-game.js"></script>
@@ -27,44 +29,54 @@
     <img src="assets/media/logo.png" alt="Monopoly Logo" title="Monopoly Logo">
 </header>
 <main>
+    <div id="container">
+        <section id="game-settings-container">
+            <h3>GAME SETTINGS</h3>
+            <label for="username">Username</label>
+            <input type="text" placeholder="choose your username" id="username" name="username">
+        </section>
 
-    <form method="POST" id="join-game-container">
-        <div id="flexcontainer">
-            <div>
-                <label class="titles">GAME SETTINGS</label>
-                <label for="username">Username</label>
-                <input type="text" placeholder="choose your username" id="username" name="username">
-            </div>
-
-            <div id="join-lobby-container">
-                <label class="titles">JOIN GAME</label>
+        <section id="join-lobby-container">
+            <form>
+                <h3>JOIN GAME</h3>
 
                 <div id="lobby-overview">
                     <template>
                         <div class="available-lobby" data-lobbyid="">
-                            <label class="lobby-info"></label>
+                            <p class="lobby-info"></p>
+                            <p class="lobby-player-info"></p>
                             <input type="submit" class="join-game-button" name="join-game-button" value="JOIN">
                         </div>
                     </template>
                 </div>
 
-            </div>
-        </div>
-    </form>
-    <form method="POST" id="create-game-container">
-        <div>
-            <label class="titles">CREATE GAME</label>
-            <!--<label for="lobby-name">Lobby Name</label>
-            <input type="text" name="lobby-name" id="lobby-name">-->
 
-            <label for="amount-of-players">Amount of players</label>
-            <input type="number" name="amount-of-players" id="amount-of-players">
-            
-            <input type="submit" id="create-game" value="CREATE GAME">
-        </div>
-    </form>
+            </form>
+        </section>
+        <section id="create-game-container">
+            <form>
+
+                <h3>CREATE GAME</h3>
+                <!--                <div>-->
+                <!--                    <label for="lobby-name">Lobby Name</label>-->
+                <!--                    <input type="text" name="lobby-name" id="lobby-name" required>-->
+                <!--                </div>-->
+                <div>
+                    <label for="amount-of-players">Amount of players</label>
+                    <input type="number" name="amount-of-players" id="amount-of-players"
+                           min="2"
+                           max="10"
+                           placeholder="4"
+                           required>
+                </div>
+
+                <input type="submit" id="create-game" value="CREATE GAME">
+            </form>
+        </section>
+    </div>
 
 </main>
+
 
 <div class="errormessages">
     <p></p>

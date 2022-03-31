@@ -1,6 +1,6 @@
 "use strict";
 
-const pawns = [{
+const PAWNS = [{
     "id": "beer-mug",
     "displayName": "Beer mug"
 }, {
@@ -43,127 +43,47 @@ function init() {
 }
 
 function showPawns() {
-    const $template = document.querySelector("template").content.firstElementChild.cloneNode(true);
-    for (let i = 0; i < pawns.length; i++) {
+    const $TEMPLATE = document.querySelector("template").content.firstElementChild.cloneNode(true);
+    for (let i = 0; i < PAWNS.length; i++) {
 
-        $template.dataset.id = i.toString();
+        $TEMPLATE.dataset.id = i.toString();
 
-        $template.querySelector("img").src = `images/pawns/${pawns[i].id}.png`;
-        $template.querySelector("img").title = pawns[i].displayName;
-        $template.querySelector("img").alt = pawns[i].displayName;
+        $TEMPLATE.querySelector("img").src = `images/pawns/${PAWNS[i].id}.png`;
+        $TEMPLATE.querySelector("img").title = PAWNS[i].displayName;
+        $TEMPLATE.querySelector("img").alt = PAWNS[i].displayName;
 
-        document.querySelector("#container").insertAdjacentHTML('afterbegin', $template.outerHTML);
+        document.querySelector("#container").insertAdjacentHTML('afterbegin', $TEMPLATE.outerHTML);
     }
 }
 
 function choosePawn(e) {
-    pawnsCopy = Object.assign([],pawns);
+    pawnsCopy = Object.assign([],PAWNS);
 
     document.querySelectorAll(".chosen").forEach(o => {
         o.classList.remove("chosen");
     });
     e.target.closest("figure").classList.add("chosen");
 
+    document.querySelector("input[type='submit']").hidden = false;
     savePawn(e.target.closest("figure"));
 }
 
 function savePawn(target) {
-    let voorbeeld = {
-        "numberOfPlayers": 6,
-        "players": [
-            {
-                "name": "fix",
-                "currentTile": "Go",
-                "jailed": false,
-                "money": 1500,
-                "bankrupt": false,
-                "getOutOfJailFreeCards": 0,
-                "taxSystem": "ESTIMATE",
-                "properties": [],
-                "debt": 0
-            },
-            {
-                "name": "pim",
-                "currentTile": "Go",
-                "jailed": false,
-                "money": 1500,
-                "bankrupt": false,
-                "getOutOfJailFreeCards": 0,
-                "taxSystem": "ESTIMATE",
-                "properties": [],
-                "debt": 0
-            },
-            {
-                "name": "nick",
-                "currentTile": "Go",
-                "jailed": false,
-                "money": 1500,
-                "bankrupt": false,
-                "getOutOfJailFreeCards": 0,
-                "taxSystem": "ESTIMATE",
-                "properties": [],
-                "debt": 0
-            },
-            {
-                "name": "joachim",
-                "currentTile": "Go",
-                "jailed": false,
-                "money": 1500,
-                "bankrupt": false,
-                "getOutOfJailFreeCards": 0,
-                "taxSystem": "ESTIMATE",
-                "properties": [],
-                "debt": 0
-            },
-            {
-                "name": "tuur",
-                "currentTile": "Go",
-                "jailed": false,
-                "money": 1500,
-                "bankrupt": false,
-                "getOutOfJailFreeCards": 0,
-                "taxSystem": "ESTIMATE",
-                "properties": [],
-                "debt": 0
-            },
-            {
-                "name": "jo",
-                "currentTile": "Go",
-                "jailed": false,
-                "money": 1500,
-                "bankrupt": false,
-                "getOutOfJailFreeCards": 0,
-                "taxSystem": "ESTIMATE",
-                "properties": [],
-                "debt": 0
-            }
-        ],
-        "started": true,
-        "directSale": null,
-        "availableHouses": 32,
-        "auctions": [],
-        "turns": [],
-        "lastDiceRoll": null,
-        "canRoll": true,
-        "ended": false,
-        "currentPlayer": "fix",
-        "winner": null
-    };
-
-    const username = "joachim" //loadFromStorage("username");
-
+    const GAME_ID = loadFromStorage("game").gameId;
+    let gameInfoServer = fetchFromServer(`/games/${GAME_ID}`,"GET");
+    const USERNAME = loadFromStorage("game").playerName;
     let pawnDistribution = [{
-        "player": username,
+        "player": USERNAME,
         "pawn": pawnsCopy[target.dataset.id]
     }];
 
     pawnsCopy.splice(parseInt(target.dataset.id),1);
 
-    for (let key in voorbeeld.players) {
-        if (voorbeeld.players[key].name !== username) {
+    for (let key in gameInfoServer.players) {
+        if (gameInfoServer.players[key].name !== USERNAME) {
 
             let pawnPlacement = {
-                "player": voorbeeld.players[key].name,
+                "player": gameInfoServer.players[key].name,
                 "pawn": giveAvailablePawn(pawnsCopy)
             };
             pawnDistribution.push(pawnPlacement);

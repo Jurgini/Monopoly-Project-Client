@@ -14,3 +14,14 @@ function loadFromStorage(key) {
     return false;
 }
 
+function loadTokenFromStorage()
+{
+    if (loadFromStorage(_config.localStorageGameObject) !== false)
+    {
+        return loadFromStorage(_config.localStorageGameObject);
+    }
+    else
+    {
+        return null;
+    }
+}

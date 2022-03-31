@@ -1,13 +1,44 @@
 'use strict';
-
-function joinGame(e)
+function joinSelectedLobby(e)
 {
     e.preventDefault();
 
-    const playerUsername = document.querySelector('form#join-game-container #username').value;
+    const selectedLobby = e.submitter.closest('div');
+    const selectedLobbyInfo = selectedLobby.dataset;
+    const playerName = document.querySelector('section#game-settings-container input#username').value;
+
+    joinGame(playerName, selectedLobbyInfo.gameid);
+}
+function joinGame(playerName, gameId)
+{
+    const joinBody = {
+        "playerName": playerName
+    };
+
+    fetchFromServer(`/games/${gameId}/players`, 'POST', joinBody)
+        .then(response => {
+            saveGameToStorage(playerName, gameId, response.token);
+        });
 
     // Send the player to the lobby
-    console.log("join");
+    setTimeout(redirect("lobby.html"), 5000);
+
+}
+
+function saveGameToStorage(playerName, gameId, token)
+{
+    const createdGame = {
+        "playerName": playerName,
+        "gameId": gameId,
+        "token": token
+    };
+
+    saveToStorage(_config.localStorageGameObject, createdGame);
+}
+
+function redirect(path)
+{
+    window.location.href = _config.monopolyUrl + path;
 }
 
 

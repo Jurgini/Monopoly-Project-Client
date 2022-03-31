@@ -42,7 +42,7 @@
                 <div id="lobby-overview">
                     <template>
                         <div class="available-lobby" data-lobbyid="">
-                            <label><span class="data-lobby-name"></span> - <span class="data-lobby-joined-currently"></span> / <span class="data-lobby-max"></span> players</label>
+                            <label class="lobby-info"></label>
                             <input type="submit" class="join-game-button" name="join-game-button" value="JOIN">
                         </div>
                     </template>
@@ -54,8 +54,8 @@
     <form method="POST" id="create-game-container">
         <div>
             <label class="titles">CREATE GAME</label>
-            <label for="lobby-name">Lobby Name</label>
-            <input type="text" name="lobby-name" id="lobby-name">
+            <!--<label for="lobby-name">Lobby Name</label>
+            <input type="text" name="lobby-name" id="lobby-name">-->
 
             <label for="amount-of-players">Amount of players</label>
             <input type="number" name="amount-of-players" id="amount-of-players">

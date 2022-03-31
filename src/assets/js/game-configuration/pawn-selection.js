@@ -1,6 +1,6 @@
 "use strict";
 
-const PAWNS = [{
+const _PAWNS = [{
     "id": "beer-mug",
     "displayName": "Beer mug"
 }, {
@@ -31,7 +31,7 @@ const PAWNS = [{
     "id": "triangular-ruler",
     "displayName": "Triangular ruler"
 }];
-let pawnsCopy;
+let _pawnsCopy;
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -44,20 +44,20 @@ function init() {
 
 function showPawns() {
     const $TEMPLATE = document.querySelector("template").content.firstElementChild.cloneNode(true);
-    for (let i = 0; i < PAWNS.length; i++) {
+    for (let i = 0; i < _PAWNS.length; i++) {
 
         $TEMPLATE.dataset.id = i.toString();
 
-        $TEMPLATE.querySelector("img").src = `images/pawns/${PAWNS[i].id}.png`;
-        $TEMPLATE.querySelector("img").title = PAWNS[i].displayName;
-        $TEMPLATE.querySelector("img").alt = PAWNS[i].displayName;
+        $TEMPLATE.querySelector("img").src = `images/pawns/${_PAWNS[i].id}.png`;
+        $TEMPLATE.querySelector("img").title = _PAWNS[i].displayName;
+        $TEMPLATE.querySelector("img").alt = _PAWNS[i].displayName;
 
         document.querySelector("#container").insertAdjacentHTML('afterbegin', $TEMPLATE.outerHTML);
     }
 }
 
 function choosePawn(e) {
-    pawnsCopy = Object.assign([],PAWNS);
+    _pawnsCopy = Object.assign([],_PAWNS);
 
     document.querySelectorAll(".chosen").forEach(o => {
         o.classList.remove("chosen");
@@ -70,21 +70,21 @@ function choosePawn(e) {
 
 function savePawn(target) {
     const GAME_ID = loadFromStorage("game").gameId;
-    let gameInfoServer = fetchFromServer(`/games/${GAME_ID}`,"GET");
+    const GAME_INFO_SERVER = fetchFromServer(`/games/${GAME_ID}`,"GET");
     const USERNAME = loadFromStorage("game").playerName;
     let pawnDistribution = [{
         "player": USERNAME,
-        "pawn": pawnsCopy[target.dataset.id]
+        "pawn": _pawnsCopy[target.dataset.id]
     }];
 
-    pawnsCopy.splice(parseInt(target.dataset.id),1);
+    _pawnsCopy.splice(parseInt(target.dataset.id),1);
 
-    for (let key in gameInfoServer.players) {
-        if (gameInfoServer.players[key].name !== USERNAME) {
+    for (let key in GAME_INFO_SERVER.players) {
+        if (GAME_INFO_SERVER.players[key].name !== USERNAME) {
 
             let pawnPlacement = {
-                "player": gameInfoServer.players[key].name,
-                "pawn": giveAvailablePawn(pawnsCopy)
+                "player": GAME_INFO_SERVER.players[key].name,
+                "pawn": giveAvailablePawn(_pawnsCopy)
             };
             pawnDistribution.push(pawnPlacement);
         }
@@ -94,7 +94,7 @@ function savePawn(target) {
 }
 
 function giveAvailablePawn() {
-    let pawn = pawnsCopy[0];
-    pawnsCopy.splice(0,1);
+    let pawn = _pawnsCopy[0];
+    _pawnsCopy.splice(0,1);
     return pawn;
 }

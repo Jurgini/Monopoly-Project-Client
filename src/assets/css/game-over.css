@@ -6,19 +6,18 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 5%;
 }
 
 #container figure {
-    width: 20%;
     padding: 1rem 4rem;
     box-sizing: border-box;
 }
 
 
 #container img {
-    width: 100%;
+    width: 200px;
 }
+
 h3 {
     text-align: center;
     margin: 10px auto;

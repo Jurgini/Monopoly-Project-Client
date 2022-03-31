@@ -31,14 +31,21 @@ main {
 section {
     text-align: center;
 }
-button {
+input[type="submit"] {
+    box-shadow: 0 0 0 0.3rem #BC3334;
+    border: 0.2rem solid white;
+    background-color: #BC3334;
     color: white;
-    background: #C70000;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: 0;
-    box-shadow: 0 0 1rem black;
-    margin-top: 10px;
-    margin-bottom: 15px;
-
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    margin: 20px auto;
+    display: block;
+    text-align: center;
 }
+
+input[type="submit"]:hover{
+    background: #900000;
+    cursor: pointer;
+}
+

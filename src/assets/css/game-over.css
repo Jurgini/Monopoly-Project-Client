@@ -14,10 +14,7 @@ main {
     padding: 1rem 4rem;
     box-sizing: border-box;
 }
-.chosen img {
-    border-radius: 2rem;
-    box-shadow: 0 0 1rem black;
-}
+
 
 #container img {
     width: 100%;
@@ -36,12 +33,15 @@ output {
     opacity: 0.5;
 }
 
-
-
-
 section {
     text-align: center;
 }
+
+.chosen img {
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem black;
+}
+
 input[type="submit"] {
     box-shadow: 0 0 0 0.3rem #BC3334;
     border: 0.2rem solid white;

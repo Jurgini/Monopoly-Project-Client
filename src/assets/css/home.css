@@ -1,10 +1,101 @@
 body {
     width: 100%;
     margin: auto auto;
+    background-color: #BFDBAE;
 }
 header {
     text-align: center;
 }
 header img {
-    max-width: 40%;
+    max-width: 35%;
+}
+h2 {
+    font-size: 3rem;
+}
+
+/* for flexing the 2 forms */
+main {
+    display: flex;
+    gap: 10rem;
+    justify-content: center;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+/* for flexing game settings and join game container */
+#flexcontainer {
+    display: flex;
+    gap: 10rem;
+    align-items: start; /* messes with game settings' space-around */
+}
+
+/* game settings and create game container */
+#create-game-container>div, form>div>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.titles {
+    font-size: 2rem;
+}
+
+input[type="submit"] {
+    box-shadow: 0 0 0 0.3rem #BC3334;
+    border: 0.2rem solid white;
+    background-color: #BC3334;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+}
+
+input[type="submit"]:hover{
+    background: #900000;
+    cursor: pointer;
+}
+
+#join-lobby-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+#create-game {
+    margin-bottom: 2rem;
+    height: 3rem;
+    width: 20rem;
+}
+
+#lobby-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.available-lobby {
+    border: black solid;
+    box-shadow: 0.8rem 0.6rem 0 black;
+    border-radius: 3rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+#join-lobby-container {
+    max-width: 21rem;
+    padding-right: 6rem;
+    padding-left: 5rem;
+    padding-bottom: 2rem;
+}
+
+#lobby-overview {
+    overflow-y: scroll;
+    height: 20rem;
+}
+
+.available-lobby label {
+    width: 10rem;
 }

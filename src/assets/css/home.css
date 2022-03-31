@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 body {
     width: 100%;
@@ -5,8 +6,7 @@ body {
     /*background-color: #BFDBAE;*/
     background-image: url("../media/background.png");
     background-blend-mode: soft-light;
-    font-family: Arial, sans-serif;
-
+    font-family: 'Fredoka One', cursive;
 }
 header {
     text-align: center;
@@ -57,9 +57,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     background-color: rgba(200,200,200 ,0.20);
-
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);
 }
 
@@ -72,7 +70,7 @@ section {
     border-radius: 0.3rem;
     text-transform: uppercase;
     margin: 0.8rem 0.3rem 0.8rem 0.8rem   ;
-    width: 10rem;
+    width: 7rem;
 }
 #create-game-container input[type="submit"] {
     box-shadow: 0 0 0 0.18rem #BC3334;
@@ -82,12 +80,24 @@ section {
     padding: 0.5rem;
     border-radius: 0.3rem;
     text-transform: uppercase;
-    text-align: center;
+    width: 100%;
+    margin-top: 1rem;
 }
 
 input[type="submit"]:hover{
     background: #900000;
     cursor: pointer;
+}
+
+input[type="text"], input[type="number"] {
+    line-height: 2rem;
+    background-color: rgba(200,200,200,0.2);
+    border-radius: 3rem;
+    font-size: 0.9rem;
+    margin-top: 0.6rem;
+    margin-bottom: 2rem;
+    box-shadow: 0.1rem 0.1rem 0.3rem black;
+    text-align: center;
 }
 
 #lobby-overview {
@@ -113,10 +123,6 @@ input[type="submit"]:hover{
 
 .available-lobby label {
     width: 10rem;
-}
-
-input[type="text"], input[type="number"] {
-        text-align: center;
 }
 
 .available-lobby p:nth-of-type(1) {
@@ -145,16 +151,6 @@ input[type="text"], input[type="number"] {
 
 }
 
-input[type="text"], input[type="number"] {
-    line-height: 2rem;
-    background-color: rgba(200,200,200,0.2);
-    border-radius: 3rem;
-    font-size: 0.9rem;
-    margin-top: 0.3rem;
-    margin-bottom: 2rem;
-    box-shadow: 0.1rem 0.1rem 0.3rem black;
-
-}
 
 /* EVERYTHING ABOUT SCROLL BAR */
 

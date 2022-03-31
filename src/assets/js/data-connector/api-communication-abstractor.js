@@ -5,7 +5,6 @@ function fetchFromServer(path, httpVerb, requestBody){
 
     return fetch(`${_config.getAPIUrl()}${path}`, options)
         .then((response) => {
-            
             return response.json();
         })
         .then((jsonresponsetoparse) => {

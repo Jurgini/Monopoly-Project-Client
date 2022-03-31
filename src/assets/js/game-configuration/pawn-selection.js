@@ -84,7 +84,7 @@ function savePawn(target) {
 
             let pawnPlacement = {
                 "player": GAME_INFO_SERVER.players[key].name,
-                "pawn": giveAvailablePawn(_pawnsCopy)
+                "pawn": giveAvailablePawn()
             };
             pawnDistribution.push(pawnPlacement);
         }

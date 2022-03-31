@@ -14,9 +14,6 @@ header {
 header img {
     max-width: 35%;
 }
-h2 {
-    font-size: 3rem;
-}
 
 /* for flexing game settings and join game container */
 h3 {
@@ -37,7 +34,14 @@ h3 {
 
 #create-game-container {
     grid-area: cg;
-    line-height: 5rem;
+
+}
+
+#create-game-container div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.4rem;
 }
 
 #join-lobby-container {
@@ -59,15 +63,26 @@ section {
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);
 }
 
-input[type="submit"] {
-    box-shadow: 0 0 0 0.3rem #BC3334;
-    border: 0.2rem solid white;
+.available-lobby input[type="submit"] {
+    box-shadow: 0 0 0 0.18rem #BC3334;
+    border: 0.17rem solid white;
+    background-color: #BC3334;
+    color: white;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    margin: 0.8rem 0.3rem 0.8rem 0.8rem   ;
+    width: 10rem;
+}
+#create-game-container input[type="submit"] {
+    box-shadow: 0 0 0 0.18rem #BC3334;
+    border: 0.17rem solid white;
     background-color: #BC3334;
     color: white;
     padding: 0.5rem;
     border-radius: 0.3rem;
     text-transform: uppercase;
-    margin: 0.8rem 2rem;
+    text-align: center;
 }
 
 input[type="submit"]:hover{
@@ -127,6 +142,17 @@ input[type="text"], input[type="number"] {
     color: white;
     font-size: 0.8rem;
     max-width: 9rem;
+
+}
+
+input[type="text"], input[type="number"] {
+    line-height: 2rem;
+    background-color: rgba(200,200,200,0.2);
+    border-radius: 3rem;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    margin-bottom: 2rem;
+    box-shadow: 0.1rem 0.1rem 0.3rem black;
 
 }
 

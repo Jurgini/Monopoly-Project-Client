@@ -28,7 +28,7 @@ header h2 {
     margin: auto;
 }
 
-button {
+button, input[type="submit"] {
     color: white;
     background: #C70000;
     border-radius: 0.5rem;
@@ -38,7 +38,7 @@ button {
     margin: 0 50%;
 }
 
-button:hover {
+button:hover, input[type="submit"]:hover {
     background: #900000;
     cursor: pointer;
 }

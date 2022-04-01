@@ -30,7 +30,7 @@ function saveGameToStorage(playerName, gameId, token)
     };
 
     saveToStorage(_config.localStorageGameObject, createdGame);
-    setTimeout(redirect('lobby.html'),5000);
+    setTimeout(function() {redirect('lobby.html');},5000);
 }
 
 function redirect(path)

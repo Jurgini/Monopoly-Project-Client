@@ -70,11 +70,11 @@ function choosePawn(e) {
 }
 
 function distributePawnsToOtherPlayers(currentPawnDistribution, gameInfoServer, thisUserName) {
-    for (let key in gameInfoServer.players) {
+    for (const key in gameInfoServer.players) {
 
         if (gameInfoServer.players[key].name !== thisUserName) {
 
-            let pawnPlacement = {
+            const pawnPlacement = {
                 "player": gameInfoServer.players[key].name,
                 "pawn": giveAvailablePawn()
             };
@@ -91,7 +91,7 @@ function savePawn(target) {
         gameInfoServer = response;
 
         const USERNAME = loadFromStorage(_config.localStorageGameObject).playerName;
-        let pawnDistribution = [{
+        const pawnDistribution = [{
             "player": USERNAME,
             "pawn": _pawnsCopy[target.dataset.id]
         }];
@@ -104,7 +104,7 @@ function savePawn(target) {
 }
 
 function giveAvailablePawn() {
-    let pawn = _pawnsCopy[0];
+    const pawn = _pawnsCopy[0];
     _pawnsCopy.splice(0, 1);
     return pawn;
 }

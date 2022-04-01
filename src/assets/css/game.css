@@ -13,10 +13,6 @@ body {
     visibility: hidden;
 }
 
-#current p {
-    text-align: center;
-}
-
 #gridbox {
     display: grid;
 
@@ -24,22 +20,42 @@ body {
             "c"
             "np"
             "p";
-    grid-row-gap: 14rem;
     text-align: center;
-
+    justify-content: space-between;
+    gap: 2.3rem;
+    margin: 1rem 2rem;
 }
+
+#card, #current-position, #alert {
+    background-color: rgba(200,200,200 ,0.20);
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+
+    padding: 1rem;
+    width: 25rem;
+}
+
 
 #current {
     grid-area: c;
-    background-color: #900000;
+
+}
+
+#current p {
+    text-align: center;
+}
+
+#current p {
+    margin-bottom: 2rem;
 }
 #current div {
     grid-area: c;
-    background-color: #900000;
+
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 3rem;
+    justify-content: space-around;
+
+    height: 15rem;
+    max-height: 15rem;
 }
 
 list {
@@ -49,24 +65,38 @@ list {
 }
 dt {
     margin-bottom: 1rem;
+
+}
+dl {
+    background-color: rgba(200,200,200 ,0.20);
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+
+
+    height: 10rem;
+    max-height: 10rem;
 }
 
 #next-positions {
     grid-area: np;
-    background-color: lawngreen;
+
+
 }
 
 #players {
     grid-area: p;
-    background-color: aqua;
     display: flex;
-    gap: 1rem;
-    justify-content: center;
+
+    justify-content: space-around;
+
 }
 
 #players div {
     display: flex;
     flex-direction: column;
-    gap: 10rem;
-    width: 6rem;
+    height: 12rem;
+    justify-content: space-between;
+    background-color: rgba(200,200,200 ,0.20);
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+    width: 8.5rem;
+
 }

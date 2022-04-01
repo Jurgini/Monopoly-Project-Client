@@ -14,25 +14,27 @@ header h3 {
 .players {
     display: flex;
     justify-content: center;
+
 }
 
 .player {
+
+    background-image: url("../media/lobbyuser.png");
+    background-repeat: no-repeat;
+    background-size: 6rem;
+    background-position: top center;
+
     background-color: lightgray;
-    width: 7rem;
-    height: 7rem;
+    width: 9rem;
+    height: 9rem;
     margin: 2rem 2rem 4rem 2rem;
     text-align: center;
     border: 0.1rem solid black;
 }
 
 .player h2 {
-    padding-top: 0.5rem;
-    padding-bottom: 2rem;
+    padding-top: 65%;
     font-weight: bold;
-}
-
-.player p {
-    padding-top: 30%;
 }
 .player #host h2 {
     color: red;

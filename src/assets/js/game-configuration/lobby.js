@@ -39,7 +39,10 @@ function showPlayers(playersInGame,$container)
 function showPlayer(player, $container)
 {
     const $template = document.querySelector('template').content.firstElementChild.cloneNode(true);
-    $template.querySelector('span.playername').textContent = player.name;
+    $template.querySelector('.playername').textContent = player.name;
+    if(player.name === loadFromStorage("game").playerName)
+    {
+        $template.querySelector('.player h3').removeAttribute("hidden")
+    }
     $container.insertAdjacentHTML("beforeend", $template.outerHTML);
-
 }

@@ -36,7 +36,12 @@ function saveGameToStorage(playerName, gameId, token)
         "token": token
     };
 
+    const tokenObject = {
+        "token":token
+    }
+
     saveToStorage(_config.localStorageGameObject, createdGame);
+    saveToStorage(_config.localStorageTokenObject, tokenObject);
     redirect('lobby.html');
 }
 

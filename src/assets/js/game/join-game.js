@@ -32,8 +32,7 @@ function saveGameToStorage(playerName, gameId, token)
 {
     const createdGame = {
         "playerName": playerName,
-        "gameId": gameId,
-        "token": token
+        "gameId": gameId
     };
 
     const tokenObject = {

@@ -19,11 +19,11 @@ function loadTokenFromStorage()
 {
     if (loadFromStorage(_config.localStorageGameObject))
     {
-        _token = loadFromStorage(_config.localStorageGameObject).token;
+        _token = loadFromStorage(_config.localStorageTokenObject);
     }
     else
     {
-        _token =  null;
+        _token = null;
     }
 }
 

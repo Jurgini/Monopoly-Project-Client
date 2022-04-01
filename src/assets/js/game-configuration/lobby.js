@@ -1,6 +1,6 @@
 "use strict";
-
 document.addEventListener('DOMContentLoaded',init);
+loadTokenFromStorage();
 
 function init(){
     initLobby();
@@ -8,24 +8,23 @@ function init(){
 
 function initLobby()
 {
-    let lobbyId = 'group18_288'; // Replace this by _token
-
-    displayLobbyId(lobbyId);
-    loadPlayers(lobbyId);
+    const GAME_ID = loadFromStorage(_config.localStorageGameObject).gameId;
+    displayLobbyId(GAME_ID);
+    loadPlayers(GAME_ID);
 }
 
-function displayLobbyId(lobbyId)
+function displayLobbyId(gameId)
 {
-    fetchFromServer(`/games?prefix=${lobbyId}`,'GET').then(response => {
-      document.querySelector("span#gameid").innerHTML=response[0].id;
+    fetchFromServer(`/games/${gameId}`,'GET').then(response => {
+      document.querySelector("span#gameid").innerHTML=gameId;
     });
 }
 
-function loadPlayers(lobbyId)
+function loadPlayers(gameId)
 {
     const $container = document.querySelector('div.players');
-    fetchFromServer(`/games?prefix=${lobbyId}`,'GET').then(response => {
-        showPlayers(response[0].players, $container);
+    fetchFromServer(`/games/${gameId}`,'GET').then(response => {
+        showPlayers(response.players, $container);
     });
 }
 

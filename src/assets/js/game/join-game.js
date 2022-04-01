@@ -21,7 +21,6 @@ function joinGame(playerName, gameId)
         });
 
     // Send the player to the lobby
-    setTimeout(redirect("lobby.html"), 5000);
 
 }
 
@@ -34,11 +33,12 @@ function saveGameToStorage(playerName, gameId, token)
     };
 
     saveToStorage(_config.localStorageGameObject, createdGame);
+    setTimeout(redirect('lobby.html'),5000);
 }
 
 function redirect(path)
 {
-    window.location.href = _config.monopolyUrl + path;
+    window.location.href = path;
 }
 
 

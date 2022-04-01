@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+    width: 100%;
+    margin: auto auto;
+    /*background-color: #BFDBAE;*/
+    background-image: url("../media/background.png");
+    background-blend-mode: soft-light;
+    font-family: 'Fredoka One', cursive;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+#current p {
+    text-align: center;
+}
+
+#gridbox {
+    display: grid;
+
+    grid-template-areas:
+            "c"
+            "np"
+            "p";
+    grid-row-gap: 14rem;
+    text-align: center;
+
+}
+
+#current {
+    grid-area: c;
+    background-color: #900000;
+}
+#current div {
+    grid-area: c;
+    background-color: #900000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+}
+
+list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+dt {
+    margin-bottom: 1rem;
+}
+
+#next-positions {
+    grid-area: np;
+    background-color: lawngreen;
+}
+
+#players {
+    grid-area: p;
+    background-color: aqua;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+#players div {
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+    width: 6rem;
+}

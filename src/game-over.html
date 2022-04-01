@@ -1,39 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Monopoly</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <head>
+        <meta charset="UTF-8">
+        <title>Monopoly</title>
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/screen.css">
-    <link rel="stylesheet" href="assets/css/game-over.css">
+        <link rel="stylesheet" href="assets/css/reset.css">
+        <link rel="stylesheet" href="assets/css/screen.css">
+        <link rel="stylesheet" href="assets/css/bankruptcy.css">
 
-</head>
-<body>
-<header>
-    <h2>GAME OVER!</h2>
-</header>
-<main>
-    <div id="container">
-        <template>
-            <figure>
-                <img src="" alt="" title="">
-            </figure>
-        </template>
-                <figure>
-                    <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/1st-place-medal_1f947.png" alt="Winner" title="Winner">
-                </figure>
-            </div>
-
+    </head>
+    <body>
+        <header>
+            <h2>GAME OVER!</h2>
+        </header>
+        <main>
             <h3>{PLAYER X}</h3>
             <h3>WON THE GAME!</h3>
-            <input type="submit" id="play-again" value="PLAY AGAIN">
-            <input type="submit" id="same-settings" value="PLAY AGAIN WITH THE SAME SETTINGS">
-            <input type="submit" id="return-menu" value="RETURN TO MENU">
+            <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/1st-place-medal_1f947.png" id="medal" alt="Winner" title="Winner">
+            <input type="submit" id="play-again" value="play again">
+            <input type="submit" id="same-settings" value="play again with the same settings">
+            <input type="submit" id="return-menu" value="return to menu">
         </main>
     </body>
 </html>

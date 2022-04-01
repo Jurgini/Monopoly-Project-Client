@@ -2,14 +2,25 @@ main {
     padding: 0 3rem;
 }
 
+h3 {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 20px;
+}
+
 img {
     width: 200px;
     flex-wrap: wrap;
     display: block;
-    margin: 80px auto;
+    margin: 80px auto 25px;
 
 }
-
+#medal{
+    width: 250px;
+    flex-wrap: wrap;
+    display: block;
+    margin: 50px auto 30px;
+}
 input[type="submit"] {
     box-shadow: 0 0 0 0.3rem #BC3334;
     border: 0.2rem solid white;
@@ -20,7 +31,7 @@ input[type="submit"] {
     text-transform: uppercase;
     flex-wrap: wrap;
     display: block;
-    margin: 25px auto;
+    margin: 30px auto;
 }
 
 input[type="submit"]:hover{

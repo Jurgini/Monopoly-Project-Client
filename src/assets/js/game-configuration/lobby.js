@@ -1,5 +1,4 @@
 "use strict";
-let _token = null;
 
 document.addEventListener('DOMContentLoaded',init);
 
@@ -9,7 +8,7 @@ function init(){
 
 function initLobby()
 {
-    let lobbyId = 'group18_288';
+    let lobbyId = 'group18_288'; // Replace this by _token
 
     displayLobbyId(lobbyId);
     loadPlayers(lobbyId);

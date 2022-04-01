@@ -15,7 +15,7 @@ function initLobby() {
 function displayLobbyId(gameId) {
     fetchFromServer(`/games/${gameId}`, 'GET').then(response => {
         document.querySelector("span#gameid").innerHTML = gameId;
-        document.querySelector("main .amountOfPlayers").innerHTML = ` PLAYERS: ${response.players.length}/${response.numberOfPlayers}`;
+        document.querySelector("main .amountOfPlayers").innerHTML = `${response.players.length}/${response.numberOfPlayers}`;
     });
 }
 
@@ -27,7 +27,7 @@ function loadPlayers(gameId) {
         if (response.players.length === response.numberOfPlayers) {
             setTimeout(() => redirect("choose-pawn.html"), 5000);
         } else {
-            setTimeout(() => loadPlayers(gameId), 1500);
+            setTimeout(() => loadPlayers(gameId), _config.delay);
         }
     });
 }

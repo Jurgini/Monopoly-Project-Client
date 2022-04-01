@@ -15,7 +15,7 @@ function initLobby() {
 function displayLobbyId(gameId) {
     fetchFromServer(`/games/${gameId}`, 'GET').then(response => {
         document.querySelector("span#gameid").innerHTML = gameId;
-        document.querySelector("main .amountOfPlayers").innerHTML = "Players:" + response.players.length+"/"+response.numberOfPlayers;
+        document.querySelector("main .amountOfPlayers").innerHTML = ` PLAYERS: ${response.players.length}/${response.numberOfPlayers}`;
     });
 }
 
@@ -43,7 +43,7 @@ function showPlayer(player, $container) {
     const $template = document.querySelector('template').content.firstElementChild.cloneNode(true);
     $template.querySelector('.playername').textContent = player.name;
     if (player.name === loadFromStorage("game").playerName) {
-        $template.querySelector('.player h3').removeAttribute("hidden")
+        $template.querySelector('.player h3').removeAttribute("hidden");
     }
     $container.insertAdjacentHTML("beforeend", $template.outerHTML);
 }

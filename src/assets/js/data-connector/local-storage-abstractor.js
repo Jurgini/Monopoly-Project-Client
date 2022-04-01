@@ -1,4 +1,5 @@
 "use strict";
+let _token = null;
 
 function saveToStorage(key, value) {
     if (localStorage) {
@@ -12,5 +13,17 @@ function loadFromStorage(key) {
         return JSON.parse(localStorage.getItem(key));
     }
     return false;
+}
+
+function loadTokenFromStorage()
+{
+    if (loadFromStorage(_config.localStorageGameObject))
+    {
+        _token = loadFromStorage(_config.localStorageGameObject).token;
+    }
+    else
+    {
+        _token =  null;
+    }
 }
 

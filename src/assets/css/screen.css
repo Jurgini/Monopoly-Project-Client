@@ -2,11 +2,10 @@ body {
     font-size: 1rem;
     font-family: Arial, sans-serif;
     color: black;
-    background-color: #BFDBAE;
+    background-image: url("../media/background.png");
 }
 
 header {
-    background-color: #8FBC72;
     padding: 0.5rem;
     margin-bottom: 1rem;
     display: flex;

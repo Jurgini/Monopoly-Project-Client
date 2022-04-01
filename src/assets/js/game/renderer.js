@@ -20,9 +20,13 @@ function renderAvailableLobbies(availableGames, $container)
 function renderLobby(availableGame, $container)
 {
     const $template = document.querySelector('template').content.firstElementChild.cloneNode(true);
-    const $lobbyInfo = $template.querySelector("label.lobby-info");
-    $lobbyInfo.innerHTML = `${availableGame.id} - ${availableGame.players.length}/${availableGame.numberOfPlayers}`;
-    $lobbyInfo.setAttribute("data-lobbyid", availableGame.id);
+    const $lobbyInfo = $template.querySelector("p.lobby-info");
+    const $lobbyPlayerInfo = $template.querySelector("p.lobby-player-info");
+    $lobbyInfo.innerHTML = `${availableGame.id}`;
+    $lobbyInfo.title = `${availableGame.id}`;
+    $lobbyPlayerInfo.innerHTML = `${availableGame.players.length}/${availableGame.numberOfPlayers}`;
+    $template.setAttribute("data-gameid", availableGame.id);
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    console.log(loadTokenFromStorage());
 }

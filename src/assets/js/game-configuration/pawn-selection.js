@@ -69,9 +69,9 @@ function choosePawn(e) {
 }
 
 function savePawn(target) {
-    const GAME_ID = loadFromStorage("game").gameId;
+    const GAME_ID = loadFromStorage(_config.localStorageGameObject).gameId;
     const GAME_INFO_SERVER = fetchFromServer(`/games/${GAME_ID}`,"GET");
-    const USERNAME = loadFromStorage("game").playerName;
+    const USERNAME = loadFromStorage(_config.localStorageGameObject).playerName;
     let pawnDistribution = [{
         "player": USERNAME,
         "pawn": _pawnsCopy[target.dataset.id]
@@ -84,7 +84,7 @@ function savePawn(target) {
 
             let pawnPlacement = {
                 "player": GAME_INFO_SERVER.players[key].name,
-                "pawn": giveAvailablePawn(_pawnsCopy)
+                "pawn": giveAvailablePawn()
             };
             pawnDistribution.push(pawnPlacement);
         }

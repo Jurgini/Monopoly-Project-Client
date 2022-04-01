@@ -1,5 +1,4 @@
 "use strict";
-const _token = null;
 
 document.addEventListener('DOMContentLoaded',init);
 
@@ -7,8 +6,8 @@ function init(){
     testConnection();
     loadGames();
     loadAvailableLobbies();
-    document.querySelector('form#join-game-container').addEventListener('submit', joinGame);
-    document.querySelector('form#create-game-container').addEventListener('submit', createGame);
+    document.querySelector('section#join-lobby-container form').addEventListener('submit', joinSelectedLobby);
+    document.querySelector('section#create-game-container form').addEventListener('submit', createGame);
 }
 
 function testConnection(){

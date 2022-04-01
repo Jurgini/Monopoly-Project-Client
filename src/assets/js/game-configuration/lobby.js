@@ -15,7 +15,7 @@ function initLobby() {
 function displayLobbyId(gameId) {
     fetchFromServer(`/games/${gameId}`, 'GET').then(response => {
         document.querySelector("span#gameid").innerHTML = gameId;
-        document.querySelector("main .amountOfPlayers").innerHTML = response.players.length+"/"+response.numberOfPlayers;
+        document.querySelector("main .amountOfPlayers").innerHTML = `${response.players.length}/${response.numberOfPlayers}`;
     });
 }
 

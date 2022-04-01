@@ -16,7 +16,7 @@ function loadFromStorage(key) {
 
 function loadTokenFromStorage()
 {
-    if (loadFromStorage(_config.localStorageGameObject) !== false)
+    if (loadFromStorage(_config.localStorageGameObject))
     {
         return loadFromStorage(_config.localStorageGameObject).token;
     }

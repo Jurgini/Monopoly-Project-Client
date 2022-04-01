@@ -19,10 +19,6 @@ function joinGame(playerName, gameId)
         .then(response => {
             saveGameToStorage(playerName, gameId, response.token);
         });
-
-    // Send the player to the lobby
-    setTimeout(redirect("lobby.html"), 5000);
-
 }
 
 function saveGameToStorage(playerName, gameId, token)
@@ -34,11 +30,12 @@ function saveGameToStorage(playerName, gameId, token)
     };
 
     saveToStorage(_config.localStorageGameObject, createdGame);
+    setTimeout(function() {redirect('lobby.html');},5000);
 }
 
 function redirect(path)
 {
-    window.location.href = _config.monopolyUrl + path;
+    window.location.href = path;
 }
 
 

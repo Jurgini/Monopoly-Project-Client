@@ -19,9 +19,6 @@ function joinGame(playerName, gameId)
         .then(response => {
             saveGameToStorage(playerName, gameId, response.token);
         });
-
-    // Send the player to the lobby
-
 }
 
 function saveGameToStorage(playerName, gameId, token)

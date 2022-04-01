@@ -1,46 +1,53 @@
 "use strict";
+document.addEventListener('DOMContentLoaded', init);
+loadTokenFromStorage();
 
-document.addEventListener('DOMContentLoaded',init);
-
-function init(){
+function init() {
     initLobby();
 }
 
-function initLobby()
-{
-    let lobbyId = 'group18_288'; // Replace this by _token
-
-    displayLobbyId(lobbyId);
-    loadPlayers(lobbyId);
+function initLobby() {
+    const GAME_ID = loadFromStorage(_config.localStorageGameObject).gameId;
+    displayLobbyId(GAME_ID);
+    loadPlayers(GAME_ID);
 }
 
-function displayLobbyId(lobbyId)
-{
-    fetchFromServer(`/games?prefix=${lobbyId}`,'GET').then(response => {
-      document.querySelector("span#gameid").innerHTML=response[0].id;
+function displayLobbyId(gameId) {
+    fetchFromServer(`/games/${gameId}`, 'GET').then(response => {
+        document.querySelector("span#gameid").innerHTML = gameId;
+        document.querySelector("main .amountOfPlayers").innerHTML = "Players:" + response.players.length+"/"+response.numberOfPlayers;
     });
 }
 
-function loadPlayers(lobbyId)
-{
+function loadPlayers(gameId) {
     const $container = document.querySelector('div.players');
-    fetchFromServer(`/games?prefix=${lobbyId}`,'GET').then(response => {
-        showPlayers(response[0].players, $container);
+    fetchFromServer(`/games/${gameId}`, 'GET').then(response => {
+        showPlayers(response.players, $container);
+        displayLobbyId(gameId);
+        if (response.players.length === response.numberOfPlayers) {
+            setTimeout(() => redirect("choose-pawn.html"), 5000);
+        } else {
+            setTimeout(() => loadPlayers(gameId), 1500);
+        }
     });
 }
 
-function showPlayers(playersInGame,$container)
-{
-    console.log(playersInGame);
+function showPlayers(playersInGame, $container) {
+    $container.innerHTML = $container.querySelector("template").outerHTML;
     playersInGame.forEach(player => {
-        showPlayer(player,$container);
+        showPlayer(player, $container);
     });
 }
 
-function showPlayer(player, $container)
-{
+function showPlayer(player, $container) {
     const $template = document.querySelector('template').content.firstElementChild.cloneNode(true);
-    $template.querySelector('span.playername').textContent = player.name;
+    $template.querySelector('.playername').textContent = player.name;
+    if (player.name === loadFromStorage("game").playerName) {
+        $template.querySelector('.player h3').removeAttribute("hidden")
+    }
     $container.insertAdjacentHTML("beforeend", $template.outerHTML);
+}
 
+function redirect(path) {
+    window.location.href = path;
 }

@@ -24,7 +24,6 @@ function constructOptions(httpVerb, requestBody){
         }
     };
 
-
     if(_token !== null) {
         options.headers["Authorization"] = "Bearer " + _token.token;
     }

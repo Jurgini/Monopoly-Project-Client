@@ -26,10 +26,13 @@ function saveGameToStorage(playerName, gameId, token)
     const createdGame = {
         "playerName": playerName,
         "gameId": gameId,
-        "token": token
     };
+    const tokenObject = {
+        "token":token
+    }
 
     saveToStorage(_config.localStorageGameObject, createdGame);
+    saveToStorage(_config.localStorageTokenObject, tokenObject);
     redirect('lobby.html');
 }
 

@@ -10,7 +10,11 @@ header h3 {
     font-weight: bold;
     font-size: 1rem;
 }
-
+main .amountOfPlayers
+{
+    text-align: center;
+    font-weight: bold;
+}
 .players {
     display: flex;
     justify-content: center;
@@ -35,8 +39,5 @@ header h3 {
 .player h2 {
     padding-top: 65%;
     font-weight: bold;
-}
-.player #host h2 {
-    color: red;
 }
 

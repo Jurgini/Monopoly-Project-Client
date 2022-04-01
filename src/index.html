@@ -33,7 +33,7 @@
         <section id="game-settings-container">
             <h3>GAME SETTINGS</h3>
             <label for="username">Username</label>
-            <input type="text" placeholder="choose your username" id="username" name="username">
+            <input type="text" placeholder="choose your username" id="username" name="username" maxlength="10">
         </section>
 
         <section id="join-lobby-container">
@@ -43,7 +43,7 @@
                 <div id="lobby-overview">
                     <template>
                         <div class="available-lobby" data-lobbyid="">
-                            <p class="lobby-info"></p>
+                            <p class="lobby-info" title=""></p>
                             <p class="lobby-player-info"></p>
                             <input type="submit" class="join-game-button" name="join-game-button" value="JOIN">
                         </div>
@@ -57,16 +57,16 @@
             <form>
 
                 <h3>CREATE GAME</h3>
-                <!--                <div>-->
-                <!--                    <label for="lobby-name">Lobby Name</label>-->
-                <!--                    <input type="text" name="lobby-name" id="lobby-name" required>-->
-                <!--                </div>-->
+                <!--<div>
+                    <label for="lobby-name">Lobby Name</label>
+                    <input type="text" name="lobby-name" id="lobby-name" required maxlength="15">
+                </div>-->
                 <div>
                     <label for="amount-of-players">Amount of players</label>
                     <input type="number" name="amount-of-players" id="amount-of-players"
                            min="2"
                            max="10"
-                           placeholder="4"
+                           placeholder="enter a number"
                            required>
                 </div>
 

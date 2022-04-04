@@ -8,8 +8,8 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/pages/reset.css">
+    <link rel="stylesheet" href="assets/css/pages/home.css">
 
     <script src="assets/js/config.js"></script>
 
@@ -22,10 +22,18 @@
     <script src="assets/js/game/create-game.js"></script>
     <script src="assets/js/game/join-game.js"></script>
     <script src="assets/js/initialiser.js"></script>
+    <script src="assets/js/extra/redirect.js"></script>
+
+    <script src="assets/js/error-handling/catch-error.js"></script>
+    <script src="assets/js/error-handling/error-renderer.js"></script>
+
 
 </head>
 <body>
 <header>
+    <div class="errormessages" hidden>
+        <p></p>
+    </div>
     <img src="assets/media/logo.png" alt="Monopoly Logo" title="Monopoly Logo">
 </header>
 <main>
@@ -42,7 +50,7 @@
 
                 <div id="lobby-overview">
                     <template>
-                        <div class="available-lobby" data-lobbyid="">
+                        <div class="available-lobby">
                             <p class="lobby-info" title=""></p>
                             <p class="lobby-player-info"></p>
                             <input type="submit" class="join-game-button" name="join-game-button" value="JOIN">
@@ -77,9 +85,5 @@
 
 </main>
 
-
-<div class="errormessages">
-    <p></p>
-</div>
 </body>
 </html>

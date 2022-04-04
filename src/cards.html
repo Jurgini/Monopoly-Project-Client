@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Tuur Delacroix"/>
+    <title>Monopoly Cards</title>
+    <link rel="stylesheet" href="assets/css/game/game-entities.css">
+    <script src="assets/js/config.js"></script>
+
+    <script src="assets/js/data-connector/error-handler.js"></script>
+    <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+
+
+    <script src="assets/js/game/renderer.js"></script>
+    <script src="assets/js/game/create-game.js"></script>
+    <script src="assets/js/game/join-game.js"></script>
+    <script src="assets/js/game/load-card.js"></script>
+</head>
+<body>
+<template>
+    <div class="card">
+        <div class="content">
+            <div class="title">
+                <p>Title Deed</p>
+                <h2></h2> <!-- card title -->
+            </div>
+            <p id="rent"><b>Rent €</b></p>
+            <div class="details">
+                <div class="rents">
+                    <p>With 1 House</p>
+                    <p class="price">&euro; x</p>
+                </div>
+                <div class="rents">
+                    <p>With 2 Houses</p>
+                    <p class="price"></p>
+                </div>
+                <div class="rents">
+                    <p>With 3 Houses</p>
+                    <p class="price"></p>
+                </div>
+                <div class="rents">
+                    <p>With 4 Houses</p>
+                    <p class="price"></p>
+                </div>
+                <div class="rents">
+                    <p>space here</p>
+                </div>
+                <div class="rents">
+                    <p>With HOTEL</p>
+                    <p class="price"></p>
+                </div>
+                <p class="extra">
+                    <b>Mortgage Value &euro;200</b>
+                    Houses cost &euro;200 each
+                </p>
+                <p class="extra">
+                    Hotels, &euro;200 each plus 4 houses
+                </p>
+            </div>
+        </div>
+    </div>
+</template>
+</body>
+</html>

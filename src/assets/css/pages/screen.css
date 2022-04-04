@@ -4,7 +4,7 @@ body {
     font-size: 1rem;
     font-family: 'Fredoka One', cursive;
     color: black;
-    background-image: url("../media/background.png");
+    background-image: url("../../media/background.png");
 }
 
 header {
@@ -14,7 +14,7 @@ header {
     justify-content: space-between;
     height: 5rem;
 
-    background-image: url("../media/monopoly_logo_edition.png");
+    background-image: url("../../media/monopoly_logo_edition.png");
     background-size: 10rem;
     background-repeat: no-repeat;
     background-position: center left;

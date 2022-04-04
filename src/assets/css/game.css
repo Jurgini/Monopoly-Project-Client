@@ -15,15 +15,17 @@ body {
 
 #gridbox {
     display: grid;
-
+    grid-template-rows: repeat(3, 1fr);
     grid-template-areas:
             "c"
             "np"
             "p";
     text-align: center;
-    justify-content: space-between;
-    gap: 2.3rem;
+
     margin: 1rem 2rem;
+    width: 95vw;
+    height: 89vh;
+
 }
 
 #card, #current-position, #alert {
@@ -37,22 +39,20 @@ body {
 
 #current {
     grid-area: c;
-
 }
 
 #current p {
     text-align: center;
-}
-
-#current p {
     margin-bottom: 2rem;
 }
+
 #current div {
     grid-area: c;
 
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: stretch;
 
     height: 15rem;
     max-height: 15rem;
@@ -62,6 +62,7 @@ list {
     display: flex;
     justify-content: space-around;
     flex-wrap: nowrap;
+
 }
 dt {
     margin-bottom: 1rem;
@@ -78,16 +79,16 @@ dl {
 
 #next-positions {
     grid-area: np;
-
+    align-self: end;
+    justify-content: space-around;
 
 }
 
 #players {
     grid-area: p;
     display: flex;
-
+    align-self: end;
     justify-content: space-around;
-
 }
 
 #players div {

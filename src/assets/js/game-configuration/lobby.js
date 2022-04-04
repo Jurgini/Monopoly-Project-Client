@@ -47,7 +47,3 @@ function showPlayer(player, $container) {
     }
     $container.insertAdjacentHTML("beforeend", $template.outerHTML);
 }
-
-function redirect(path) {
-    window.location.href = path;
-}

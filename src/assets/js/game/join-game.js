@@ -25,7 +25,8 @@ function joinGame(playerName, gameId)
     fetchFromServer(`/games/${gameId}/players`, 'POST', joinBody)
         .then(response => {
             saveGameToStorage(playerName, gameId, response.token);
-        });
+        })
+        .catch(err => checkError('joinGame', err));
 }
 
 function saveGameToStorage(playerName, gameId, token)
@@ -37,14 +38,9 @@ function saveGameToStorage(playerName, gameId, token)
 
     const tokenObject = {
         "token":token
-    }
+    };
 
     saveToStorage(_config.localStorageGameObject, createdGame);
     saveToStorage(_config.localStorageTokenObject, tokenObject);
     redirect('lobby.html');
-}
-
-function redirect(path)
-{
-    window.location.href = path;
 }

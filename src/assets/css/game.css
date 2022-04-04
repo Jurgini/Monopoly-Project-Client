@@ -28,7 +28,7 @@ body {
 
 }
 
-#card, #current-position, #alert {
+#card, #current-position-container, #alert {
     background-color: rgba(200,200,200 ,0.20);
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);
 
@@ -37,16 +37,16 @@ body {
 }
 
 
-#current {
+#current-container {
     grid-area: c;
 }
 
-#current p {
+#current-container p {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-#current div {
+#current-container div {
     grid-area: c;
 
     display: flex;
@@ -77,21 +77,21 @@ dl {
     max-height: 10rem;
 }
 
-#next-positions {
+#next-positions-container {
     grid-area: np;
     align-self: end;
     justify-content: space-around;
 
 }
 
-#players {
+#players-container {
     grid-area: p;
     display: flex;
     align-self: end;
     justify-content: space-around;
 }
 
-#players div {
+#players-container div {
     display: flex;
     flex-direction: column;
     height: 12rem;

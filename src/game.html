@@ -36,7 +36,7 @@
 
     <div id="gridbox">
 
-        <section id="current">
+        <div id="current-container">
             <!-- What currently is happening gets injected here JS instead of <p> -->
             <p>Player rolled the dice (ABOVE)</p>
             <div>
@@ -45,9 +45,9 @@
                 <div id="alert">ALERT BOX (RIGHT)</div>
             </div>
             <!-- current position, alerts and house cards gets injected here JS -->
-        </section>
+        </div>
 
-        <section id="next-positions">
+        <div id="next-positions-container">
             <list>
                 <dl class="position">
                     <dt>3</dt>
@@ -99,9 +99,9 @@
                 </dl>
                 <!-- 12 next visible positions come here from JS as dl dt=position number and dd=actual position -->
             </list>
-        </section>
+        </div>
 
-        <section id="players">
+        <div id="players-container">
             <div>
                 <p>$1500</p>
                 <p>player</p>
@@ -143,7 +143,7 @@
                 <p>player</p>
             </div>
             <!-- all currently joined players come here with JS -->
-        </section>
+        </div>
     </div>
 
 

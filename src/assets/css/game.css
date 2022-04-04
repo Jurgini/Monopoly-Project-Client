@@ -28,7 +28,7 @@ body {
 
 }
 
-#card, #current-position-container, #alert {
+#card, #current-position, #alert {
     background-color: rgba(200,200,200 ,0.20);
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);
 

@@ -28,5 +28,4 @@ function renderLobby(availableGame, $container)
     $template.setAttribute("data-gameid", availableGame.id);
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
-    console.log(loadTokenFromStorage());
 }

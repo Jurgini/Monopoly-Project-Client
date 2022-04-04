@@ -1,8 +1,7 @@
 'use strict';
 
-function checkError(catchedError)
+function checkError(triggerAction, catchedError)
 {
-    // This file will be used to catch other errors clauses from the API.
-    // Not a useful implementation at this moment to use (maybe while playing the game)
-    let errorCause = catchedError.cause;
+    const errorCause = catchedError.cause;
+    displayError(errorCause);
 }

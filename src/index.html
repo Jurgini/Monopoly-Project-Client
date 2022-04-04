@@ -22,9 +22,11 @@
     <script src="assets/js/game/create-game.js"></script>
     <script src="assets/js/game/join-game.js"></script>
     <script src="assets/js/initialiser.js"></script>
+    <script src="assets/js/extra/redirect.js"></script>
 
     <script src="assets/js/error-handling/catch-error.js"></script>
-    <script src="assets/js/error-handling/homescreen-renderer.js"></script>
+    <script src="assets/js/error-handling/error-renderer.js"></script>
+
 
 </head>
 <body>
@@ -48,7 +50,7 @@
 
                 <div id="lobby-overview">
                     <template>
-                        <div class="available-lobby" data-lobbyid="">
+                        <div class="available-lobby">
                             <p class="lobby-info" title=""></p>
                             <p class="lobby-player-info"></p>
                             <input type="submit" class="join-game-button" name="join-game-button" value="JOIN">

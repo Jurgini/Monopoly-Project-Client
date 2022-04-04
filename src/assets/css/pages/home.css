@@ -3,8 +3,7 @@
 body {
     width: 100%;
     margin: auto auto;
-    /*background-color: #BFDBAE;*/
-    background-image: url("../media/background.png");
+    background-image: url("../../media/background.png");
     background-blend-mode: soft-light;
     font-family: 'Fredoka One', cursive;
 }
@@ -34,7 +33,6 @@ h3 {
 
 #create-game-container {
     grid-area: cg;
-
 }
 
 #create-game-container div {

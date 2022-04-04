@@ -58,30 +58,24 @@ body {
     max-height: 15rem;
 }
 
-list {
+#next-positions-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: nowrap;
-
+    grid-area: np;
+    align-self: end;
 }
-dt {
+
+.position div:nth-of-type(1) {
     margin-bottom: 1rem;
-
 }
-dl {
+
+.position div:nth-of-type(2) {
     background-color: rgba(200,200,200 ,0.20);
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);
 
-
     height: 10rem;
     max-height: 10rem;
-}
-
-#next-positions-container {
-    grid-area: np;
-    align-self: end;
-    justify-content: space-around;
-
 }
 
 #players-container {
@@ -99,5 +93,4 @@ dl {
     background-color: rgba(200,200,200 ,0.20);
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);
     width: 8.5rem;
-
 }

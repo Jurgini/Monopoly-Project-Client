@@ -34,7 +34,7 @@ main .amountOfPlayers {
 }
 
 .player div {
-    background-image: url("../media/lobbyuser.png");
+    background-image: url("../../media/lobbyuser.png");
     background-repeat: no-repeat;
     background-size: 6rem;
     background-position: top center;

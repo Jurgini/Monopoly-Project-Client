@@ -7,6 +7,7 @@ body {
     background-image: url("../media/background.png");
     background-blend-mode: soft-light;
     font-family: 'Fredoka One', cursive;
+
 }
 
 .hidden {
@@ -23,7 +24,7 @@ body {
     text-align: center;
 
     margin: 1rem 2rem;
-    width: 95vw;
+    width: 95vw;         /* THESE VALUES ARE TEMPORARY UNTIL A BETER SOLUTION IS FOUND TO KEEP SCREEN HEIGHT RIGHT */
     height: 89vh;
 
 }
@@ -70,8 +71,8 @@ body {
     margin-bottom: 1rem;
 }
 
-.position div:nth-of-type(2) {
-    background-color: rgba(200,200,200 ,0.20);
+.position  {
+    background-color: rgba(200,200,200 ,0.10);
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);
 
     height: 10rem;
@@ -88,7 +89,7 @@ body {
 #players-container div {
     display: flex;
     flex-direction: column;
-    height: 12rem;
+    height: 8rem;
     justify-content: space-between;
     background-color: rgba(200,200,200 ,0.20);
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);

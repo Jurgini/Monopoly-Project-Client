@@ -35,6 +35,7 @@ let _pawnsCopy;
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
+    loadTokenFromStorage();
     showPawns();
     document.querySelectorAll("figure").forEach(figure => {
         figure.addEventListener("click", choosePawn);
@@ -57,7 +58,7 @@ function showPawns() {
 }
 
 function choosePawn(e) {
-    _pawnsCopy = Object.assign([],_PAWNS);
+    _pawnsCopy = Object.assign([], _PAWNS);
 
     document.querySelectorAll(".chosen").forEach(o => {
         o.classList.remove("chosen");
@@ -68,33 +69,42 @@ function choosePawn(e) {
     savePawn(e.target.closest("figure"));
 }
 
-function savePawn(target) {
-    const GAME_ID = loadFromStorage(_config.localStorageGameObject).gameId;
-    const GAME_INFO_SERVER = fetchFromServer(`/games/${GAME_ID}`,"GET");
-    const USERNAME = loadFromStorage(_config.localStorageGameObject).playerName;
-    let pawnDistribution = [{
-        "player": USERNAME,
-        "pawn": _pawnsCopy[target.dataset.id]
-    }];
+function distributePawnsToOtherPlayers(currentPawnDistribution, gameInfoServer, thisUserName) {
+    for (const key in gameInfoServer.players) {
 
-    _pawnsCopy.splice(parseInt(target.dataset.id),1);
+        if (gameInfoServer.players[key].name !== thisUserName) {
 
-    for (let key in GAME_INFO_SERVER.players) {
-        if (GAME_INFO_SERVER.players[key].name !== USERNAME) {
-
-            let pawnPlacement = {
-                "player": GAME_INFO_SERVER.players[key].name,
+            const pawnPlacement = {
+                "player": gameInfoServer.players[key].name,
                 "pawn": giveAvailablePawn()
             };
-            pawnDistribution.push(pawnPlacement);
+            currentPawnDistribution.push(pawnPlacement);
         }
     }
+    saveToStorage('pawns', currentPawnDistribution);
+}
 
-    saveToStorage('pawns', pawnDistribution);
+function savePawn(target) {
+    const GAME_ID = loadFromStorage(_config.localStorageGameObject).gameId;
+    let gameInfoServer;
+    fetchFromServer(`/games/${GAME_ID}`, "GET").then(response => {
+        gameInfoServer = response;
+
+        const USERNAME = loadFromStorage(_config.localStorageGameObject).playerName;
+        const pawnDistribution = [{
+            "player": USERNAME,
+            "pawn": _pawnsCopy[target.dataset.id]
+        }];
+
+        _pawnsCopy.splice(parseInt(target.dataset.id), 1);
+
+        distributePawnsToOtherPlayers(pawnDistribution, gameInfoServer, USERNAME);
+    });
+
 }
 
 function giveAvailablePawn() {
-    let pawn = _pawnsCopy[0];
-    _pawnsCopy.splice(0,1);
+    const pawn = _pawnsCopy[0];
+    _pawnsCopy.splice(0, 1);
     return pawn;
 }

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+header h2 {
+    margin-left: 47%;
+}
+
+header h3 {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    font-family: 'Fredoka One', cursive;
+    font-weight: bold;
+    font-size: 1rem;
+}
+main p{
+    text-align: center;
+    font-weight: bold;
+}
+main .amountOfPlayers {
+    text-align: center;
+    font-weight: bold;
+}
+
+.players {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+}
+
+.player {
+    width: 17rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.player div {
+    background-image: url("../../media/lobbyuser.png");
+    background-repeat: no-repeat;
+    background-size: 6rem;
+    background-position: top center;
+
+    background-color: #eeeeee;
+    box-shadow: 0 0 0.5rem #333;
+    border-radius: 3rem;
+    height: 7.9rem;
+    margin: 3rem 3rem;
+}
+
+.player h2 {
+    padding-top: 5.5rem;
+    font-weight: bold;
+}
+
+.player h3 {
+    padding-top: 0.1rem;
+}

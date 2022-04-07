@@ -11,58 +11,78 @@
     <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
     <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
 
-
-    <script src="assets/js/game/renderer.js"></script>
-    <script src="assets/js/game/create-game.js"></script>
-    <script src="assets/js/game/join-game.js"></script>
     <script src="assets/js/game/load-card.js"></script>
 </head>
 <body>
-<template>
-    <div class="card">
 
-        <div class="content">
+<template id="normal-card">
+    <div class="card-panel">
+        <div class="normal-card">
+            <h2 class="title"></h2>
+            <p class="rent">RENT: </p>
+            <div class="card-information">
+                <div class="property">
+                    <img src="assets/media/card-addons/house.png" alt="kot" title="1 kot">
+                    <a class="price-one"></a>
 
-            <div class="title">
-                <p>Title Deed</p>
-                <h2></h2> <!-- card title -->
+                </div>
+                <div class="property">
+                    <img src="assets/media/card-addons/2-house.png" alt="kot" title="2 kot">
+                    <a class="price-two"></a>
+                </div>
+                <div class="property">
+                    <img src="assets/media/card-addons/3-house.png" alt="kot" title="3 kot">
+                    <a class="price-three"></a>
+                </div>
+                <div class="property">
+                    <img src="assets/media/card-addons/4-house.png" alt="kot" title="4 kot">
+                    <a class="price-four"></a>
+                </div>
+                <div class="property">
+                    <img src="assets/media/card-addons/hotel.png" alt="complex" title="1 complex">
+                    <a class="price-complex"></a>
+                </div>
             </div>
+            <small class="card-extra">
+                <p class="mortgage">Mortgage value: <span></span></p>
+            </small>
+        </div>
+    </div>
+</template>
 
-            <p id="rent"><b>Rent €</b></p>
-            <div class="details">
-                <div class="rents">
-                    <p>With 1 House</p>
-                    <p class="price">&euro; x</p>
+<template id="special-card">
+        <div class="special-card">
+            <h2 class="title">test</h2>
+            <div class="card-information">
+                <div class="icon">
                 </div>
-                <div class="rents">
-                    <p>With 2 Houses</p>
-                    <p class="price"></p>
+            </div>
+        </div>
+</template>
+
+<template id="utility-card">
+    <div class="card-panel">
+        <div class="utility-card">
+            <h2 class="title"></h2>
+            <div class="card-information">
+                <div class="icon">
                 </div>
-                <div class="rents">
-                    <p>With 3 Houses</p>
-                    <p class="price"></p>
-                </div>
-                <div class="rents">
-                    <p>With 4 Houses</p>
-                    <p class="price"></p>
-                </div>
-                <div class="rents">
-                    <p>space here</p>
-                </div>
-                <div class="rents">
-                    <p>With HOTEL</p>
-                    <p class="price"></p>
-                </div>
-                <p class="extra">
-                    <b>Mortgage Value &euro;200</b>
-                    Houses cost &euro;200 each
-                </p>
-                <p class="extra">
-                    Hotels, &euro;200 each plus 4 houses
-                </p>
             </div>
         </div>
     </div>
 </template>
+
+<template id="railroad-card">
+    <div class="card-panel">
+        <div class="railroad-card">
+            <h2 class="title"></h2>
+            <div class="card-information">
+                <div class="icon">
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 </body>
 </html>

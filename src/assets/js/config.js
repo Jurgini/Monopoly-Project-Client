@@ -10,8 +10,16 @@ const _config = {
     delay: 1500,
     tileTypes: {
         normal: ["street"],
-        special: ["chance", "Jail","Go","community chest","Tax Income","Free Parking","Go to Jail", "Luxury Tax"],
-        other: ["railroad","utility"],
+        special: ["chance", "Jail","Go","community chest","Free Parking","Go to Jail"],
+        //other: ["railroad","utility", "Tax Income"],
+        other: {
+            railroadValue: "railroad",
+            utilityValue: "utility",
+            waterUtilityValue: "Water Works",
+            electricUtilityValue: "Electric Company",
+            taxIncomeValue: "Tax Income",
+            luxuryTaxIncomeValue: "Luxury Tax"
+        },
     },
     getAPIUrl: function() { return `https://project-i.ti.howest.be/monopoly-${this.groupnumber}/api`;}
 };

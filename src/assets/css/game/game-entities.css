@@ -11,11 +11,10 @@ hr {
 
 /* MULTIPLE CARD TYPES ARE SPLIT HERE */
 
-.normal-card, .special-card, .utility-card, .railroad-card{
+.normal-card, .special-card, .utility-card, .railroad-card, .tax-income-card {
     max-width: 20rem;
     min-height: 20rem;
     margin: 3.75rem auto;
-    padding: 0.625rem;
 
     clear:both; /* no floating elements */
     text-align:center;
@@ -30,10 +29,28 @@ h2 {
     margin: 0;
     border: 0.125rem solid black;
 }
-.special-card h2{
+.special-card h2, .tax-income-card h2, .electric-company h2, .water-works h2 {
     text-align: center;
     padding: 1.25rem;
     border: none;
+}
+
+.tax-income {
+    background-image: url("../../media/card-addons/kot-party.png");
+    background-position: center;
+    background-size: 120%;
+}
+
+.luxury-tax {
+    background-image: url("../../media/card-addons/tournee-general.png");
+    background-position: center;
+    background-size: 120%;
+}
+
+/*  EXTRA CARD INFORMATION ON TAX INCOME CARD */
+
+.tax-income-card>.card-extra {
+    margin: 60% auto auto auto;
 }
 
 small {
@@ -54,12 +71,19 @@ small {
     height: 2rem;
 }
 
+.card-price {
+    font-size: 1.2rem;
+}
+
 /*  SPECIAL CARD */
 .card-information .icon img {
     width: 60%;
     height: 20%;
     margin: auto auto auto auto;
 }
+
+
+
 /* CARD COLORS */
 
 .PURPLE {

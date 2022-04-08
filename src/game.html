@@ -40,8 +40,48 @@
             <!-- What currently is happening gets injected here JS instead of <p> -->
             <p>Player rolled the dice (ABOVE)</p>
             <div>
-                <div id="card">DICE BOX (LEFT)</div>
-                <div id="current-position">IMAGE OF CURRENT POSITION (MID)</div>
+                <div id="dice-box">DICE BOX (LEFT)</div>
+
+                <div id="current-position">
+                    <div class="card-panel">
+                        <div class="normal-card">
+                            <h2 class="title"></h2>
+                            <p class="rent">RENT: </p>
+
+                            <div class="card-information">
+                                <div class="property">
+                                    <img src="assets/media/card-addons/house.png" alt="kot" title="1 kot">
+                                    <a class="price-one"></a>
+                                </div>
+
+                                <div class="property">
+                                    <img src="assets/media/card-addons/2-house.png" alt="kot" title="2 kot">
+                                    <a class="price-two"></a>
+                                </div>
+
+                                <div class="property">
+                                    <img src="assets/media/card-addons/3-house.png" alt="kot" title="3 kot">
+                                    <a class="price-three"></a>
+                                </div>
+
+                                <div class="property">
+                                    <img src="assets/media/card-addons/4-house.png" alt="kot" title="4 kot">
+                                    <a class="price-four"></a>
+                                </div>
+
+                                <div class="property">
+                                    <img src="assets/media/card-addons/hotel.png" alt="complex" title="1 complex">
+                                    <a class="price-complex"></a>
+                                </div>
+                            </div>
+
+                            <small class="card-extra">
+                                <p class="mortgage">Mortgage value: <span></span></p>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="alert">ALERT BOX (RIGHT)</div>
             </div>
             <!-- current position, alerts and house cards gets injected here JS -->
@@ -53,29 +93,44 @@
             <input type="button" value="<">
 
 
-            <div class="card">
+            <div class="card-panel">
+                <div class="normal-card">
+                    <h2 class="title"></h2>
+                    <p class="rent">RENT: </p>
 
-                <div class="content">
+                    <div class="card-information">
+                        <div class="property">
+                            <img src="assets/media/card-addons/house.png" alt="kot" title="1 kot">
+                            <a class="price-one"></a>
+                        </div>
 
-                    <div class="title">
-                        <p>Title Deed</p>
-                        <h2></h2> <!-- card title -->
+                        <div class="property">
+                            <img src="assets/media/card-addons/2-house.png" alt="kot" title="2 kot">
+                            <a class="price-two"></a>
+                        </div>
+
+                        <div class="property">
+                            <img src="assets/media/card-addons/3-house.png" alt="kot" title="3 kot">
+                            <a class="price-three"></a>
+                        </div>
+
+                        <div class="property">
+                            <img src="assets/media/card-addons/4-house.png" alt="kot" title="4 kot">
+                            <a class="price-four"></a>
+                        </div>
+
+                        <div class="property">
+                            <img src="assets/media/card-addons/hotel.png" alt="complex" title="1 complex">
+                            <a class="price-complex"></a>
+                        </div>
                     </div>
 
-                    <p id="rent"><b>Rent €</b></p>
-                    <div class="details">
-
-                        <p class="extra">
-                            <b>Mortgage Value &euro;200</b>
-                            Houses cost &euro;200 each
-                        </p>
-                        <p class="extra">
-                            Hotels, &euro;200 each plus 4 houses
-                        </p>
-                    </div>
+                    <small class="card-extra">
+                        <p class="mortgage">Mortgage value: <span></span></p>
+                    </small>
                 </div>
-
             </div>
+
 
             <div class="position">
                 <div>2</div>
@@ -105,78 +160,8 @@
         </div>
 
         <div id="players-container">
-            <div>
-                <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
-                <div>
-                    <p class="player-balance">player: $1500</p>
-                    <div class="player-properties">
-                        <div class="square mediterranean not-bought"></div>
-                        <div class="square baltic not-bought"></div>
-                        <div class="square oriental not-bought"></div>
-                        <div class="square vermont not-bought"></div>
-                        <div class="square connecticut not-bought"></div>
-                        <div class="square saint-charles-place not-bought"></div>
-                        <div class="square states not-bought"></div>
-                        <div class="square virginia not-bought"></div>
-                        <div class="square saint-james not-bought"></div>
-                        <div class="square tennessee not-bought"></div>
-                        <div class="square new-york not-bought"></div>
-                        <div class="square kentucky-avenue not-bought"></div>
-                        <div class="square indiana-avenue not-bought"></div>
-                        <div class="square illinois-avenue not-bought"></div>
-                        <div class="square atlantic not-bought"></div>
-                        <div class="square ventnor not-bought"></div>
-                        <div class="square marvin-gardens not-bought"></div>
-                        <div class="square pacific not-bought"></div>
-                        <div class="square north-carolina not-bought"></div>
-                        <div class="square pennsylvania not-bought"></div>
-                        <div class="square park-place not-bought"></div>
-                        <div class="square boardwalk not-bought"></div>
-                        <div class="square reading-rr not-bought"></div>
-                        <div class="square pennsylvania-rr not-bought"></div>
-                        <div class="square baltimore-and-ohio-rr not-bought"></div>
-                        <div class="square short-line-rr not-bought"></div>
-                        <div class="square electric-company not-bought"></div>
-                        <div class="square water-works not-bought"></div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
-                <div>
-                    <p class="player-balance">player: $1500</p>
-                    <div class="player-properties">
-                        <div class="square mediterranean not-bought"></div>
-                        <div class="square baltic not-bought"></div>
-                        <div class="square oriental not-bought"></div>
-                        <div class="square vermont not-bought"></div>
-                        <div class="square connecticut not-bought"></div>
-                        <div class="square saint-charles-place not-bought"></div>
-                        <div class="square states not-bought"></div>
-                        <div class="square virginia not-bought"></div>
-                        <div class="square saint-james not-bought"></div>
-                        <div class="square tennessee not-bought"></div>
-                        <div class="square new-york not-bought"></div>
-                        <div class="square kentucky-avenue not-bought"></div>
-                        <div class="square indiana-avenue not-bought"></div>
-                        <div class="square illinois-avenue not-bought"></div>
-                        <div class="square atlantic not-bought"></div>
-                        <div class="square ventnor not-bought"></div>
-                        <div class="square marvin-gardens not-bought"></div>
-                        <div class="square pacific not-bought"></div>
-                        <div class="square north-carolina not-bought"></div>
-                        <div class="square pennsylvania not-bought"></div>
-                        <div class="square park-place not-bought"></div>
-                        <div class="square boardwalk not-bought"></div>
-                        <div class="square reading-rr not-bought"></div>
-                        <div class="square pennsylvania-rr not-bought"></div>
-                        <div class="square baltimore-and-ohio-rr not-bought"></div>
-                        <div class="square short-line-rr not-bought"></div>
-                        <div class="square electric-company not-bought"></div>
-                        <div class="square water-works not-bought"></div>
-                    </div>
-                </div>
-            </div>
+
+
             <div>
                 <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
                 <div>

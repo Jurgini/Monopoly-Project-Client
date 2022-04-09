@@ -29,7 +29,10 @@ img {
 
              /* THESE VALUES ARE TEMPORARY UNTIL A BETER SOLUTION IS FOUND TO KEEP SCREEN HEIGHT RIGHT */
 
-    justify-content: space-around;
+
+    height: 60rem;
+
+    margin: auto 3rem;
 
 }
 
@@ -92,21 +95,25 @@ img {
 #players-container {
     grid-area: p;
     display: flex;
-    align-self: center;
+    align-self: end;
     justify-content: space-between;
     gap: 0.2rem;
     background-color: rgba(200,200,200 ,0.10);
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+    padding: 1rem;
+
 }
 
 .player-balance {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
+}
+
+.player-taking-turn {
+    box-shadow: #900000 0 0 1rem;
 }
 
 #players-container>div{
-
     background-color: rgba(200,200,200,0.2);
-    box-shadow: #900000 0 0 1rem;
     border: solid black;
     border-radius: 1rem;
 }

@@ -11,7 +11,6 @@ const _config = {
     tileTypes: {
         normal: ["street"],
         special: ["chance", "Jail","Go","community chest","Free Parking","Go to Jail"],
-        //other: ["railroad","utility", "Tax Income"],
         other: {
             railroadValue: "railroad",
             utilityValue: "utility",

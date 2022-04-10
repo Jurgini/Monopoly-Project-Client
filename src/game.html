@@ -20,7 +20,6 @@
     <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
     <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
 
-    <script src="assets/js/initialiser.js"></script>
     <script src="assets/js/game/load-game.js"></script>
 
 
@@ -160,296 +159,45 @@
         </div>
 
         <div id="players-container">
+            <template id="player-info-template">
+                <div class="player-info">
+                    <img src="" alt="">
+                    <div>
+                        <p class="player-balance">player: $1500</p>
+                        <div class="player-properties">
+                            <div class="square mediterranean not-bought"></div>
+                            <div class="square baltic not-bought"></div>
+                            <div class="square oriental not-bought"></div>
+                            <div class="square vermont not-bought"></div>
+                            <div class="square connecticut not-bought"></div>
+                            <div class="square saint-charles-place not-bought"></div>
+                            <div class="square states not-bought"></div>
+                            <div class="square virginia not-bought"></div>
+                            <div class="square saint-james not-bought"></div>
+                            <div class="square tennessee not-bought"></div>
+                            <div class="square new-york not-bought"></div>
+                            <div class="square kentucky-avenue not-bought"></div>
+                            <div class="square indiana-avenue not-bought"></div>
+                            <div class="square illinois-avenue not-bought"></div>
+                            <div class="square atlantic not-bought"></div>
+                            <div class="square ventnor not-bought"></div>
+                            <div class="square marvin-gardens not-bought"></div>
+                            <div class="square pacific not-bought"></div>
+                            <div class="square north-carolina not-bought"></div>
+                            <div class="square pennsylvania not-bought"></div>
+                            <div class="square park-place not-bought"></div>
+                            <div class="square boardwalk not-bought"></div>
+                            <div class="square reading-rr not-bought"></div>
+                            <div class="square pennsylvania-rr not-bought"></div>
+                            <div class="square baltimore-and-ohio-rr not-bought"></div>
+                            <div class="square short-line-rr not-bought"></div>
+                            <div class="square electric-company not-bought"></div>
+                            <div class="square water-works not-bought"></div>
+                        </div>
+                    </div>
+                </div>
+            </template>
 
-
-            <div class="player-taking-turn">
-                <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
-                <div>
-                    <p class="player-balance">player: $1500</p>
-                    <div class="player-properties">
-                        <div class="square mediterranean not-bought"></div>
-                        <div class="square baltic not-bought"></div>
-                        <div class="square oriental not-bought"></div>
-                        <div class="square vermont not-bought"></div>
-                        <div class="square connecticut not-bought"></div>
-                        <div class="square saint-charles-place not-bought"></div>
-                        <div class="square states not-bought"></div>
-                        <div class="square virginia not-bought"></div>
-                        <div class="square saint-james not-bought"></div>
-                        <div class="square tennessee not-bought"></div>
-                        <div class="square new-york not-bought"></div>
-                        <div class="square kentucky-avenue not-bought"></div>
-                        <div class="square indiana-avenue not-bought"></div>
-                        <div class="square illinois-avenue not-bought"></div>
-                        <div class="square atlantic not-bought"></div>
-                        <div class="square ventnor not-bought"></div>
-                        <div class="square marvin-gardens not-bought"></div>
-                        <div class="square pacific not-bought"></div>
-                        <div class="square north-carolina not-bought"></div>
-                        <div class="square pennsylvania not-bought"></div>
-                        <div class="square park-place not-bought"></div>
-                        <div class="square boardwalk not-bought"></div>
-                        <div class="square reading-rr not-bought"></div>
-                        <div class="square pennsylvania-rr not-bought"></div>
-                        <div class="square baltimore-and-ohio-rr not-bought"></div>
-                        <div class="square short-line-rr not-bought"></div>
-                        <div class="square electric-company not-bought"></div>
-                        <div class="square water-works not-bought"></div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
-                <div>
-                    <p class="player-balance">player: $1500</p>
-                    <div class="player-properties">
-                        <div class="square mediterranean not-bought"></div>
-                        <div class="square baltic not-bought"></div>
-                        <div class="square oriental not-bought"></div>
-                        <div class="square vermont not-bought"></div>
-                        <div class="square connecticut not-bought"></div>
-                        <div class="square saint-charles-place not-bought"></div>
-                        <div class="square states not-bought"></div>
-                        <div class="square virginia not-bought"></div>
-                        <div class="square saint-james not-bought"></div>
-                        <div class="square tennessee not-bought"></div>
-                        <div class="square new-york not-bought"></div>
-                        <div class="square kentucky-avenue not-bought"></div>
-                        <div class="square indiana-avenue not-bought"></div>
-                        <div class="square illinois-avenue not-bought"></div>
-                        <div class="square atlantic not-bought"></div>
-                        <div class="square ventnor not-bought"></div>
-                        <div class="square marvin-gardens not-bought"></div>
-                        <div class="square pacific not-bought"></div>
-                        <div class="square north-carolina not-bought"></div>
-                        <div class="square pennsylvania not-bought"></div>
-                        <div class="square park-place not-bought"></div>
-                        <div class="square boardwalk not-bought"></div>
-                        <div class="square reading-rr not-bought"></div>
-                        <div class="square pennsylvania-rr not-bought"></div>
-                        <div class="square baltimore-and-ohio-rr not-bought"></div>
-                        <div class="square short-line-rr not-bought"></div>
-                        <div class="square electric-company not-bought"></div>
-                        <div class="square water-works not-bought"></div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
-                <div>
-                    <p class="player-balance">player: $1500</p>
-                    <div class="player-properties">
-                        <div class="square mediterranean not-bought"></div>
-                        <div class="square baltic not-bought"></div>
-                        <div class="square oriental not-bought"></div>
-                        <div class="square vermont not-bought"></div>
-                        <div class="square connecticut not-bought"></div>
-                        <div class="square saint-charles-place not-bought"></div>
-                        <div class="square states not-bought"></div>
-                        <div class="square virginia not-bought"></div>
-                        <div class="square saint-james not-bought"></div>
-                        <div class="square tennessee not-bought"></div>
-                        <div class="square new-york not-bought"></div>
-                        <div class="square kentucky-avenue not-bought"></div>
-                        <div class="square indiana-avenue not-bought"></div>
-                        <div class="square illinois-avenue not-bought"></div>
-                        <div class="square atlantic not-bought"></div>
-                        <div class="square ventnor not-bought"></div>
-                        <div class="square marvin-gardens not-bought"></div>
-                        <div class="square pacific not-bought"></div>
-                        <div class="square north-carolina not-bought"></div>
-                        <div class="square pennsylvania not-bought"></div>
-                        <div class="square park-place not-bought"></div>
-                        <div class="square boardwalk not-bought"></div>
-                        <div class="square reading-rr not-bought"></div>
-                        <div class="square pennsylvania-rr not-bought"></div>
-                        <div class="square baltimore-and-ohio-rr not-bought"></div>
-                        <div class="square short-line-rr not-bought"></div>
-                        <div class="square electric-company not-bought"></div>
-                        <div class="square water-works not-bought"></div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
-                <div>
-                    <p class="player-balance">player: $1500</p>
-                    <div class="player-properties">
-                        <div class="square mediterranean not-bought"></div>
-                        <div class="square baltic not-bought"></div>
-                        <div class="square oriental not-bought"></div>
-                        <div class="square vermont not-bought"></div>
-                        <div class="square connecticut not-bought"></div>
-                        <div class="square saint-charles-place not-bought"></div>
-                        <div class="square states not-bought"></div>
-                        <div class="square virginia not-bought"></div>
-                        <div class="square saint-james not-bought"></div>
-                        <div class="square tennessee not-bought"></div>
-                        <div class="square new-york not-bought"></div>
-                        <div class="square kentucky-avenue not-bought"></div>
-                        <div class="square indiana-avenue not-bought"></div>
-                        <div class="square illinois-avenue not-bought"></div>
-                        <div class="square atlantic not-bought"></div>
-                        <div class="square ventnor not-bought"></div>
-                        <div class="square marvin-gardens not-bought"></div>
-                        <div class="square pacific not-bought"></div>
-                        <div class="square north-carolina not-bought"></div>
-                        <div class="square pennsylvania not-bought"></div>
-                        <div class="square park-place not-bought"></div>
-                        <div class="square boardwalk not-bought"></div>
-                        <div class="square reading-rr not-bought"></div>
-                        <div class="square pennsylvania-rr not-bought"></div>
-                        <div class="square baltimore-and-ohio-rr not-bought"></div>
-                        <div class="square short-line-rr not-bought"></div>
-                        <div class="square electric-company not-bought"></div>
-                        <div class="square water-works not-bought"></div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
-                <div>
-                    <p class="player-balance">player: $1500</p>
-                    <div class="player-properties">
-                        <div class="square mediterranean not-bought"></div>
-                        <div class="square baltic not-bought"></div>
-                        <div class="square oriental not-bought"></div>
-                        <div class="square vermont not-bought"></div>
-                        <div class="square connecticut not-bought"></div>
-                        <div class="square saint-charles-place not-bought"></div>
-                        <div class="square states not-bought"></div>
-                        <div class="square virginia not-bought"></div>
-                        <div class="square saint-james not-bought"></div>
-                        <div class="square tennessee not-bought"></div>
-                        <div class="square new-york not-bought"></div>
-                        <div class="square kentucky-avenue not-bought"></div>
-                        <div class="square indiana-avenue not-bought"></div>
-                        <div class="square illinois-avenue not-bought"></div>
-                        <div class="square atlantic not-bought"></div>
-                        <div class="square ventnor not-bought"></div>
-                        <div class="square marvin-gardens not-bought"></div>
-                        <div class="square pacific not-bought"></div>
-                        <div class="square north-carolina not-bought"></div>
-                        <div class="square pennsylvania not-bought"></div>
-                        <div class="square park-place not-bought"></div>
-                        <div class="square boardwalk not-bought"></div>
-                        <div class="square reading-rr not-bought"></div>
-                        <div class="square pennsylvania-rr not-bought"></div>
-                        <div class="square baltimore-and-ohio-rr not-bought"></div>
-                        <div class="square short-line-rr not-bought"></div>
-                        <div class="square electric-company not-bought"></div>
-                        <div class="square water-works not-bought"></div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
-                <div>
-                    <p class="player-balance">player: $1500</p>
-                    <div class="player-properties">
-                        <div class="square mediterranean not-bought"></div>
-                        <div class="square baltic not-bought"></div>
-                        <div class="square oriental not-bought"></div>
-                        <div class="square vermont not-bought"></div>
-                        <div class="square connecticut not-bought"></div>
-                        <div class="square saint-charles-place not-bought"></div>
-                        <div class="square states not-bought"></div>
-                        <div class="square virginia not-bought"></div>
-                        <div class="square saint-james not-bought"></div>
-                        <div class="square tennessee not-bought"></div>
-                        <div class="square new-york not-bought"></div>
-                        <div class="square kentucky-avenue not-bought"></div>
-                        <div class="square indiana-avenue not-bought"></div>
-                        <div class="square illinois-avenue not-bought"></div>
-                        <div class="square atlantic not-bought"></div>
-                        <div class="square ventnor not-bought"></div>
-                        <div class="square marvin-gardens not-bought"></div>
-                        <div class="square pacific not-bought"></div>
-                        <div class="square north-carolina not-bought"></div>
-                        <div class="square pennsylvania not-bought"></div>
-                        <div class="square park-place not-bought"></div>
-                        <div class="square boardwalk not-bought"></div>
-                        <div class="square reading-rr not-bought"></div>
-                        <div class="square pennsylvania-rr not-bought"></div>
-                        <div class="square baltimore-and-ohio-rr not-bought"></div>
-                        <div class="square short-line-rr not-bought"></div>
-                        <div class="square electric-company not-bought"></div>
-                        <div class="square water-works not-bought"></div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
-                <div>
-                    <p class="player-balance">player: $1500</p>
-                    <div class="player-properties">
-                        <div class="square mediterranean not-bought"></div>
-                        <div class="square baltic not-bought"></div>
-                        <div class="square oriental not-bought"></div>
-                        <div class="square vermont not-bought"></div>
-                        <div class="square connecticut not-bought"></div>
-                        <div class="square saint-charles-place not-bought"></div>
-                        <div class="square states not-bought"></div>
-                        <div class="square virginia not-bought"></div>
-                        <div class="square saint-james not-bought"></div>
-                        <div class="square tennessee not-bought"></div>
-                        <div class="square new-york not-bought"></div>
-                        <div class="square kentucky-avenue not-bought"></div>
-                        <div class="square indiana-avenue not-bought"></div>
-                        <div class="square illinois-avenue not-bought"></div>
-                        <div class="square atlantic not-bought"></div>
-                        <div class="square ventnor not-bought"></div>
-                        <div class="square marvin-gardens not-bought"></div>
-                        <div class="square pacific not-bought"></div>
-                        <div class="square north-carolina not-bought"></div>
-                        <div class="square pennsylvania not-bought"></div>
-                        <div class="square park-place not-bought"></div>
-                        <div class="square boardwalk not-bought"></div>
-                        <div class="square reading-rr not-bought"></div>
-                        <div class="square pennsylvania-rr not-bought"></div>
-                        <div class="square baltimore-and-ohio-rr not-bought"></div>
-                        <div class="square short-line-rr not-bought"></div>
-                        <div class="square electric-company not-bought"></div>
-                        <div class="square water-works not-bought"></div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <img src="images/pawns/graduation-cap.png" alt="Graduation cap" title="Graduation cap">
-                <div>
-                    <p class="player-balance">player: $1500</p>
-                    <div class="player-properties">
-                        <div class="square mediterranean not-bought"></div>
-                        <div class="square baltic not-bought"></div>
-                        <div class="square oriental not-bought"></div>
-                        <div class="square vermont not-bought"></div>
-                        <div class="square connecticut not-bought"></div>
-                        <div class="square saint-charles-place not-bought"></div>
-                        <div class="square states not-bought"></div>
-                        <div class="square virginia not-bought"></div>
-                        <div class="square saint-james not-bought"></div>
-                        <div class="square tennessee not-bought"></div>
-                        <div class="square new-york not-bought"></div>
-                        <div class="square kentucky-avenue not-bought"></div>
-                        <div class="square indiana-avenue not-bought"></div>
-                        <div class="square illinois-avenue not-bought"></div>
-                        <div class="square atlantic not-bought"></div>
-                        <div class="square ventnor not-bought"></div>
-                        <div class="square marvin-gardens not-bought"></div>
-                        <div class="square pacific not-bought"></div>
-                        <div class="square north-carolina not-bought"></div>
-                        <div class="square pennsylvania not-bought"></div>
-                        <div class="square park-place not-bought"></div>
-                        <div class="square boardwalk not-bought"></div>
-                        <div class="square reading-rr not-bought"></div>
-                        <div class="square pennsylvania-rr not-bought"></div>
-                        <div class="square baltimore-and-ohio-rr not-bought"></div>
-                        <div class="square short-line-rr not-bought"></div>
-                        <div class="square electric-company not-bought"></div>
-                        <div class="square water-works not-bought"></div>
-                    </div>
-                </div>
-            </div>
             <!-- all currently joined players come here with JS -->
         </div>
 

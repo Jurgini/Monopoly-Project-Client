@@ -16,30 +16,88 @@ function init() {
 function getGameDetails() {
     fetchFromServer(`/games/${loadFromStorage('game').gameId}`, 'GET')
         .then(onGoingGame => {
+            /* RENDERING GAME INFORMATION */
+            const players = onGoingGame.players;
             console.log(onGoingGame);
             renderCards(onGoingGame);
-
-            const players = onGoingGame.players;
+            renderCurrentPlayer(onGoingGame);
+            renderGameInfo(onGoingGame);
             renderPlayersInfo(players);
         });
 }
+/* -=[ALL ABOUT GENERAL GAME STUFF]=- */
 
+/* -=[ALL ABOUT GAME ACTIONS]=- */
+function rollDice()
+{
+    // Visual functionality (show dices)
+
+    // Game functionality (API)
+
+}
+/* -=[ALL ABOUT PLAYER INFORMATION]=- */
+function renderCurrentPlayer(onGoingGame) {
+    const $turnText = document.querySelector('div#current-container p');
+    $turnText.textContent = `${onGoingGame.currentPlayer}'s TURN`;
+}
+
+function renderGameInfo(onGoingGame)
+{
+    const $gameInfo = document.querySelector('div#game-info');
+    const $availableHouses = $gameInfo.querySelector('#available-houses');
+    $availableHouses.textContent = `kot: ${onGoingGame.availableHouses}`;
+    const $availableHotels = $gameInfo.querySelector('#available-hotels');
+    $availableHotels.textContent = `complexes: ${onGoingGame.availableHotels}`;
+}
+
+function renderPlayersInfo(playersInOnGoingGame) {
+    playersInOnGoingGame.forEach(player => {
+        const $container = document.querySelector('div#players-container');
+        const playerPawns = loadFromStorage('pawns');
+        let playerPawn;
+        playerPawns.forEach(distribution => {
+            if (distribution.player === player.name) {
+                playerPawn = distribution.pawn;
+            }
+        });
+
+        renderPlayerInfo(player, playerPawn, $container);
+    });
+}
+
+function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
+    const $template = document.querySelector('template#player-info-template').content.firstElementChild.cloneNode(true);
+    const $pawn = $template.querySelector('img');
+    // TODO: If this is the turn taking player add class: player-taking-turn
+    $pawn.setAttribute('src', `images/pawns/${playerPawn.id}.png`);
+    $pawn.setAttribute('alt', playerPawn.displayName);
+    $pawn.setAttribute('title', playerPawn.displayName);
+    $template.querySelector('.player-balance').textContent = `${playerInOnGoingGame.name}: €${playerInOnGoingGame.money}`;
+    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+}
+
+/* -=[ALL ABOUT CARDS]=- */
 /* NOT WORKING YET [START] */
 function renderCards(onGoingGame) {
     let currentTileName = null;
     console.log(onGoingGame);
-    onGoingGame.players.forEach(function (player) {
-        if (player.name === playerName) {
+    onGoingGame.players.forEach(player =>
+    {
+        const playerName = player.name;
+        if (player.name === playerName)
+        {
             currentTileName = player.currentTile;
         }
     });
-    loadFromStorage("tiles").forEach(function (tile) {
-        if (tile.name === currentTileName) {
-            _tempPlayerPositionID = tile.position;
-            _playerPositionID = tile.position;
-            /* --> getCardById(tile.position); */
-        }
-    });
+    // loadFromStorage('tiles').forEach(tile =>
+    // {
+    //     if (tile.name === currentTileName)
+    //     {
+    //         _tempPlayerPositionID = tile.position;
+    //         _playerPositionID = tile.position;
+    //         /* --> getCardById(tile.position); */
+    //     }
+    // });
 }
 
 function loadCards() {
@@ -48,7 +106,7 @@ function loadCards() {
 }
 /* NOT WORKING YET [END] */
 
-/* loading tiles JS */
+/* - RENDERING ALL THE DIFFERENT CARDS - */
 
 function displayCards(tiles, $container) {
     console.log(tiles);
@@ -156,32 +214,4 @@ function addTileColor($template, tile) {
     if (tileColor !== undefined) {
         $template.querySelector('.title').classList.add(`${tileColor}`);
     }
-}
-
-/* PLAYER INFO JS */
-
-function renderPlayersInfo(playersInOnGoingGame) {
-    playersInOnGoingGame.forEach(player => {
-        const $container = document.querySelector('div#players-container');
-        const playerPawns = loadFromStorage('pawns');
-        let playerPawn;
-        playerPawns.forEach(distribution => {
-            if (distribution.player === player.name) {
-                playerPawn = distribution.pawn;
-            }
-        });
-
-        renderPlayerInfo(player, playerPawn, $container);
-    });
-}
-
-function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
-    const $template = document.querySelector('template#player-info-template').content.firstElementChild.cloneNode(true);
-    const $pawn = $template.querySelector('img');
-    // TODO: If this is the turn taking player add class: player-taking-turn
-    $pawn.setAttribute('src', `images/pawns/${playerPawn.id}.png`);
-    $pawn.setAttribute('alt', playerPawn.displayName);
-    $pawn.setAttribute('title', playerPawn.displayName);
-    $template.querySelector('.player-balance').textContent = `${playerInOnGoingGame.name}: €${playerInOnGoingGame.money}`;
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }

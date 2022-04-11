@@ -28,14 +28,14 @@
 <main>
     <div id="game-info">
         <p>GAME INFO</p>
-        <p>houses: 13</p>
-        <p>hotels: 15</p>
+        <p id="available-houses"></p>
+        <p id="available-hotels"></p>
     </div>
 
     <div id="gridbox">
 
         <div id="current-container">
-            <p>Player rolled the dice (ABOVE)</p>
+            <p></p>
             <div>
                 <div id="dice-box">DICE BOX (LEFT)</div>
                 <div id="current-position">CURRENT POSITION</div>
@@ -45,7 +45,6 @@
         </div>
 
         <div id="next-positions-container">
-            <input type="button" value="<">
 
             <template id="normal-card">
                 <div class="card-panel">
@@ -135,8 +134,6 @@
                     </div>
                 </div>
             </template>
-
-            <input type="button" value=">">
 
         </div>
 

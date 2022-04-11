@@ -12,30 +12,34 @@ function init() {
     loadCards();
 }
 
-/* NOT WORKING YET [START] */
+
 function getGameDetails() {
     fetchFromServer(`/games/${loadFromStorage('game').gameId}`, 'GET')
         .then(onGoingGame => {
             console.log(onGoingGame);
             renderCards(onGoingGame);
+
+            const players = onGoingGame.players;
+            renderPlayersInfo(players);
         });
 }
 
+/* NOT WORKING YET [START] */
 function renderCards(onGoingGame) {
     let currentTileName = null;
     console.log(onGoingGame);
     onGoingGame.players.forEach(function (player) {
-                if (player.name === playerName) {
-                    currentTileName = player.currentTile;
-                }
-            });
-            loadFromStorage("tiles").forEach(function (tile) {
-                if (tile.name === currentTileName) {
-                    _tempPlayerPositionID = tile.position;
-                    _playerPositionID = tile.position;
-                    /* --> getCardById(tile.position); */
-                }
-            });
+        if (player.name === playerName) {
+            currentTileName = player.currentTile;
+        }
+    });
+    loadFromStorage("tiles").forEach(function (tile) {
+        if (tile.name === currentTileName) {
+            _tempPlayerPositionID = tile.position;
+            _playerPositionID = tile.position;
+            /* --> getCardById(tile.position); */
+        }
+    });
 }
 
 function loadCards() {
@@ -43,6 +47,8 @@ function loadCards() {
     fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, $container)).catch();
 }
 /* NOT WORKING YET [END] */
+
+/* loading tiles JS */
 
 function displayCards(tiles, $container) {
     console.log(tiles);
@@ -150,4 +156,32 @@ function addTileColor($template, tile) {
     if (tileColor !== undefined) {
         $template.querySelector('.title').classList.add(`${tileColor}`);
     }
+}
+
+/* PLAYER INFO JS */
+
+function renderPlayersInfo(playersInOnGoingGame) {
+    playersInOnGoingGame.forEach(player => {
+        const $container = document.querySelector('div#players-container');
+        const playerPawns = loadFromStorage('pawns');
+        let playerPawn;
+        playerPawns.forEach(distribution => {
+            if (distribution.player === player.name) {
+                playerPawn = distribution.pawn;
+            }
+        });
+
+        renderPlayerInfo(player, playerPawn, $container);
+    });
+}
+
+function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
+    const $template = document.querySelector('template#player-info-template').content.firstElementChild.cloneNode(true);
+    const $pawn = $template.querySelector('img');
+    // TODO: If this is the turn taking player add class: player-taking-turn
+    $pawn.setAttribute('src', `images/pawns/${playerPawn.id}.png`);
+    $pawn.setAttribute('alt', playerPawn.displayName);
+    $pawn.setAttribute('title', playerPawn.displayName);
+    $template.querySelector('.player-balance').textContent = `${playerInOnGoingGame.name}: €${playerInOnGoingGame.money}`;
+    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }

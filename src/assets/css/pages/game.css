@@ -2,20 +2,16 @@
 
 body {
     width: 100%;
-    margin: 1rem auto 0 auto;
+
     /*background-color: #BFDBAE;*/
     background-image: url("../../media/background.png");
     background-blend-mode: soft-light;
     font-family: 'Fredoka One', cursive;
-
+    margin: 1.5rem auto 0 auto;
 }
 
 .hidden {
     visibility: hidden;
-}
-
-img {
-    height: 5rem;
 }
 
 #gridbox {
@@ -26,25 +22,11 @@ img {
             "np"
             "p";
     text-align: center;
-
-             /* THESE VALUES ARE TEMPORARY UNTIL A BETER SOLUTION IS FOUND TO KEEP SCREEN HEIGHT RIGHT */
-
-
     height: 60rem;
-
     margin: auto auto;
-
-
 }
 
-#dice-box, #current-position, #alert {
-    background-color: rgba(200,200,200 ,0.20);
-    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
 
-    padding: 1rem;
-
-
-}
 
 #game-info {
     position: absolute;
@@ -52,9 +34,10 @@ img {
     top: 1rem;
 }
 
+/* ALL CSS ABOUT CURRENT CONTAINER (ALL THINGS AT THE TOP) */
+
 #current-container {
     grid-area: c;
-
     max-height: 10rem;
     align-self: start;
     margin-bottom: 12rem;
@@ -65,13 +48,18 @@ img {
     margin-bottom: 2rem;
 }
 
-#current-container div {
+#dice-box, #current-position, #alert {
+    background-color: rgba(200,200,200 ,0.20);
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+    padding: 1rem;
+}
 
+#current-container div {
     display: flex;
     justify-content: space-around;
-
-
 }
+
+/* ALL CSS ABOUT NEXT POSITIONS TILES */
 
 #next-positions-container {
     display: flex;
@@ -89,23 +77,32 @@ img {
 .position  {
     background-color: rgba(200,200,200 ,0.10);
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);
-
     height: 10rem;
     max-height: 10rem;
 }
+
+/* ALL CSS ABOUT PLAYER INFORMATION */
 
 #players-container {
     grid-area: p;
     display: flex;
     align-self: end;
-    justify-content: space-between;
-    gap: 0.2rem;
-    background-color: rgba(200,200,200 ,0.10);
-    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
-    padding: 1rem;
+    justify-content: center;
+    gap: 0.6rem;
+    padding-bottom: 0.1rem;
     position: fixed;
     bottom: 0;
     width: 98.5%;
+}
+
+#players-container>div{
+    background-color: rgba(200,200,200,0.2);
+    border: solid black;
+    border-radius: 1rem;
+}
+
+#players-container img {
+    height: 5rem;
 }
 
 .player-balance {
@@ -116,15 +113,7 @@ img {
     box-shadow: #900000 0 0 1rem;
 }
 
-#players-container>div{
-    background-color: rgba(200,200,200,0.2);
-    border: solid black;
-    border-radius: 1rem;
-}
-
-
 /* all css relating cards */
-
 
 hr {
     border: 0;
@@ -175,7 +164,7 @@ h2 {
     margin: 60% auto auto auto;
 }
 
-small {
+.card-extra {
     text-transform:uppercase;
     font-size:0.75rem;
     letter-spacing:0.125rem
@@ -209,6 +198,7 @@ small {
     height: 20%;
     margin: auto auto auto auto;
 }
+
 /* CARD COLORS */
 
 .PURPLE {

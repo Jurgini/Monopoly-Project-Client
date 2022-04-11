@@ -1,4 +1,9 @@
 'use strict';
+
+let _playerPositionID = null;
+let _tempPlayerPositionID = null;
+const _playerName = loadFromStorage('playerName');
+
 document.addEventListener('DOMContentLoaded', init);
 loadTokenFromStorage();
 
@@ -7,18 +12,37 @@ function init() {
     loadCards();
 }
 
+/* NOT WORKING YET [START] */
 function getGameDetails() {
     fetchFromServer(`/games/${loadFromStorage('game').gameId}`, 'GET')
         .then(onGoingGame => {
             console.log(onGoingGame);
+            renderCards(onGoingGame);
         });
 }
 
+function renderCards(onGoingGame) {
+    let currentTileName = null;
+    console.log(onGoingGame);
+    onGoingGame.players.forEach(function (player) {
+                if (player.name === playerName) {
+                    currentTileName = player.currentTile;
+                }
+            });
+            loadFromStorage("tiles").forEach(function (tile) {
+                if (tile.name === currentTileName) {
+                    _tempPlayerPositionID = tile.position;
+                    _playerPositionID = tile.position;
+                    /* --> getCardById(tile.position); */
+                }
+            });
+}
 
 function loadCards() {
     const $container = document.querySelector('#next-positions-container');
     fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, $container)).catch();
 }
+/* NOT WORKING YET [END] */
 
 function displayCards(tiles, $container) {
     console.log(tiles);
@@ -127,57 +151,3 @@ function addTileColor($template, tile) {
         $template.querySelector('.title').classList.add(`${tileColor}`);
     }
 }
-
-
-/* COPY PASTA */
-/*
-function getCardById(id) {
-    const toShow = createToShow(id, id - 2, id + 3);
-    for (const cardId of toShow) {
-        if (cardId === id) {
-            showCards(loadFromStorage("tiles")[cardId], true);
-        } else {
-            showCards(loadFromStorage("tiles")[cardId], false);
-        }
-    }
-    checkPlayerPosition();
-    checkIfBought();
-    checkIfMortgaged();
-}
-
-function createToShow(id, firstId, lastId) {
-    const toShow = [];
-    if (id === 0) {
-        toShow.push(38, 39, 0, 1, 2);
-    } else if (id === 1) {
-        toShow.push(39, 0, 1, 2, 3);
-    } else if (id === 38) {
-        toShow.push(36, 37, 38, 39, 0);
-    } else if (id === 39) {
-        toShow.push(37, 38, 39, 0, 1);
-    } else {
-        for (let i = firstId; i < lastId; i++) {
-            toShow.push(i);
-        }
-    }
-    return toShow;
-}
-
-function showCards(cardInfo, middle) {
-    switch (cardInfo.type) {
-        case "street":
-            renderNormalCard(cardInfo, middle);
-            break;
-        case "utility":
-            renderUtilityCard(cardInfo, middle);
-            break;
-        case "railroad":
-            renderRailroad(cardInfo, middle);
-            break;
-        default:
-            renderSpecialCard(cardInfo, middle);
-            return;
-    }
-}
-
-*/

@@ -56,7 +56,7 @@ body {
 
 #current-container div {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 /* ALL CSS ABOUT DICE CONTAINER IN CURRENT CONTAINER */
 #dice-box {
@@ -72,6 +72,22 @@ body {
 
 #dice-box div img {
     max-width: 5rem;
+}
+
+#dice-box input[type="submit"] {
+    font-family: 'Fredoka One', cursive;
+    text-transform: uppercase;
+    color: black;
+    border: 0.17rem solid #dcdcdc;
+    background-color: #dcdcdc;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#dice-box input[type="submit"]:hover {
+    background-color: #cccccc;
 }
 
 /* ALL CSS ABOUT NEXT POSITIONS TILES */

@@ -27,14 +27,22 @@ function getGameDetails() {
 }
 /* -=[ALL ABOUT GENERAL GAME STUFF]=- */
 
-/* -=[ALL ABOUT GAME ACTIONS]=- */
+/* -=[ALL ABOUT GAME ACTIONS - NOT VISIBLE]=- */
 function rollDice()
 {
-    // Visual functionality (show dices)
-
     // Game functionality (API)
 
+    // Visual functionality (show dices)
+    showDices();
 }
+
+/* -=[ALL ABOUT GAME ACTIONS - VISIBLE]=- */
+
+function showDices()
+{
+
+}
+
 /* -=[ALL ABOUT PLAYER INFORMATION]=- */
 function renderCurrentPlayer(onGoingGame) {
     const $turnText = document.querySelector('div#current-container p');
@@ -45,7 +53,7 @@ function renderGameInfo(onGoingGame)
 {
     const $gameInfo = document.querySelector('div#game-info');
     const $availableHouses = $gameInfo.querySelector('#available-houses');
-    $availableHouses.textContent = `kot: ${onGoingGame.availableHouses}`;
+    $availableHouses.textContent = `dorms: ${onGoingGame.availableHouses}`;
     const $availableHotels = $gameInfo.querySelector('#available-hotels');
     $availableHotels.textContent = `complexes: ${onGoingGame.availableHotels}`;
 }
@@ -197,7 +205,7 @@ function displayIncomeTaxCard(tile, $container) {
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
     if (tileType === _config.tileTypes.other.taxIncomeValue) {
-        $template.querySelector('.card-extra .tax').textContent = "You hold a kot party, you pay €200 for the preparations";
+        $template.querySelector('.card-extra .tax').textContent = "You hold a dorm party, you pay €200 for the preparations";
     } else if (tileType === _config.tileTypes.other.luxuryTaxIncomeValue) {
         $template.querySelector('.card-extra .tax').textContent = "You're feeling good, you keep a tour general!";
     }

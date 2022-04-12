@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+    width: 100%;
+
+    /*background-color: #BFDBAE;*/
+    background-image: url("../../media/background.png");
+    background-blend-mode: soft-light;
+    font-family: 'Fredoka One', cursive;
+    margin: 1.5rem auto 0 auto;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+#gridbox {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+            "c"
+            "np"
+            "p";
+    text-align: center;
+    height: 60rem;
+    margin: auto auto;
+}
+
+
+
+#game-info {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+}
+
+/* ALL CSS ABOUT CURRENT CONTAINER (ALL THINGS AT THE TOP) */
+
+#current-container {
+    grid-area: c;
+    max-height: 10rem;
+    align-self: start;
+    margin-bottom: 12rem;
+}
+
+#current-container>p {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#dice-box, #current-position, #alert {
+    background-color: rgba(200,200,200 ,0.20);
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+    padding: 1rem;
+}
+
+#current-container div {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* ALL CSS ABOUT NEXT POSITIONS TILES */
+
+#next-positions-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    grid-area: np;
+    align-self: center;
+    overflow: auto;
+}
+
+.position div:nth-of-type(1) {
+    margin-bottom: 1rem;
+}
+
+.position  {
+    background-color: rgba(200,200,200 ,0.10);
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+    height: 10rem;
+    max-height: 10rem;
+}
+
+/* ALL CSS ABOUT PLAYER INFORMATION */
+
+#players-container {
+    grid-area: p;
+    display: flex;
+    align-self: end;
+    justify-content: center;
+    gap: 0.6rem;
+    padding-bottom: 0.1rem;
+    position: fixed;
+    bottom: 0;
+    width: 98.5%;
+}
+
+#players-container>div{
+    background-color: rgba(200,200,200,0.2);
+    border: solid black;
+    border-radius: 1rem;
+}
+
+#players-container img {
+    height: 5rem;
+}
+
+.player-balance {
+    margin-bottom: 2rem;
+}
+
+.player-taking-turn {
+    box-shadow: #900000 0 0 1rem;
+}
+
+/* all css relating cards */
+
+hr {
+    border: 0;
+    height: 0.06rem;
+}
+
+/* MULTIPLE CARD TYPES ARE SPLIT HERE */
+
+.normal-card, .special-card, .utility-card, .railroad-card, .tax-income-card {
+    max-width: 20rem;
+    min-height: 20rem;
+    margin: 3.75rem auto;
+    padding: 0.625rem;
+    clear:both; /* no floating elements */
+    text-align:center;
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgba(200,200,200 ,0.20);
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+}
+
+h2 {
+    text-align: center;
+    color: black;
+    padding: 1.25rem;
+    margin: 0;
+    border: 0.125rem solid black;
+}
+.special-card h2, .tax-income-card h2, .electric-company h2, .water-works h2 {
+    text-align: center;
+    padding: 1.25rem;
+    border: none;
+}
+
+.tax-income {
+    background-image: url("../../media/card-addons/kot-party.png");
+    background-position: center;
+    background-size: 120%;
+}
+.luxury-tax {
+    background-image: url("../../media/card-addons/tournee-general.png");
+    background-position: center;
+    background-size: 120%;
+}
+/*  EXTRA CARD INFORMATION ON TAX INCOME CARD */
+.tax-income-card>.card-extra {
+    margin: 60% auto auto auto;
+}
+
+.card-extra {
+    text-transform:uppercase;
+    font-size:0.75rem;
+    letter-spacing:0.125rem
+}
+/* WHAT'S ON THE CARD */
+
+/* NORMAL CARD */
+.property {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: start;
+}
+
+.card-information {  /* FIX FOR THE #CURRENT-POSITION STYLING */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-information img {
+    height: 2rem;
+}
+
+.card-price {
+    font-size: 1.2rem;
+}
+
+/*  SPECIAL CARD */
+.card-information .icon img {
+    width: 60%;
+    height: 20%;
+    margin: auto auto auto auto;
+}
+
+/* CARD COLORS */
+
+.PURPLE {
+    background: rgba(161, 27, 161, 0.5);
+}
+
+.BLACK {
+    background: rgba(16, 15, 15, 0.6);
+}
+
+.LIGHTBLUE {
+    background: #abcbdc;
+}
+
+.VIOLET {
+    background: rgba(238, 130, 238, 0.9);
+}
+
+.ORANGE {
+    background: rgba(255, 165, 0, 0.5);
+}
+
+.RED {
+    background: rgba(255, 0, 0, 0.5);
+}
+
+.YELLOW {
+    background: rgba(255, 255, 0, 0.35);
+    color: black;
+}
+
+.DARKGREEN {
+    background: rgba(0, 100, 0, 0.5);
+}
+
+.DARKBLUE {
+    background: rgba(0, 0, 139, 0.6);
+}
+
+.jail {
+    background: rgb(240, 124, 28);
+}

@@ -177,10 +177,9 @@ function displayUtilityCard(tile, $container) {
 
 function displayRailroadCard(tile, $container) {
     const $template = getTemplate('railroad-card');
-    const tileName = tile.name;
+    const tileName = tile.type;
     const tileTypeClass = tileName.toLowerCase().replaceAll(' ', '-');
     const cardTitle = tileName.toUpperCase();
-
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
     $template.querySelector('.rent span').textContent = `€${tile.rent}`;

@@ -22,7 +22,7 @@ body {
             "np"
             "p";
     text-align: center;
-    height: 60rem;
+    max-height: 60rem;
     margin: auto auto;
 }
 
@@ -86,19 +86,20 @@ body {
 #players-container {
     grid-area: p;
     display: flex;
-    align-self: end;
+    align-self: start;
     justify-content: center;
     gap: 0.6rem;
     padding-bottom: 0.1rem;
-    position: fixed;
-    bottom: 0;
-    width: 98.5%;
+    margin-top: 3rem;
+    overflow-x: auto;
 }
 
 #players-container>div{
     background-color: rgba(200,200,200,0.2);
     border: solid black;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
 }
 
 #players-container img {
@@ -133,7 +134,9 @@ hr {
     display: flex;
     flex-direction: column;
 
+    background-color: rgba(255,255,255 ,0.50);
     box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+    border-radius: 0.5rem;
 }
 
 h2 {

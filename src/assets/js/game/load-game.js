@@ -1,9 +1,5 @@
 'use strict';
 
-let _playerPositionID = null;
-let _tempPlayerPositionID = null;
-const _playerName = loadFromStorage('playerName');
-
 document.addEventListener('DOMContentLoaded', init);
 loadTokenFromStorage();
 
@@ -25,24 +21,24 @@ function getGameDetails() {
             renderPlayersInfo(players);
         });
 }
+
 /* -=[ALL ABOUT GENERAL GAME STUFF]=- */
 
 /* -=[ALL ABOUT GAME ACTIONS]=- */
-function rollDice()
-{
+function rollDice() {
     // Visual functionality (show dices)
 
     // Game functionality (API)
 
 }
+
 /* -=[ALL ABOUT PLAYER INFORMATION]=- */
 function renderCurrentPlayer(onGoingGame) {
     const $turnText = document.querySelector('div#current-container p');
     $turnText.textContent = `${onGoingGame.currentPlayer}'s TURN`;
 }
 
-function renderGameInfo(onGoingGame)
-{
+function renderGameInfo(onGoingGame) {
     const $gameInfo = document.querySelector('div#game-info');
     const $availableHouses = $gameInfo.querySelector('#available-houses');
     $availableHouses.textContent = `kot: ${onGoingGame.availableHouses}`;
@@ -77,41 +73,46 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
 }
 
 /* -=[ALL ABOUT CARDS]=- */
-/* NOT WORKING YET [START] */
+
 function renderCards(onGoingGame) {
-    let currentTileName = null;
-    console.log(onGoingGame);
-    onGoingGame.players.forEach(player =>
-    {
-        const playerName = player.name;
-        if (player.name === playerName)
-        {
-            currentTileName = player.currentTile;
+    onGoingGame.players.forEach(player => {
+        if (onGoingGame.currentPlayer === player.name) {
+            let currentTile = player.currentTile;
+            fetchFromServer('/tiles', 'GET').then(tiles => tileNameToNumber(tiles, currentTile)).catch();
         }
     });
-    // loadFromStorage('tiles').forEach(tile =>
-    // {
-    //     if (tile.name === currentTileName)
-    //     {
-    //         _tempPlayerPositionID = tile.position;
-    //         _playerPositionID = tile.position;
-    //         /* --> getCardById(tile.position); */
-    //     }
-    // });
 }
 
-function loadCards() {
-    const $container = document.querySelector('#next-positions-container');
-    fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, $container)).catch();
+function tileNameToNumber(tiles, currentTile) {
+    tiles.forEach(tile => {
+        if (tile.name === currentTile) {
+            console.log(tile.position);
+            let currentTileNumber = tile.position;
+            tilesToShow(currentTileNumber);
+        }
+    });
 }
-/* NOT WORKING YET [END] */
+
+function tilesToShow(currentTileNumber) {
+    let toShowTiles = [currentTileNumber, currentTileNumber +1,currentTileNumber +2,currentTileNumber +3,currentTileNumber +4,currentTileNumber +5];
+    loadCards(toShowTiles);
+}
+
+function loadCards(toShowTiles) {
+    const $container = document.querySelector('#next-positions-container');
+    fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, toShowTiles, $container)).catch();
+}
 
 /* - RENDERING ALL THE DIFFERENT CARDS - */
 
-function displayCards(tiles, $container) {
+function displayCards(tiles, toShowTiles, $container) {
     console.log(tiles);
     tiles.forEach(tile => {
-        displayCard(tile, $container);
+        toShowTiles.forEach(toShowTile => { //loop through the cards needed to display [array]
+            if (toShowTile === tile.position) {
+                displayCard(tile, $container);
+            }
+        });
     });
 }
 

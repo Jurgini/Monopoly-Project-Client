@@ -180,6 +180,7 @@ function displayRailroadCard(tile, $container) {
     const tileName = tile.name;
     const tileTypeClass = tileName.toLowerCase().replaceAll(' ', '-');
     const cardTitle = tileName.toUpperCase();
+
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
     $template.querySelector('.rent span').textContent = `€${tile.rent}`;

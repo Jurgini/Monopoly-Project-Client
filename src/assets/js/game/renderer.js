@@ -7,11 +7,17 @@ function loadAvailableLobbies()
         .then(availableGames =>
         {
             renderAvailableLobbies(availableGames, $container);
+
+            if (true) // Infinite refresh of lobbies
+            {
+                setTimeout(() => loadAvailableLobbies(), 3500);
+            }
         });
 }
 
 function renderAvailableLobbies(availableGames, $container)
 {
+    $container.innerHTML = $container.querySelector("template").outerHTML;
     availableGames.forEach(availableGame => {
         renderLobby(availableGame, $container);
     });
@@ -28,5 +34,4 @@ function renderLobby(availableGame, $container)
     $template.setAttribute("data-gameid", availableGame.id);
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
-    console.log(loadTokenFromStorage());
 }

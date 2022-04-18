@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+    width: 100%;
+
+    /*background-color: #BFDBAE;*/
+    background-image: url("../../media/background.png");
+    background-blend-mode: soft-light;
+    font-family: 'Fredoka One', cursive;
+    margin: 1.5rem auto 0 auto;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+#gridbox {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+            "c"
+            "np"
+            "p";
+    text-align: center;
+    height: 60rem;
+    margin: auto auto;
+}
+
+
+
+#game-info {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+}
+
+/* ALL CSS ABOUT CURRENT CONTAINER (ALL THINGS AT THE TOP) */
+
+#current-container {
+    grid-area: c;
+    max-height: 10rem;
+    align-self: start;
+    margin-bottom: 12rem;
+}
+
+#current-container>p {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#dice-box, #current-position, #alert {
+    background-color: rgba(200,200,200 ,0.20);
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+    padding: 1rem;
+}
+
+#current-container div {
+    display: flex;
+    justify-content: space-evenly;
+}
+/* ALL CSS ABOUT DICE CONTAINER IN CURRENT CONTAINER */
+#dice-box {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+}
+
+#dice-box div {
+    display: flex;
+    flex-direction: row;
+}
+
+#dice-box div img {
+    max-width: 5rem;
+}
+
+#dice-box input[type="submit"] {
+    font-family: 'Fredoka One', cursive;
+    text-transform: uppercase;
+    color: black;
+    border: 0.17rem solid #dcdcdc;
+    background-color: #dcdcdc;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#dice-box input[type="submit"]:hover {
+    background-color: #cccccc;
+}
+
+/* ALL CSS ABOUT NEXT POSITIONS TILES */
+
+#next-positions-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    grid-area: np;
+    align-self: center;
+    overflow: auto;
+}
+
+.position div:nth-of-type(1) {
+    margin-bottom: 1rem;
+}
+
+.position  {
+    background-color: rgba(200,200,200 ,0.10);
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+    height: 10rem;
+    max-height: 10rem;
+}
+
+/* ALL CSS ABOUT PLAYER INFORMATION */
+
+#players-container {
+    grid-area: p;
+    display: flex;
+    align-self: end;
+    justify-content: center;
+    gap: 0.6rem;
+    padding-bottom: 0.1rem;
+    position: fixed;
+    bottom: 0;
+    width: 98.5%;
+}
+
+#players-container>div{
+    background-color: rgba(200,200,200,0.2);
+    border: solid black;
+    border-radius: 1rem;
+}
+
+#players-container img {
+    height: 5rem;
+}
+
+.player-balance {
+    margin-bottom: 2rem;
+}
+
+.player-taking-turn {
+    box-shadow: #900000 0 0 1rem;
+}

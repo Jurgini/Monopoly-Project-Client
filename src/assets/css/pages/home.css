@@ -3,8 +3,7 @@
 body {
     width: 100%;
     margin: auto auto;
-    /*background-color: #BFDBAE;*/
-    background-image: url("../media/background.png");
+    background-image: url("../../media/background.png");
     background-blend-mode: soft-light;
     font-family: 'Fredoka One', cursive;
 }
@@ -34,7 +33,6 @@ h3 {
 
 #create-game-container {
     grid-area: cg;
-
 }
 
 #create-game-container div {
@@ -107,6 +105,7 @@ input[type="text"], input[type="number"] {
     overflow-y: auto;
     height: 21.5rem;
     padding-right: 1.5rem;
+    width: 25rem;
 
 }
 
@@ -118,7 +117,6 @@ input[type="text"], input[type="number"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .available-lobby label {

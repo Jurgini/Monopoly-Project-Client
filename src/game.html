@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monopoly Student</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="assets/css/pages/reset.css">
+    <link rel="stylesheet" href="assets/css/pages/game.css">
+    <link rel="stylesheet" href="assets/css/game/game-entities.css">
+    <link rel="stylesheet" href="assets/css/game/player-owned-properties.css">
+
+
+    <script src="assets/js/config.js"></script>
+
+    <script src="assets/js/data-connector/error-handler.js"></script>
+    <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+
+    <script src="assets/js/game/load-game.js"></script>
+
+
+</head>
+<body>
+<main>
+    <div id="game-info">
+        <p>GAME INFO</p>
+        <p id="available-houses"></p>
+        <p id="available-hotels"></p>
+    </div>
+
+    <div id="gridbox">
+
+        <div id="current-container">
+            <p></p>
+            <div>
+                <div id="dice-box">
+                    <p></p>
+                    <input type="submit" value="CLICK ME"/>
+                    <div>
+
+                    </div>
+                </div>
+                <div id="current-position">CURRENT POSITION</div>
+                <div id="alert">ALERT BOX (RIGHT)</div>
+            </div>
+
+        </div>
+
+        <div id="next-positions-container">
+
+            <template id="normal-card">
+                <div class="card-panel">
+                    <div class="normal-card">
+                        <h2 class="title"></h2>
+                        <p class="rent">RENT: <span></span></p>
+                        <div class="card-information">
+                            <div class="property">
+                                <img src="assets/media/card-addons/house.png" alt="kot" title="1 kot">
+                                <a class="price-one"></a>
+                            </div>
+
+                            <div class="property">
+                                <img src="assets/media/card-addons/2-house.png" alt="kot" title="2 kot">
+                                <a class="price-two"></a>
+                            </div>
+
+                            <div class="property">
+                                <img src="assets/media/card-addons/3-house.png" alt="kot" title="3 kot">
+                                <a class="price-three"></a>
+                            </div>
+
+                            <div class="property">
+                                <img src="assets/media/card-addons/4-house.png" alt="kot" title="4 kot">
+                                <a class="price-four"></a>
+                            </div>
+
+                            <div class="property">
+                                <img src="assets/media/card-addons/hotel.png" alt="complex" title="1 complex">
+                                <a class="price-complex"></a>
+                            </div>
+                        </div>
+
+                        <div class="card-extra">
+                            <p class="price">House price: <span></span></p>
+                            <p class="mortgage">Mortgage value: <span></span></p>
+                            <p class="card-price"></p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template id="special-card">
+                <div class="special-card">
+                    <h2 class="title"></h2>
+                    <div class="card-information">
+                        <div class="icon">
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template id="utility-card">
+                <div class="utility-card">
+                    <h2 class="title"></h2>
+                    <div class="card-information">
+                        <div class="icon">
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template id="railroad-card">
+                <div class="railroad-card">
+                    <h2 class="title"></h2>
+                    <p class="rent">RENT: <span></span></p>
+                    <div class="card-information">
+                        <div class="icon">
+                        </div>
+                    </div>
+                    <div class="card-extra">
+                        <p class="mortgage">Mortgage value: <span></span></p>
+                        <p class="card-price"></p>
+                    </div>
+                </div>
+            </template>
+
+            <template id="tax-income-card">
+                <div class="tax-income-card">
+                    <h2 class="title"></h2>
+                    <div class="card-information">
+                        <div class="icon">
+                        </div>
+                    </div>
+                    <div class="card-extra">
+                        <p class="tax"></p>
+                    </div>
+                </div>
+            </template>
+
+        </div>
+
+        <div id="players-container">
+
+            <template id="player-info-template">
+                <div class="player-info">
+                    <img src="" alt="">
+                    <div>
+                        <p class="player-balance">player: $1500</p>
+                        <div class="player-properties">
+                            <div class="square mediterranean not-bought"></div>
+                            <div class="square baltic not-bought"></div>
+                            <div class="square oriental not-bought"></div>
+                            <div class="square vermont not-bought"></div>
+                            <div class="square connecticut not-bought"></div>
+                            <div class="square saint-charles-place not-bought"></div>
+                            <div class="square states not-bought"></div>
+                            <div class="square virginia not-bought"></div>
+                            <div class="square saint-james not-bought"></div>
+                            <div class="square tennessee not-bought"></div>
+                            <div class="square new-york not-bought"></div>
+                            <div class="square kentucky-avenue not-bought"></div>
+                            <div class="square indiana-avenue not-bought"></div>
+                            <div class="square illinois-avenue not-bought"></div>
+                            <div class="square atlantic not-bought"></div>
+                            <div class="square ventnor not-bought"></div>
+                            <div class="square marvin-gardens not-bought"></div>
+                            <div class="square pacific not-bought"></div>
+                            <div class="square north-carolina not-bought"></div>
+                            <div class="square pennsylvania not-bought"></div>
+                            <div class="square park-place not-bought"></div>
+                            <div class="square boardwalk not-bought"></div>
+                            <div class="square reading-rr not-bought"></div>
+                            <div class="square pennsylvania-rr not-bought"></div>
+                            <div class="square baltimore-and-ohio-rr not-bought"></div>
+                            <div class="square short-line-rr not-bought"></div>
+                            <div class="square electric-company not-bought"></div>
+                            <div class="square water-works not-bought"></div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+        </div>
+
+    </div>
+</main>
+
+</body>
+</html>

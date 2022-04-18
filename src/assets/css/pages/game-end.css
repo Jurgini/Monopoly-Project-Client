@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+    font-family: 'Fredoka One', cursive;
+}
+main {
+    padding: 0 3rem;
+}
+
+h3 {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 20px;
+}
+
+img {
+    width: 200px;
+    flex-wrap: wrap;
+    display: block;
+    margin: 80px auto 75px;
+
+}
+#medal{
+    width: 250px;
+    flex-wrap: wrap;
+    display: block;
+    margin: 50px auto 30px;
+}
+input[type="submit"] {
+    box-shadow: 0 0 0 0.3rem #BC3334;
+    border: 0.2rem solid white;
+    background-color: #BC3334;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+    display: block;
+    margin: 30px auto;
+}
+
+input[type="submit"]:hover{
+    background: #900000;
+    cursor: pointer;
+}

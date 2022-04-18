@@ -27,6 +27,7 @@ function getGameDetails() {
             renderPlayersInfo(players);
         });
 }
+
 /* -=[ALL ABOUT GENERAL GAME STUFF]=- */
 
 /* -=[ALL ABOUT GAME ACTIONS - NOT VISIBLE]=- */
@@ -36,8 +37,7 @@ function rollDice(e)
     e.target.classList.add("hidden"); // todo find better solution for hiding and showing
     // Game functionality (API)
     fetchFromServer(`/games/${loadFromStorage('game').gameId}/players/${loadFromStorage('game').playerName}/dice`, 'POST')
-        .then(turn => showDices(turn)) // Visual functionality (show dices)
-
+        .then(turn => showDices(turn))
 }
 
 /* -=[ALL ABOUT GAME ACTIONS - VISIBLE]=- */
@@ -50,11 +50,12 @@ function showDices(turnInfo)
         showDice(roll, $container);
     });
 }
+
 function showDice(roll, $container)
 {
-    console.log(roll);
     $container.insertAdjacentHTML('beforeend', `<img src="assets/media/dices/${roll}.png" alt="${roll}" title="${roll}">`);
 }
+
 /* -=[ALL ABOUT PLAYER INFORMATION]=- */
 function renderCurrentPlayer(onGoingGame) {
     const $turnText = document.querySelector('div#current-container p');

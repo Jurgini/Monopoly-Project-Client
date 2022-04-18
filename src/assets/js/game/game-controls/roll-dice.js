@@ -35,15 +35,18 @@ function rollDice() {
 
     fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/dice`, "POST").then(response => {
         console.log("Stap 7: Roll dice!");
-        document.querySelector('div').innerHTML = response.lastDiceRoll;
+        document.querySelector('#dice1').src = `assets/media/dices/${response.lastDiceRoll[0]}.png`;
+        document.querySelector('#dice2').src = `assets/media/dices/${response.lastDiceRoll[1]}.png`;;
+
         console.log("Stap 8: Toon nummers gegooit!");
 
         return response;
     }).then(response => {
-        console.log(response.directSale);
+        console.log(response);
         if (response.directSale !== null) {
-            fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/properties/${response.directSale}`, 'DELETE').then(reloadGame);
-            console.log("Stap 9: Verkoop wordt geweigerd!");
+            let method = (confirm(`You want to buy ${response.directSale}?`)?"POST":"DELETE"); // temporary confirm function
+            fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/properties/${response.directSale}`, method).then(reloadGame);
+            console.log(`Stap 9: Verkoop is ${method}!`);
         } else {
             reloadGame();
         }

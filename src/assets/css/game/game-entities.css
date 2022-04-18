@@ -43,14 +43,14 @@ h2 {
     background-size: 120%;
 }
 /*  EXTRA CARD INFORMATION ON TAX INCOME CARD */
-.tax-income-card>.card-extra {
-    margin: 60% auto auto auto;
-}
-
 .card-extra {
     text-transform:uppercase;
     font-size:0.75rem;
     letter-spacing:0.125rem
+}
+
+.tax-income-card>.card-extra {
+    margin: 60% auto auto auto;
 }
 /* WHAT'S ON THE CARD */
 

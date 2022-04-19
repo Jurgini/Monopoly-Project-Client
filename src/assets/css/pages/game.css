@@ -34,6 +34,28 @@ body {
     top: 1rem;
 }
 
+/* ALL CSS ABOUT NEXT POSITIONS TILES */
+
+#next-positions-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    grid-area: np;
+    align-self: center;
+    overflow: auto;
+}
+
+.position div:nth-of-type(1) {
+    margin-bottom: 1rem;
+}
+
+.position  {
+    background-color: rgba(200,200,200 ,0.10);
+    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+    height: 10rem;
+    max-height: 10rem;
+}
+
 /* ALL CSS ABOUT CURRENT CONTAINER (ALL THINGS AT THE TOP) */
 
 #current-container {
@@ -88,28 +110,6 @@ body {
 
 #dice-box input[type="submit"]:hover {
     background-color: #cccccc;
-}
-
-/* ALL CSS ABOUT NEXT POSITIONS TILES */
-
-#next-positions-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    grid-area: np;
-    align-self: center;
-    overflow: auto;
-}
-
-.position div:nth-of-type(1) {
-    margin-bottom: 1rem;
-}
-
-.position  {
-    background-color: rgba(200,200,200 ,0.10);
-    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
-    height: 10rem;
-    max-height: 10rem;
 }
 
 /* ALL CSS ABOUT PLAYER INFORMATION */

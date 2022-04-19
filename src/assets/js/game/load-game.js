@@ -1,7 +1,5 @@
 'use strict';
 
-let _playerPositionID = null;
-let _tempPlayerPositionID = null;
 const _playerName = loadFromStorage('playerName');
 
 document.addEventListener('DOMContentLoaded', init);
@@ -37,7 +35,7 @@ function rollDice(e)
     e.target.classList.add("hidden"); // todo find better solution for hiding and showing
     // Game functionality (API)
     fetchFromServer(`/games/${loadFromStorage('game').gameId}/players/${loadFromStorage('game').playerName}/dice`, 'POST')
-        .then(turn => showDices(turn))
+        .then(turn => showDices(turn));
 }
 
 /* -=[ALL ABOUT GAME ACTIONS - VISIBLE]=- */
@@ -237,7 +235,7 @@ function getTemplate(tileType) {
 }
 
 function addTileColor($template, tile) {
-    let tileColor = tile.color;
+    const tileColor = tile.color;
     if (tileColor !== undefined) {
         $template.querySelector('.title').classList.add(`${tileColor}`);
     }

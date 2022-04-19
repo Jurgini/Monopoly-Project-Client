@@ -10,8 +10,6 @@ loadTokenFromStorage();
 function init() {
     getGameDetails();
     loadCards();
-    const $rollDiceButton = document.querySelector('#dice-box input[type="submit"]');
-    $rollDiceButton.addEventListener('click', rollDice);
 }
 
 function getGameDetails() {
@@ -23,7 +21,6 @@ function getGameDetails() {
             renderCards(onGoingGame);
             renderCurrentPlayer(onGoingGame);
             renderGameInfo(onGoingGame);
-            renderDiceButton();
             renderPlayersInfo(players);
         });
 }
@@ -31,30 +28,9 @@ function getGameDetails() {
 /* -=[ALL ABOUT GENERAL GAME STUFF]=- */
 
 /* -=[ALL ABOUT GAME ACTIONS - NOT VISIBLE]=- */
-function rollDice(e)
-{
-    e.preventDefault();
-    e.target.classList.add("hidden"); // todo find better solution for hiding and showing
-    // Game functionality (API)
-    fetchFromServer(`/games/${loadFromStorage('game').gameId}/players/${loadFromStorage('game').playerName}/dice`, 'POST')
-        .then(turn => showDices(turn))
-}
 
 /* -=[ALL ABOUT GAME ACTIONS - VISIBLE]=- */
 
-function showDices(turnInfo)
-{
-    const $container = document.querySelector('#dice-box div');
-    const lastDiceRoll = turnInfo.lastDiceRoll;
-    lastDiceRoll.forEach(roll => {
-        showDice(roll, $container);
-    });
-}
-
-function showDice(roll, $container)
-{
-    $container.insertAdjacentHTML('beforeend', `<img src="assets/media/dices/${roll}.png" alt="${roll}" title="${roll}">`);
-}
 
 /* -=[ALL ABOUT PLAYER INFORMATION]=- */
 function renderCurrentPlayer(onGoingGame) {
@@ -62,11 +38,6 @@ function renderCurrentPlayer(onGoingGame) {
     $turnText.textContent = `${onGoingGame.currentPlayer}'s TURN`;
 }
 
-function renderDiceButton()
-{
-    const $diceBox = document.querySelector('div#dice-box');
-    $diceBox.querySelector('p').textContent = "ROLL THE DICE";
-}
 
 function renderGameInfo(onGoingGame)
 {

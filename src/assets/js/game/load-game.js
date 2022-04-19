@@ -31,8 +31,7 @@ function getGameDetails() {
 /* -=[ALL ABOUT GENERAL GAME STUFF]=- */
 
 /* -=[ALL ABOUT GAME ACTIONS - NOT VISIBLE]=- */
-function rollDice(e)
-{
+function rollDice(e) {
     e.preventDefault();
     e.target.classList.add("hidden"); // todo find better solution for hiding and showing
     // Game functionality (API)
@@ -42,8 +41,7 @@ function rollDice(e)
 
 /* -=[ALL ABOUT GAME ACTIONS - VISIBLE]=- */
 
-function showDices(turnInfo)
-{
+function showDices(turnInfo) {
     const $container = document.querySelector('#dice-box div');
     const lastDiceRoll = turnInfo.lastDiceRoll;
     lastDiceRoll.forEach(roll => {
@@ -51,8 +49,7 @@ function showDices(turnInfo)
     });
 }
 
-function showDice(roll, $container)
-{
+function showDice(roll, $container) {
     $container.insertAdjacentHTML('beforeend', `<img src="assets/media/dices/${roll}.png" alt="${roll}" title="${roll}">`);
 }
 
@@ -62,14 +59,12 @@ function renderCurrentPlayer(onGoingGame) {
     $turnText.textContent = `${onGoingGame.currentPlayer}'s TURN`;
 }
 
-function renderDiceButton()
-{
+function renderDiceButton() {
     const $diceBox = document.querySelector('div#dice-box');
     $diceBox.querySelector('p').textContent = "ROLL THE DICE";
 }
 
-function renderGameInfo(onGoingGame)
-{
+function renderGameInfo(onGoingGame) {
     const $gameInfo = document.querySelector('div#game-info');
     const $availableHouses = $gameInfo.querySelector('#available-houses');
     $availableHouses.textContent = `dorms: ${onGoingGame.availableHouses}`;
@@ -104,15 +99,14 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
 }
 
 /* -=[ALL ABOUT CARDS]=- */
+
 /* NOT WORKING YET [START] */
 function renderCards(onGoingGame) {
     let currentTileName = null;
     console.log(onGoingGame);
-    onGoingGame.players.forEach(player =>
-    {
+    onGoingGame.players.forEach(player => {
         const playerName = player.name;
-        if (player.name === playerName)
-        {
+        if (player.name === playerName) {
             currentTileName = player.currentTile;
         }
     });
@@ -129,8 +123,11 @@ function renderCards(onGoingGame) {
 
 function loadCards() {
     const $container = document.querySelector('#next-positions-container');
-    fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, $container)).catch();
+    fetchFromServer('/tiles', 'GET').then(tiles => {
+        displayCards(tiles, $container);
+    }).catch();
 }
+
 /* NOT WORKING YET [END] */
 
 /* - RENDERING ALL THE DIFFERENT CARDS - */
@@ -157,8 +154,6 @@ function displayCard(tile, $container) {
             displayIncomeTaxCard(tile, $container);
         }
     }
-
-
 }
 
 function displayNormalCard(tile, $container) {
@@ -230,6 +225,25 @@ function displayIncomeTaxCard(tile, $container) {
     }
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+}
+
+function displayPopupConfirm(title, text, accept, deny) {
+    const $template = getTemplate('normal-confirmpopup');
+    $template.querySelector('h2').textContent = title;
+    $template.querySelector('.popup-text').textContent = text;
+    $template.querySelector('.button1').textContent = accept;
+    $template.querySelector('.button2').textContent = deny;
+}
+
+function displayPopupAlertNormalCard(title, text, confirm) {
+    const $template = getTemplate('normal-alertpopup');
+    $template.querySelector('h2').textContent = title
+    $template.querySelector('.popup-text').textContent = text
+    $template.querySelector('.accept').textContent = confirm
+}
+
+function displayPopupSpecialCard(tile) {
+
 }
 
 function getTemplate(tileType) {

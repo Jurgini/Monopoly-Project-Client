@@ -91,12 +91,20 @@ body {
 /* ALL CSS ABOUT NEXT POSITIONS TILES */
 
 #next-positions-container {
+    grid-area: np;
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
-    grid-area: np;
     align-self: center;
     overflow: auto;
+    transition-duration: 100ms;
+}
+#next-positions-container>div:first-of-type{
+    transform: scale(1.1);
+}
+
+.current-tile {
+    background-color: #BC3334;
 }
 
 .position div:nth-of-type(1) {
@@ -115,7 +123,6 @@ body {
 #players-container {
     grid-area: p;
     display: flex;
-    align-self: start;
     justify-content: center;
     gap: 0.6rem;
     overflow-x: auto;
@@ -144,4 +151,6 @@ body {
 .player-taking-turn {
     box-shadow: #900000 0 0 1rem;
 }
+
+
 

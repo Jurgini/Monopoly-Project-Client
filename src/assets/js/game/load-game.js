@@ -187,6 +187,9 @@ function displaySpecialCard(tile, $container) {
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/${tileTypeClass}.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+
+
+
 }
 
 function displayUtilityCard(tile, $container) {

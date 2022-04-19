@@ -77,7 +77,7 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
 function renderCards(onGoingGame) {
     onGoingGame.players.forEach(player => {
         if (onGoingGame.currentPlayer === player.name) {
-            let currentTile = player.currentTile;
+            const currentTile = player.currentTile;
             fetchFromServer('/tiles', 'GET').then(tiles => tileNameToNumber(tiles, currentTile)).catch();
         }
     });
@@ -87,14 +87,14 @@ function tileNameToNumber(tiles, currentTile) {
     tiles.forEach(tile => {
         if (tile.name === currentTile) {
             console.log(tile.position);
-            let currentTileNumber = tile.position;
+            const currentTileNumber = tile.position;
             tilesToShow(currentTileNumber);
         }
     });
 }
 
 function tilesToShow(currentTileNumber) {
-    let toShowTiles = [currentTileNumber, currentTileNumber +1,currentTileNumber +2,currentTileNumber +3,currentTileNumber +4,currentTileNumber +5];
+    const toShowTiles = [currentTileNumber, currentTileNumber +1,currentTileNumber +2,currentTileNumber +3,currentTileNumber +4,currentTileNumber +5];
     loadCards(toShowTiles);
 }
 
@@ -131,8 +131,6 @@ function displayCard(tile, $container) {
             displayIncomeTaxCard(tile, $container);
         }
     }
-
-
 }
 
 function displayNormalCard(tile, $container) {

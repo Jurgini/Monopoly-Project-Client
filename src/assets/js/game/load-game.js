@@ -34,7 +34,7 @@ function rollDice(e)
     e.target.classList.add("hidden"); // todo find better solution for hiding and showing
     // Game functionality (API)
     fetchFromServer(`/games/${loadFromStorage('game').gameId}/players/${loadFromStorage('game').playerName}/dice`, 'POST')
-        .then(turn => showDices(turn))
+        .then(turn => showDices(turn));
 }
 
 /* -=[ALL ABOUT GAME ACTIONS - VISIBLE]=- */

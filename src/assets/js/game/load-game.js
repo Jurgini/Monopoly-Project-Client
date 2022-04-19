@@ -28,8 +28,7 @@ function getGameDetails() {
 
 
 /* -=[ALL ABOUT GAME ACTIONS - NOT VISIBLE]=- */
-function rollDice(e)
-{
+function rollDice(e) {
     e.preventDefault();
     e.target.classList.add("hidden"); // todo find better solution for hiding and showing
     // Game functionality (API)
@@ -39,8 +38,7 @@ function rollDice(e)
 
 /* -=[ALL ABOUT GAME ACTIONS - VISIBLE]=- */
 
-function showDices(turnInfo)
-{
+function showDices(turnInfo) {
     const $container = document.querySelector('#dice-box div');
     const lastDiceRoll = turnInfo.lastDiceRoll;
     lastDiceRoll.forEach(roll => {
@@ -48,8 +46,7 @@ function showDices(turnInfo)
     });
 }
 
-function showDice(roll, $container)
-{
+function showDice(roll, $container) {
     $container.insertAdjacentHTML('beforeend', `<img src="assets/media/dices/${roll}.png" alt="${roll}" title="${roll}">`);
 }
 
@@ -59,14 +56,12 @@ function renderCurrentPlayer(onGoingGame) {
     $turnText.textContent = `${onGoingGame.currentPlayer}'s TURN`;
 }
 
-function renderDiceButton()
-{
+function renderDiceButton() {
     const $diceBox = document.querySelector('div#dice-box');
     $diceBox.querySelector('p').textContent = "ROLL THE DICE";
 }
 
-function renderGameInfo(onGoingGame)
-{
+function renderGameInfo(onGoingGame) {
     const $gameInfo = document.querySelector('div#game-info');
     const $availableHouses = $gameInfo.querySelector('#available-houses');
     $availableHouses.textContent = `dorms: ${onGoingGame.availableHouses}`;
@@ -122,7 +117,7 @@ function tileNameToNumber(tiles, currentTile) {
 }
 
 function tilesToShow(currentTileNumber) {
-    const toShowTiles = [currentTileNumber, currentTileNumber +1,currentTileNumber +2,currentTileNumber +3,currentTileNumber +4,currentTileNumber +5];
+    const toShowTiles = [currentTileNumber, currentTileNumber + 1, currentTileNumber + 2, currentTileNumber + 3, currentTileNumber + 4, currentTileNumber + 5];
     loadCards(toShowTiles);
 }
 
@@ -187,8 +182,6 @@ function displaySpecialCard(tile, $container) {
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/${tileTypeClass}.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
-
-
 
 }
 

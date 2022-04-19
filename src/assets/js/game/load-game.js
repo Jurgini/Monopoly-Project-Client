@@ -1,9 +1,5 @@
 'use strict';
 
-let _playerPositionID = null;
-let _tempPlayerPositionID = null;
-const _playerName = loadFromStorage('playerName');
-
 document.addEventListener('DOMContentLoaded', init);
 loadTokenFromStorage();
 
@@ -33,22 +29,21 @@ function getGameDetails() {
         });
 }
 
-/* -=[ALL ABOUT GENERAL GAME STUFF]=- */
-
-/* -=[ALL ABOUT GAME ACTIONS - NOT VISIBLE]=- */
-
-/* -=[ALL ABOUT GAME ACTIONS - VISIBLE]=- */
-
-
 /* -=[ALL ABOUT PLAYER INFORMATION]=- */
 function renderCurrentPlayer(onGoingGame) {
     const $turnText = document.querySelector('div#current-container p');
     $turnText.textContent = `${onGoingGame.currentPlayer}'s TURN`;
 }
 
+<<<<<<< src/assets/js/game/load-game.js
+=======
+function renderDiceButton() {
+    const $diceBox = document.querySelector('div#dice-box');
+    $diceBox.querySelector('p').textContent = "ROLL THE DICE";
+}
+>>>>>>> src/assets/js/game/load-game.js
 
-function renderGameInfo(onGoingGame)
-{
+function renderGameInfo(onGoingGame) {
     const $gameInfo = document.querySelector('div#game-info');
     const $availableHouses = $gameInfo.querySelector('#available-houses');
     $availableHouses.textContent = `dorms: ${onGoingGame.availableHouses}`;
@@ -89,41 +84,46 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
 }
 
 /* -=[ALL ABOUT CARDS]=- */
-/* NOT WORKING YET [START] */
+
 function renderCards(onGoingGame) {
-    let currentTileName = null;
-    console.log(onGoingGame);
-    onGoingGame.players.forEach(player =>
-    {
-        const playerName = player.name;
-        if (player.name === playerName)
-        {
-            currentTileName = player.currentTile;
+    onGoingGame.players.forEach(player => {
+        if (onGoingGame.currentPlayer === player.name) {
+            const currentTile = player.currentTile;
+            fetchFromServer('/tiles', 'GET').then(tiles => tileNameToNumber(tiles, currentTile)).catch();
         }
     });
-    // loadFromStorage('tiles').forEach(tile =>
-    // {
-    //     if (tile.name === currentTileName)
-    //     {
-    //         _tempPlayerPositionID = tile.position;
-    //         _playerPositionID = tile.position;
-    //         /* --> getCardById(tile.position); */
-    //     }
-    // });
 }
 
-function loadCards() {
-    const $container = document.querySelector('#next-positions-container');
-    fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, $container)).catch();
+function tileNameToNumber(tiles, currentTile) {
+    tiles.forEach(tile => {
+        if (tile.name === currentTile) {
+            console.log(tile.position);
+            const currentTileNumber = tile.position;
+            tilesToShow(currentTileNumber);
+        }
+    });
 }
-/* NOT WORKING YET [END] */
+
+function tilesToShow(currentTileNumber) {
+    const toShowTiles = [currentTileNumber, currentTileNumber + 1, currentTileNumber + 2, currentTileNumber + 3, currentTileNumber + 4, currentTileNumber + 5];
+    loadCards(toShowTiles);
+}
+
+function loadCards(toShowTiles) {
+    const $container = document.querySelector('#next-positions-container');
+    fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, toShowTiles, $container)).catch();
+}
 
 /* - RENDERING ALL THE DIFFERENT CARDS - */
 
-function displayCards(tiles, $container) {
+function displayCards(tiles, toShowTiles, $container) {
     console.log(tiles);
     tiles.forEach(tile => {
-        displayCard(tile, $container);
+        toShowTiles.forEach(toShowTile => { //loop through the cards needed to display [array]
+            if (toShowTile === tile.position) {
+                displayCard(tile, $container);
+            }
+        });
     });
 }
 
@@ -142,8 +142,6 @@ function displayCard(tile, $container) {
             displayIncomeTaxCard(tile, $container);
         }
     }
-
-
 }
 
 function displayNormalCard(tile, $container) {
@@ -172,6 +170,7 @@ function displaySpecialCard(tile, $container) {
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/${tileTypeClass}.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+
 }
 
 function displayUtilityCard(tile, $container) {
@@ -188,7 +187,7 @@ function displayUtilityCard(tile, $container) {
 
 function displayRailroadCard(tile, $container) {
     const $template = getTemplate('railroad-card');
-    const tileName = tile.name;
+    const tileName = tile.type;
     const tileTypeClass = tileName.toLowerCase().replaceAll(' ', '-');
     const cardTitle = tileName.toUpperCase();
     $template.classList.add(tileTypeClass);
@@ -222,7 +221,7 @@ function getTemplate(tileType) {
 }
 
 function addTileColor($template, tile) {
-    let tileColor = tile.color;
+    const tileColor = tile.color;
     if (tileColor !== undefined) {
         $template.querySelector('.title').classList.add(`${tileColor}`);
     }

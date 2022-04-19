@@ -240,7 +240,7 @@ function getTemplate(tileType) {
 }
 
 function addTileColor($template, tile) {
-    let tileColor = tile.color;
+    const tileColor = tile.color;
     if (tileColor !== undefined) {
         $template.querySelector('.title').classList.add(`${tileColor}`);
     }

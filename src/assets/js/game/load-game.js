@@ -17,7 +17,6 @@ function getGameDetails() {
         .then(onGoingGame => {
             /* RENDERING GAME INFORMATION */
             const players = onGoingGame.players;
-            console.log(onGoingGame);
             renderCards(onGoingGame);
             renderCurrentPlayer(onGoingGame);
             renderGameInfo(onGoingGame);
@@ -49,8 +48,11 @@ function renderGameInfo(onGoingGame)
 }
 
 function renderPlayersInfo(playersInOnGoingGame) {
+
+    const $container = document.querySelector('div#players-container');
+    $container.innerHTML = document.querySelector('template#player-info-template').outerHTML;
+
     playersInOnGoingGame.forEach(player => {
-        const $container = document.querySelector('div#players-container');
         const playerPawns = loadFromStorage('pawns');
         let playerPawn;
         playerPawns.forEach(distribution => {

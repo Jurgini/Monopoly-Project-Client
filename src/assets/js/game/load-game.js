@@ -12,6 +12,14 @@ function init() {
     loadCards();
 }
 
+function renderOwnedProperties(onGoingGame) {
+    onGoingGame.players.forEach((player)=>{
+        player.properties.forEach((property)=>{
+            document.querySelector(`#player-card-${player.name} .${property.property.toLowerCase().replaceAll(' ', '-')}`).classList.toggle('not-bought');
+        });
+    });
+}
+
 function getGameDetails() {
     fetchFromServer(`/games/${loadFromStorage('game').gameId}`, 'GET')
         .then(onGoingGame => {
@@ -21,6 +29,7 @@ function getGameDetails() {
             renderCurrentPlayer(onGoingGame);
             renderGameInfo(onGoingGame);
             renderPlayersInfo(players);
+            renderOwnedProperties(onGoingGame);
         });
 }
 
@@ -69,6 +78,9 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
     const $template = document.querySelector('template#player-info-template').content.firstElementChild.cloneNode(true);
     const $pawn = $template.querySelector('img');
     // TODO: If this is the turn taking player add class: player-taking-turn
+
+    $template.setAttribute('id',`player-card-${playerInOnGoingGame.name}`);
+
     $pawn.setAttribute('src', `images/pawns/${playerPawn.id}.png`);
     $pawn.setAttribute('alt', playerPawn.displayName);
     $pawn.setAttribute('title', playerPawn.displayName);

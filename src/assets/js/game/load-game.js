@@ -35,13 +35,6 @@ function renderCurrentPlayer(onGoingGame) {
     $turnText.textContent = `${onGoingGame.currentPlayer}'s TURN`;
 }
 
-<<<<<<< src/assets/js/game/load-game.js
-=======
-function renderDiceButton() {
-    const $diceBox = document.querySelector('div#dice-box');
-    $diceBox.querySelector('p').textContent = "ROLL THE DICE";
-}
->>>>>>> src/assets/js/game/load-game.js
 
 function renderGameInfo(onGoingGame) {
     const $gameInfo = document.querySelector('div#game-info');

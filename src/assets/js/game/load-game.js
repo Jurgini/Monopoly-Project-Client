@@ -6,8 +6,14 @@ loadTokenFromStorage();
 function init() {
     getGameDetails();
     loadCards();
-    const $rollDiceButton = document.querySelector('#dice-box input[type="submit"]');
-    $rollDiceButton.addEventListener('click', rollDice);
+}
+
+function renderOwnedProperties(onGoingGame) {
+    onGoingGame.players.forEach((player)=>{
+        player.properties.forEach((property)=>{
+            document.querySelector(`#player-card-${player.name} .${property.property.toLowerCase().replaceAll(' ', '-')}`).classList.toggle('not-bought');
+        });
+    });
 }
 
 function getGameDetails() {
@@ -15,39 +21,12 @@ function getGameDetails() {
         .then(onGoingGame => {
             /* RENDERING GAME INFORMATION */
             const players = onGoingGame.players;
-            console.log(onGoingGame);
             renderCards(onGoingGame);
             renderCurrentPlayer(onGoingGame);
             renderGameInfo(onGoingGame);
-            renderDiceButton();
             renderPlayersInfo(players);
+            renderOwnedProperties(onGoingGame);
         });
-}
-
-/* -=[ALL ABOUT GENERAL GAME STUFF]=- */
-
-
-/* -=[ALL ABOUT GAME ACTIONS - NOT VISIBLE]=- */
-function rollDice(e) {
-    e.preventDefault();
-    e.target.classList.add("hidden"); // todo find better solution for hiding and showing
-    // Game functionality (API)
-    fetchFromServer(`/games/${loadFromStorage('game').gameId}/players/${loadFromStorage('game').playerName}/dice`, 'POST')
-        .then(turn => showDices(turn));
-}
-
-/* -=[ALL ABOUT GAME ACTIONS - VISIBLE]=- */
-
-function showDices(turnInfo) {
-    const $container = document.querySelector('#dice-box div');
-    const lastDiceRoll = turnInfo.lastDiceRoll;
-    lastDiceRoll.forEach(roll => {
-        showDice(roll, $container);
-    });
-}
-
-function showDice(roll, $container) {
-    $container.insertAdjacentHTML('beforeend', `<img src="assets/media/dices/${roll}.png" alt="${roll}" title="${roll}">`);
 }
 
 /* -=[ALL ABOUT PLAYER INFORMATION]=- */
@@ -56,10 +35,6 @@ function renderCurrentPlayer(onGoingGame) {
     $turnText.textContent = `${onGoingGame.currentPlayer}'s TURN`;
 }
 
-function renderDiceButton() {
-    const $diceBox = document.querySelector('div#dice-box');
-    $diceBox.querySelector('p').textContent = "ROLL THE DICE";
-}
 
 function renderGameInfo(onGoingGame) {
     const $gameInfo = document.querySelector('div#game-info');
@@ -70,8 +45,11 @@ function renderGameInfo(onGoingGame) {
 }
 
 function renderPlayersInfo(playersInOnGoingGame) {
+
+    const $container = document.querySelector('div#players-container');
+    $container.innerHTML = document.querySelector('template#player-info-template').outerHTML;
+
     playersInOnGoingGame.forEach(player => {
-        const $container = document.querySelector('div#players-container');
         const playerPawns = loadFromStorage('pawns');
         let playerPawn;
         playerPawns.forEach(distribution => {
@@ -88,6 +66,9 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
     const $template = document.querySelector('template#player-info-template').content.firstElementChild.cloneNode(true);
     const $pawn = $template.querySelector('img');
     // TODO: If this is the turn taking player add class: player-taking-turn
+
+    $template.setAttribute('id',`player-card-${playerInOnGoingGame.name}`);
+
     $pawn.setAttribute('src', `images/pawns/${playerPawn.id}.png`);
     $pawn.setAttribute('alt', playerPawn.displayName);
     $pawn.setAttribute('title', playerPawn.displayName);

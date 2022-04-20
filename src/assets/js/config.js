@@ -7,6 +7,7 @@ const _config = {
     localStorageTokenObject: "token",
     errorHandlerSelector: '.errormessages p',
     monopolyUrl: `https://project-i.ti.howest.be/monopoly-18/`,
+    
     delay: 1500,
     tileTypes: {
         normal: ["street"],

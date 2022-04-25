@@ -3,19 +3,22 @@ document.addEventListener("DOMContentLoaded", init);
 loadTokenFromStorage();
 
 const game = loadFromStorage(_config.localStorageGameObject);
-const gameId = game.gameId
-let previousResponse;
+const gameId = game.gameId;
+let previousResponse = null;
 
 function init() {
     reloadGame();
 }
-
+// TODO: clean the code
 function reloadGame() {
     fetchFromServer(`/games/${gameId}`, 'GET').then(response => {
-        if (previousResponse === response) {
-            getGameDetails();
-        } else {
+        if (previousResponse === null)
+        {
             previousResponse = response;
+        }
+        else if (previousResponse.turns.length !== response.turns.length){
+            previousResponse = response;
+            getGameDetails();
         }
         if (response.canRoll === true && response.currentPlayer === game.playerName) {
 
@@ -44,7 +47,7 @@ function rollDice() {
 
     }).then(response => {
         if (response.directSale !== null) {
-            let method = (confirm(`You want to buy ${response.directSale}?`) ? "POST" : "DELETE"); // temporary confirm function
+            const method = (confirm(`You want to buy ${response.directSale}?`) ? "POST" : "DELETE"); // temporary confirm function
             fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/properties/${response.directSale}`, method).then(reloadGame);
         } else {
             reloadGame();

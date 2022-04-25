@@ -96,12 +96,12 @@ function renderTilesAhead(currentTile) {
             $containerTilesAhead.innerHTML += $template.outerHTML;
         }
     });
-    fetchFromServer(`/tiles/${currentTile}`, 'GET').then((tile) => {
+    fetchFromServer(`/tiles/${currentTile}`, 'GET').then(async (tile) => {
         let currentTileNumber;
         console.log(tile.position);
         currentTileNumber = tile.position;
         for (let i = 0; i <= 12; i++) {
-            fetchFromServer(`/tiles/${(currentTileNumber + i) % 40}`, 'GET').then((tile) => {
+            await fetchFromServer(`/tiles/${(currentTileNumber + i) % 40}`, 'GET').then(async (tile) => {
                 displayCard(tile, $containerTilesAhead);
             });
         }
@@ -109,21 +109,24 @@ function renderTilesAhead(currentTile) {
 }
 
 
-function displayCard(tile, $container) {
+async function displayCard(tile, $container) {
     const tileType = tile.type;
+    let $template;
     if (_config.tileTypes.normal.includes(tileType)) {
-        displayNormalCard(tile, $container);
+        $template = displayNormalCard(tile, $container);
     } else if (_config.tileTypes.special.includes(tileType)) {
-        displaySpecialCard(tile, $container);
+        $template = displaySpecialCard(tile, $container);
     } else if (Object.values(_config.tileTypes.other).includes(tileType)) {
         if (tileType === _config.tileTypes.other.railroadValue) {
-            displayRailroadCard(tile, $container);
+            $template = displayRailroadCard(tile, $container);
         } else if (tileType === _config.tileTypes.other.utilityValue) {
-            displayUtilityCard(tile, $container);
+            $template = displayUtilityCard(tile, $container);
         } else if (tileType === _config.tileTypes.other.taxIncomeValue || tileType === _config.tileTypes.other.luxuryTaxIncomeValue) {
-            displayIncomeTaxCard(tile, $container);
+            $template = displayIncomeTaxCard(tile, $container);
         }
     }
+
+    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }
 
 function displayNormalCard(tile, $container) {
@@ -139,7 +142,7 @@ function displayNormalCard(tile, $container) {
     $template.querySelector('.card-extra .price span').textContent = `€${tile.housePrice}`;
     $template.querySelector('.card-extra .mortgage span').textContent = `€${tile.mortgage}`;
     $template.querySelector('.card-extra .card-price').textContent = `€${tile.cost}`;
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    return $template;
 }
 
 function displaySpecialCard(tile, $container) {
@@ -151,7 +154,7 @@ function displaySpecialCard(tile, $container) {
     $template.querySelector('.title').textContent = cardTitle;
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/${tileTypeClass}.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
 
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    return $template;
 
 }
 
@@ -163,7 +166,7 @@ function displayUtilityCard(tile, $container) {
     $template.classList.add(tileTypeClass);
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/${tileTypeClass}.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
     $template.querySelector('.title').textContent = cardTitle;
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    return $template;
 
 }
 
@@ -179,7 +182,7 @@ function displayRailroadCard(tile, $container) {
     $template.querySelector('.card-extra .mortgage span').textContent = `€${tile.mortgage}`;
     $template.querySelector('.card-extra .card-price').textContent = `€${tile.cost}`;
 
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    return $template;
 }
 
 function displayIncomeTaxCard(tile, $container) {
@@ -195,7 +198,7 @@ function displayIncomeTaxCard(tile, $container) {
         $template.querySelector('.card-extra .tax').textContent = "You're feeling good, you keep a tour general!";
     }
 
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    return $template;
 }
 
 function getTemplate(tileType) {

@@ -9,9 +9,12 @@ function init() {
 }
 
 function renderOwnedProperties(onGoingGame) {
-    onGoingGame.players.forEach((player)=>{
-        player.properties.forEach((property)=>{
-            document.querySelector(`#player-card-${player.name} .${property.property.toLowerCase().replaceAll(' ', '-')}`).classList.toggle('not-bought');
+    onGoingGame.players.forEach((player) => {
+        console.log(player.name + " " + player.currentTile);
+        player.properties.forEach((property) => {
+            const $ownedProperty = document.querySelector(`#player-card-${player.name} .${property.property.toLowerCase().replaceAll(' ', '-')}`);
+            $ownedProperty.classList.toggle('not-bought');
+            $ownedProperty.setAttribute('title', `${property.property}: houses ${property.houseCount}, hotels ${property.hotelCount}, mortgage: ${property.mortgage}`);
         });
     });
 }
@@ -67,7 +70,7 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
     const $pawn = $template.querySelector('img');
     // TODO: If this is the turn taking player add class: player-taking-turn
 
-    $template.setAttribute('id',`player-card-${playerInOnGoingGame.name}`);
+    $template.setAttribute('id', `player-card-${playerInOnGoingGame.name}`);
 
     $pawn.setAttribute('src', `images/pawns/${playerPawn.id}.png`);
     $pawn.setAttribute('alt', playerPawn.displayName);
@@ -92,30 +95,37 @@ function tileNameToNumber(tiles, currentTile) {
         if (tile.name === currentTile) {
             console.log(tile.position);
             const currentTileNumber = tile.position;
-            tilesToShow(currentTileNumber);
         }
     });
+    tilesToShow(currentTileNumber);
 }
 
 function tilesToShow(currentTileNumber) {
-    const toShowTiles = [currentTileNumber, currentTileNumber + 1, currentTileNumber + 2, currentTileNumber + 3, currentTileNumber + 4, currentTileNumber + 5];
+    let toShowTiles = [];
+    for (let i = 0; i <= 12; i++) {
+        toShowTiles.push((currentTileNumber + i) % 40); //total tiles (40)
+    }
+    console.log(toShowTiles);
     loadCards(toShowTiles);
 }
 
 function loadCards(toShowTiles) {
     const $container = document.querySelector('#next-positions-container');
-    fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, toShowTiles, $container)).catch();
+    displayCards(toShowTiles, $container);
 }
 
 /* - RENDERING ALL THE DIFFERENT CARDS - */
 
-function displayCards(tiles, toShowTiles, $container) {
-    console.log(tiles);
-    tiles.forEach(tile => {
-        toShowTiles.forEach(toShowTile => { //loop through the cards needed to display [array]
-            if (toShowTile === tile.position) {
-                displayCard(tile, $container);
-            }
+function displayCards(toShowTiles, $container) {
+    const $templates = $container.querySelectorAll("template");
+    $container.innerHTML = "";
+    $templates.forEach(($template) => {
+        $container.innerHTML += $template.outerHTML;
+    });
+
+    toShowTiles.forEach(toShowTile => { //loop through the cards needed to display [array]
+        fetchFromServer(`/tiles/${toShowTile}`, 'GET').then((tile) => {
+            displayCard(tile, $container);
         });
     });
 }

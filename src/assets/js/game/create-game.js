@@ -14,7 +14,7 @@ function createGame(e)
         "numberOfPlayers": parseInt($numberOfPlayers)
     };
 
-    if (checkPlayerNameIsEmpty($playerName))
+    if (checkPlayerNameIsEmpty($playerName) === false)
     {
         fetchFromServer('/games', "POST", gameBody)
             .then(response => {

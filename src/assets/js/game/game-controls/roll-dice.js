@@ -4,6 +4,7 @@ loadTokenFromStorage();
 
 const game = loadFromStorage(_config.localStorageGameObject);
 const gameId = game.gameId
+let previousResponse;
 
 function init() {
     reloadGame();
@@ -11,7 +12,11 @@ function init() {
 
 function reloadGame() {
     fetchFromServer(`/games/${gameId}`, 'GET').then(response => {
-        getGameDetails();
+        if (previousResponse === response) {
+            getGameDetails();
+        } else {
+            previousResponse = response;
+        }
         if (response.canRoll === true && response.currentPlayer === game.playerName) {
 
             document.querySelector("#dice-box button").hidden = false;

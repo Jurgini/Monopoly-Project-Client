@@ -5,10 +5,10 @@ loadTokenFromStorage();
 
 function init() {
     getGameDetails();
-    loadCards();
 }
 
 function renderOwnedProperties(onGoingGame) {
+    console.log(onGoingGame);
     onGoingGame.players.forEach((player) => {
         console.log(player.name + " " + player.currentTile);
         player.properties.forEach((property) => {
@@ -24,11 +24,11 @@ function getGameDetails() {
         .then(onGoingGame => {
             /* RENDERING GAME INFORMATION */
             const players = onGoingGame.players;
-            renderCards(onGoingGame);
             renderCurrentPlayer(onGoingGame);
             renderGameInfo(onGoingGame);
             renderPlayersInfo(players);
             renderOwnedProperties(onGoingGame);
+            renderTiles(onGoingGame);
         });
 }
 
@@ -81,54 +81,33 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
 
 /* -=[ALL ABOUT CARDS]=- */
 
-function renderCards(onGoingGame) {
-    onGoingGame.players.forEach(player => {
-        if (onGoingGame.currentPlayer === player.name) {
-            const currentTile = player.currentTile;
-            fetchFromServer('/tiles', 'GET').then(tiles => tileNameToNumber(tiles, currentTile)).catch();
+function renderTiles(onGoingGame) {
+    const currentTile = onGoingGame.players.find(player => player.name === onGoingGame.currentPlayer).currentTile;
+    renderTilesAhead(currentTile);
+}
+
+function renderTilesAhead(currentTile) {
+    const $containerTilesAhead = document.querySelector("#next-positions-container");
+    $containerTilesAhead.querySelectorAll("template").forEach(($template)=>{
+        if ($containerTilesAhead.contains($template)) {
+            $containerTilesAhead.innerHTML = $template.outerHTML;
+        }
+        else {
+            $containerTilesAhead.innerHTML += $template.outerHTML;
+        }
+    });
+    fetchFromServer(`/tiles/${currentTile}`, 'GET').then((tile) => {
+        let currentTileNumber;
+        console.log(tile.position);
+        currentTileNumber = tile.position;
+        for (let i = 0; i <= 12; i++) {
+            fetchFromServer(`/tiles/${(currentTileNumber + i) % 40}`, 'GET').then((tile) => {
+                displayCard(tile, $containerTilesAhead);
+            });
         }
     });
 }
 
-function tileNameToNumber(tiles, currentTile) {
-    tiles.forEach(tile => {
-        if (tile.name === currentTile) {
-            console.log(tile.position);
-            const currentTileNumber = tile.position;
-        }
-    });
-    tilesToShow(currentTileNumber);
-}
-
-function tilesToShow(currentTileNumber) {
-    let toShowTiles = [];
-    for (let i = 0; i <= 12; i++) {
-        toShowTiles.push((currentTileNumber + i) % 40); //total tiles (40)
-    }
-    console.log(toShowTiles);
-    loadCards(toShowTiles);
-}
-
-function loadCards(toShowTiles) {
-    const $container = document.querySelector('#next-positions-container');
-    displayCards(toShowTiles, $container);
-}
-
-/* - RENDERING ALL THE DIFFERENT CARDS - */
-
-function displayCards(toShowTiles, $container) {
-    const $templates = $container.querySelectorAll("template");
-    $container.innerHTML = "";
-    $templates.forEach(($template) => {
-        $container.innerHTML += $template.outerHTML;
-    });
-
-    toShowTiles.forEach(toShowTile => { //loop through the cards needed to display [array]
-        fetchFromServer(`/tiles/${toShowTile}`, 'GET').then((tile) => {
-            displayCard(tile, $container);
-        });
-    });
-}
 
 function displayCard(tile, $container) {
     const tileType = tile.type;

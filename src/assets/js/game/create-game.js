@@ -16,14 +16,22 @@ function createGame(e)
 
     if (playerName !== "")
     {
-        fetchFromServer('/games', "POST", gameBody)
-            .then(response => {
-                // Use response to send the user to his created lobby
-                joinGame(playerName, response.id);
-            })
-            .catch(err => {
-                console.log(checkError(err));
-            });
+        if (loadFromStorage('game') == null)
+        {
+            fetchFromServer('/games', "POST", gameBody)
+                .then(response => {
+                    // Use response to send the user to his created lobby
+                    joinGame(playerName, response.id);
+                })
+                .catch(err => {
+                    console.log(checkError(err));
+                });
+        }
+        else
+        {
+            displayError("You are not allowed to join multiple games.");
+        }
+
     }
     else
     {

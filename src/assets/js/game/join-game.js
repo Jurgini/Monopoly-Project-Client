@@ -8,7 +8,14 @@ function joinSelectedLobby(e)
     const playerName = document.querySelector('section#game-settings-container input#username').value;
     if (playerName !== "")
     {
-        joinGame(playerName, selectedLobbyInfo.gameid);
+        if (loadFromStorage('game') == null)
+        {
+            joinGame(playerName, selectedLobbyInfo.gameid);
+        }
+        else
+        {
+            displayError("You are not allowed to join multiple games.");
+        }
     }
     else
     {

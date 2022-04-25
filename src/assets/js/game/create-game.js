@@ -14,19 +14,12 @@ function createGame(e)
         "numberOfPlayers": parseInt($numberOfPlayers)
     };
 
-    if ($playerName !== "")
+    if (checkPlayerNameIsEmpty($playerName))
     {
         fetchFromServer('/games', "POST", gameBody)
             .then(response => {
                 // Use response to send the user to his created lobby
                 joinGame($playerName, response.id);
-            })
-            .catch(err => {
-                console.log(checkError(err));
             });
-    }
-    else
-    {
-        displayError("Username is required to join/create a game! (15 characters long)");
     }
 }

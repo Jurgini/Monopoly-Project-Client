@@ -3,19 +3,12 @@ function joinSelectedLobby(e)
 {
     e.preventDefault();
 
-    const selectedLobby = e.submitter.closest('div');
-    const selectedLobbyInfo = selectedLobby.dataset;
-    const playerName = document.querySelector('section#game-settings-container input#username').value;
-    if (playerName !== "")
+    const $selectedLobby = e.submitter.closest('div');
+    const $selectedLobbyInfo = $selectedLobby.dataset;
+    const $playerName = document.querySelector('section#game-settings-container input#username').value;
+    if ($playerName !== "")
     {
-        if (loadFromStorage('game') == null)
-        {
-            joinGame(playerName, selectedLobbyInfo.gameid);
-        }
-        else
-        {
-            displayError("You are not allowed to join multiple games.");
-        }
+        joinGame($playerName, $selectedLobbyInfo.gameid);
     }
     else
     {

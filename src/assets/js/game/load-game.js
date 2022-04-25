@@ -122,17 +122,38 @@ function displayCards(tiles, toShowTiles, $container) {
 
 function displayCard(tile, $container) {
     const tileType = tile.type;
-    if (_config.tileTypes.normal.includes(tileType)) {
+    if (_config.tileTypes.normal.includes(tileType))
+    {
         displayNormalCard(tile, $container);
-    } else if (_config.tileTypes.special.includes(tileType)) {
+    }
+    else if (_config.tileTypes.special.includes(tileType))
+    {
         displaySpecialCard(tile, $container);
-    } else if (Object.values(_config.tileTypes.other).includes(tileType)) {
-        if (tileType === _config.tileTypes.other.railroadValue) {
-            displayRailroadCard(tile, $container);
-        } else if (tileType === _config.tileTypes.other.utilityValue) {
-            displayUtilityCard(tile, $container);
-        } else if (tileType === _config.tileTypes.other.taxIncomeValue || tileType === _config.tileTypes.other.luxuryTaxIncomeValue) {
-            displayIncomeTaxCard(tile, $container);
+    }
+    else
+    {
+        switch(tileType)
+        {
+            case "railroad":
+                displayRailroadCard(tile, $container);
+                break;
+            case "utility":
+                displayUtilityCard(tile, $container);
+                break;
+            case "Water Works":
+                displayUtilityCard(tile, $container);
+                break;
+            case "Electric Company":
+                displayUtilityCard(tile, $container);
+                break;
+            case "Tax Income":
+                displayIncomeTaxCard(tile, $container);
+                break;
+            case "Luxury Tax":
+                displayIncomeTaxCard(tile, $container);
+                break;
+            default:
+                break;
         }
     }
 }
@@ -161,7 +182,6 @@ function displaySpecialCard(tile, $container) {
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/${tileTypeClass}.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
-
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 
 }
@@ -200,10 +220,16 @@ function displayIncomeTaxCard(tile, $container) {
     const cardTitle = tileType.toUpperCase();
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
-    if (tileType === _config.tileTypes.other.taxIncomeValue) {
-        $template.querySelector('.card-extra .tax').textContent = "You hold a dorm party, you pay €200 for the preparations";
-    } else if (tileType === _config.tileTypes.other.luxuryTaxIncomeValue) {
-        $template.querySelector('.card-extra .tax').textContent = "You're feeling good, you keep a tour general!";
+    switch (tileType)
+    {
+        case "Tax Income":
+            $template.querySelector('.card-extra .tax').textContent = "You hold a dorm party, you pay €200 for the preparations";
+            break;
+        case "Luxury Tax":
+            $template.querySelector('.card-extra .tax').textContent = "You're feeling good, you keep a tour general!";
+            break;
+        default:
+            break;
     }
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);

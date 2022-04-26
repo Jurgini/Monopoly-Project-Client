@@ -25,7 +25,6 @@ body {
 }
 
 
-
 #game-info {
     position: absolute;
     left: 1rem;
@@ -47,9 +46,9 @@ body {
     margin-bottom: 1rem;
 }
 
-.position  {
-    background-color: rgba(200,200,200 ,0.10);
-    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+.position {
+    background-color: rgba(200, 200, 200, 0.10);
+    box-shadow: 0 0 5rem rgba(200, 200, 200, 1);
     height: 10rem;
     max-height: 10rem;
 }
@@ -62,15 +61,15 @@ body {
     align-self: start;
 }
 
-#current-container>p {
+#current-container > p {
     text-align: center;
     margin-bottom: 2rem;
     margin-top: 1rem;
 }
 
 #dice-box, #current-position, #alert {
-    background-color: rgba(200,200,200 ,0.20);
-    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+    background-color: rgba(200, 200, 200, 0.20);
+    box-shadow: 0 0 5rem rgba(200, 200, 200, 1);
     padding: 1rem;
 }
 
@@ -78,6 +77,7 @@ body {
     display: flex;
     justify-content: space-evenly;
 }
+
 /* ALL CSS ABOUT DICE CONTAINER IN CURRENT CONTAINER */
 #dice-box {
     display: flex;
@@ -119,10 +119,18 @@ body {
     justify-content: space-between;
     flex-wrap: nowrap;
     align-self: center;
-    overflow: auto;
+    overflow-y: hidden;
     transition-duration: 100ms;
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
 }
-#next-positions-container>div:first-of-type{
+
+#next-positions-container::-webkit-scrollbar {
+    display: none;
+}
+
+#next-positions-container > div:first-of-type {
     transform: scale(1.1);
 }
 
@@ -134,9 +142,9 @@ body {
     margin-bottom: 1rem;
 }
 
-.position  {
-    background-color: rgba(200,200,200 ,0.10);
-    box-shadow: 0 0 5rem rgba(200,200,200 ,1);
+.position {
+    background-color: rgba(200, 200, 200, 0.10);
+    box-shadow: 0 0 5rem rgba(200, 200, 200, 1);
     height: 10rem;
     max-height: 10rem;
 }
@@ -153,9 +161,9 @@ body {
 
 }
 
-#players-container>div{
-    background-color: rgba(255,255,255,0.5);
-    box-shadow: 0 0.2rem 1rem ;
+#players-container > div {
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0.2rem 1rem;
     border: solid black;
     border-radius: 1rem;
     display: flex;

@@ -5,13 +5,16 @@ loadTokenFromStorage();
 
 function init() {
     getGameDetails();
-    loadCards();
 }
 
 function renderOwnedProperties(onGoingGame) {
-    onGoingGame.players.forEach((player)=>{
-        player.properties.forEach((property)=>{
-            document.querySelector(`#player-card-${player.name} .${property.property.toLowerCase().replaceAll(' ', '-')}`).classList.toggle('not-bought');
+    console.log(onGoingGame);
+    onGoingGame.players.forEach((player) => {
+        console.log(player.name + " " + player.currentTile);
+        player.properties.forEach((property) => {
+            const $ownedProperty = document.querySelector(`#player-card-${player.name} .${property.property.toLowerCase().replaceAll(' ', '-')}`);
+            $ownedProperty.classList.toggle('not-bought');
+            $ownedProperty.setAttribute('title', `${property.property}: houses ${property.houseCount}, hotels ${property.hotelCount}, mortgage: ${property.mortgage}`);
         });
     });
 }
@@ -21,11 +24,11 @@ function getGameDetails() {
         .then(onGoingGame => {
             saveToStorage('currentGame', onGoingGame);
             const players = onGoingGame.players;
-            renderCards(onGoingGame);
             renderCurrentPlayer(onGoingGame);
             renderGameInfo(onGoingGame);
             renderPlayersInfo(players);
             renderOwnedProperties(onGoingGame);
+            renderTiles(onGoingGame);
         });
 }
 
@@ -67,7 +70,7 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
     const $pawn = $template.querySelector('img');
     // TODO: If this is the turn taking player add class: player-taking-turn
 
-    $template.setAttribute('id',`player-card-${playerInOnGoingGame.name}`);
+    $template.setAttribute('id', `player-card-${playerInOnGoingGame.name}`);
 
     $pawn.setAttribute('src', `images/pawns/${playerPawn.id}.png`);
     $pawn.setAttribute('alt', playerPawn.displayName);
@@ -78,49 +81,35 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
 
 /* -=[ALL ABOUT CARDS]=- */
 
-function renderCards(onGoingGame) {
-    onGoingGame.players.forEach(player => {
-        if (onGoingGame.currentPlayer === player.name) {
-            const currentTile = player.currentTile;
-            fetchFromServer('/tiles', 'GET').then(tiles => tileNameToNumber(tiles, currentTile)).catch();
+function renderTiles(onGoingGame) {
+    const currentTile = onGoingGame.players.find(player => player.name === onGoingGame.currentPlayer).currentTile;
+    renderTilesAhead(currentTile);
+}
+
+function renderTilesAhead(currentTile) {
+    const $containerTilesAhead = document.querySelector("#next-positions-container");
+    $containerTilesAhead.querySelectorAll("template").forEach(($template)=>{
+        if ($containerTilesAhead.contains($template)) {
+            $containerTilesAhead.innerHTML = $template.outerHTML;
+        }
+        else {
+            $containerTilesAhead.innerHTML += $template.outerHTML;
+        }
+    });
+    fetchFromServer(`/tiles/${currentTile}`, 'GET').then(async (tile) => {
+        let currentTileNumber;
+        console.log(tile.position);
+        currentTileNumber = tile.position;
+        for (let i = 0; i <= 12; i++) {
+            await fetchFromServer(`/tiles/${(currentTileNumber + i) % 40}`, 'GET').then(async (tile) => {
+                displayCard(tile, $containerTilesAhead);
+            });
         }
     });
 }
 
-function tileNameToNumber(tiles, currentTile) {
-    tiles.forEach(tile => {
-        if (tile.name === currentTile) {
-            console.log(tile.position);
-            const currentTileNumber = tile.position;
-            tilesToShow(currentTileNumber);
-        }
-    });
-}
 
-function tilesToShow(currentTileNumber) {
-    const toShowTiles = [currentTileNumber, currentTileNumber + 1, currentTileNumber + 2, currentTileNumber + 3, currentTileNumber + 4, currentTileNumber + 5];
-    loadCards(toShowTiles);
-}
-
-function loadCards(toShowTiles) {
-    const $container = document.querySelector('#next-positions-container');
-    fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, toShowTiles, $container)).catch();
-}
-
-/* - RENDERING ALL THE DIFFERENT CARDS - */
-
-function displayCards(tiles, toShowTiles, $container) {
-    console.log(tiles);
-    tiles.forEach(tile => {
-        toShowTiles.forEach(toShowTile => { //loop through the cards needed to display [array]
-            if (toShowTile === tile.position) {
-                displayCard(tile, $container);
-            }
-        });
-    });
-}
-
-function displayCard(tile, $container) {
+async function displayCard(tile, $container) {
     const tileType = tile.type;
     if (_config.tileTypes.normal.includes(tileType))
     {
@@ -156,6 +145,8 @@ function displayCard(tile, $container) {
                 break;
         }
     }
+
+    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }
 
 function displayNormalCard(tile, $container) {
@@ -171,7 +162,7 @@ function displayNormalCard(tile, $container) {
     $template.querySelector('.card-extra .price span').textContent = `€${tile.housePrice}`;
     $template.querySelector('.card-extra .mortgage span').textContent = `€${tile.mortgage}`;
     $template.querySelector('.card-extra .card-price').textContent = `€${tile.cost}`;
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    return $template;
 }
 
 function displaySpecialCard(tile, $container) {
@@ -194,7 +185,7 @@ function displayUtilityCard(tile, $container) {
     $template.classList.add(tileTypeClass);
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/${tileTypeClass}.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
     $template.querySelector('.title').textContent = cardTitle;
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    return $template;
 
 }
 
@@ -210,7 +201,7 @@ function displayRailroadCard(tile, $container) {
     $template.querySelector('.card-extra .mortgage span').textContent = `€${tile.mortgage}`;
     $template.querySelector('.card-extra .card-price').textContent = `€${tile.cost}`;
 
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    return $template;
 }
 
 function displayIncomeTaxCard(tile, $container) {
@@ -232,7 +223,7 @@ function displayIncomeTaxCard(tile, $container) {
             break;
     }
 
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    return $template;
 }
 
 function getTemplate(tileType) {

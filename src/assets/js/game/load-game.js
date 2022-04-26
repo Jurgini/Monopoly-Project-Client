@@ -1,15 +1,19 @@
 'use strict';
 
-const _playerName = loadFromStorage('playerName');
-
 document.addEventListener('DOMContentLoaded', init);
 loadTokenFromStorage();
 
 function init() {
     getGameDetails();
     loadCards();
-    const $rollDiceButton = document.querySelector('#dice-box input[type="submit"]');
-    $rollDiceButton.addEventListener('click', rollDice);
+}
+
+function renderOwnedProperties(onGoingGame) {
+    onGoingGame.players.forEach((player)=>{
+        player.properties.forEach((property)=>{
+            document.querySelector(`#player-card-${player.name} .${property.property.toLowerCase().replaceAll(' ', '-')}`).classList.toggle('not-bought');
+        });
+    });
 }
 
 function getGameDetails() {
@@ -17,41 +21,12 @@ function getGameDetails() {
         .then(onGoingGame => {
             /* RENDERING GAME INFORMATION */
             const players = onGoingGame.players;
-            console.log(onGoingGame);
             renderCards(onGoingGame);
             renderCurrentPlayer(onGoingGame);
             renderGameInfo(onGoingGame);
-            renderDiceButton();
             renderPlayersInfo(players);
+            renderOwnedProperties(onGoingGame);
         });
-}
-
-/* -=[ALL ABOUT GENERAL GAME STUFF]=- */
-
-/* -=[ALL ABOUT GAME ACTIONS - NOT VISIBLE]=- */
-function rollDice(e)
-{
-    e.preventDefault();
-    e.target.classList.add("hidden"); // todo find better solution for hiding and showing
-    // Game functionality (API)
-    fetchFromServer(`/games/${loadFromStorage('game').gameId}/players/${loadFromStorage('game').playerName}/dice`, 'POST')
-        .then(turn => showDices(turn));
-}
-
-/* -=[ALL ABOUT GAME ACTIONS - VISIBLE]=- */
-
-function showDices(turnInfo)
-{
-    const $container = document.querySelector('#dice-box div');
-    const lastDiceRoll = turnInfo.lastDiceRoll;
-    lastDiceRoll.forEach(roll => {
-        showDice(roll, $container);
-    });
-}
-
-function showDice(roll, $container)
-{
-    $container.insertAdjacentHTML('beforeend', `<img src="assets/media/dices/${roll}.png" alt="${roll}" title="${roll}">`);
 }
 
 /* -=[ALL ABOUT PLAYER INFORMATION]=- */
@@ -60,14 +35,8 @@ function renderCurrentPlayer(onGoingGame) {
     $turnText.textContent = `${onGoingGame.currentPlayer}'s TURN`;
 }
 
-function renderDiceButton()
-{
-    const $diceBox = document.querySelector('div#dice-box');
-    $diceBox.querySelector('p').textContent = "ROLL THE DICE";
-}
 
-function renderGameInfo(onGoingGame)
-{
+function renderGameInfo(onGoingGame) {
     const $gameInfo = document.querySelector('div#game-info');
     const $availableHouses = $gameInfo.querySelector('#available-houses');
     $availableHouses.textContent = `dorms: ${onGoingGame.availableHouses}`;
@@ -76,8 +45,11 @@ function renderGameInfo(onGoingGame)
 }
 
 function renderPlayersInfo(playersInOnGoingGame) {
+
+    const $container = document.querySelector('div#players-container');
+    $container.innerHTML = document.querySelector('template#player-info-template').outerHTML;
+
     playersInOnGoingGame.forEach(player => {
-        const $container = document.querySelector('div#players-container');
         const playerPawns = loadFromStorage('pawns');
         let playerPawn;
         playerPawns.forEach(distribution => {
@@ -94,6 +66,9 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
     const $template = document.querySelector('template#player-info-template').content.firstElementChild.cloneNode(true);
     const $pawn = $template.querySelector('img');
     // TODO: If this is the turn taking player add class: player-taking-turn
+
+    $template.setAttribute('id',`player-card-${playerInOnGoingGame.name}`);
+
     $pawn.setAttribute('src', `images/pawns/${playerPawn.id}.png`);
     $pawn.setAttribute('alt', playerPawn.displayName);
     $pawn.setAttribute('title', playerPawn.displayName);
@@ -102,61 +77,85 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
 }
 
 /* -=[ALL ABOUT CARDS]=- */
-/* NOT WORKING YET [START] */
+
 function renderCards(onGoingGame) {
-    let currentTileName = null;
-    console.log(onGoingGame);
-    onGoingGame.players.forEach(player =>
-    {
-        const playerName = player.name;
-        if (player.name === playerName)
-        {
-            currentTileName = player.currentTile;
+    onGoingGame.players.forEach(player => {
+        if (onGoingGame.currentPlayer === player.name) {
+            const currentTile = player.currentTile;
+            fetchFromServer('/tiles', 'GET').then(tiles => tileNameToNumber(tiles, currentTile)).catch();
         }
     });
-    // loadFromStorage('tiles').forEach(tile =>
-    // {
-    //     if (tile.name === currentTileName)
-    //     {
-    //         _tempPlayerPositionID = tile.position;
-    //         _playerPositionID = tile.position;
-    //         /* --> getCardById(tile.position); */
-    //     }
-    // });
 }
 
-function loadCards() {
-    const $container = document.querySelector('#next-positions-container');
-    fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, $container)).catch();
+function tileNameToNumber(tiles, currentTile) {
+    tiles.forEach(tile => {
+        if (tile.name === currentTile) {
+            console.log(tile.position);
+            const currentTileNumber = tile.position;
+            tilesToShow(currentTileNumber);
+        }
+    });
 }
-/* NOT WORKING YET [END] */
+
+function tilesToShow(currentTileNumber) {
+    const toShowTiles = [currentTileNumber, currentTileNumber + 1, currentTileNumber + 2, currentTileNumber + 3, currentTileNumber + 4, currentTileNumber + 5];
+    loadCards(toShowTiles);
+}
+
+function loadCards(toShowTiles) {
+    const $container = document.querySelector('#next-positions-container');
+    fetchFromServer('/tiles', 'GET').then(tiles => displayCards(tiles, toShowTiles, $container)).catch();
+}
 
 /* - RENDERING ALL THE DIFFERENT CARDS - */
 
-function displayCards(tiles, $container) {
+function displayCards(tiles, toShowTiles, $container) {
     console.log(tiles);
     tiles.forEach(tile => {
-        displayCard(tile, $container);
+        toShowTiles.forEach(toShowTile => { //loop through the cards needed to display [array]
+            if (toShowTile === tile.position) {
+                displayCard(tile, $container);
+            }
+        });
     });
 }
 
 function displayCard(tile, $container) {
     const tileType = tile.type;
-    if (_config.tileTypes.normal.includes(tileType)) {
+    if (_config.tileTypes.normal.includes(tileType))
+    {
         displayNormalCard(tile, $container);
-    } else if (_config.tileTypes.special.includes(tileType)) {
+    }
+    else if (_config.tileTypes.special.includes(tileType))
+    {
         displaySpecialCard(tile, $container);
-    } else if (Object.values(_config.tileTypes.other).includes(tileType)) {
-        if (tileType === _config.tileTypes.other.railroadValue) {
-            displayRailroadCard(tile, $container);
-        } else if (tileType === _config.tileTypes.other.utilityValue) {
-            displayUtilityCard(tile, $container);
-        } else if (tileType === _config.tileTypes.other.taxIncomeValue || tileType === _config.tileTypes.other.luxuryTaxIncomeValue) {
-            displayIncomeTaxCard(tile, $container);
+    }
+    else
+    {
+        switch(tileType)
+        {
+            case "railroad":
+                displayRailroadCard(tile, $container);
+                break;
+            case "utility":
+                displayUtilityCard(tile, $container);
+                break;
+            case "Water Works":
+                displayUtilityCard(tile, $container);
+                break;
+            case "Electric Company":
+                displayUtilityCard(tile, $container);
+                break;
+            case "Tax Income":
+                displayIncomeTaxCard(tile, $container);
+                break;
+            case "Luxury Tax":
+                displayIncomeTaxCard(tile, $container);
+                break;
+            default:
+                break;
         }
     }
-
-
 }
 
 function displayNormalCard(tile, $container) {
@@ -183,8 +182,8 @@ function displaySpecialCard(tile, $container) {
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/${tileTypeClass}.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
-
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+
 }
 
 function displayUtilityCard(tile, $container) {
@@ -201,7 +200,7 @@ function displayUtilityCard(tile, $container) {
 
 function displayRailroadCard(tile, $container) {
     const $template = getTemplate('railroad-card');
-    const tileName = tile.name;
+    const tileName = tile.type;
     const tileTypeClass = tileName.toLowerCase().replaceAll(' ', '-');
     const cardTitle = tileName.toUpperCase();
     $template.classList.add(tileTypeClass);
@@ -221,10 +220,16 @@ function displayIncomeTaxCard(tile, $container) {
     const cardTitle = tileType.toUpperCase();
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
-    if (tileType === _config.tileTypes.other.taxIncomeValue) {
-        $template.querySelector('.card-extra .tax').textContent = "You hold a dorm party, you pay €200 for the preparations";
-    } else if (tileType === _config.tileTypes.other.luxuryTaxIncomeValue) {
-        $template.querySelector('.card-extra .tax').textContent = "You're feeling good, you keep a tour general!";
+    switch (tileType)
+    {
+        case "Tax Income":
+            $template.querySelector('.card-extra .tax').textContent = "You hold a dorm party, you pay €200 for the preparations";
+            break;
+        case "Luxury Tax":
+            $template.querySelector('.card-extra .tax').textContent = "You're feeling good, you keep a tour general!";
+            break;
+        default:
+            break;
     }
 
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);

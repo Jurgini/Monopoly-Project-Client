@@ -3,16 +3,12 @@ function joinSelectedLobby(e)
 {
     e.preventDefault();
 
-    const selectedLobby = e.submitter.closest('div');
-    const selectedLobbyInfo = selectedLobby.dataset;
-    const playerName = document.querySelector('section#game-settings-container input#username').value;
-    if (playerName !== "")
+    const $selectedLobby = e.submitter.closest('div');
+    const $selectedLobbyInfo = $selectedLobby.dataset;
+    const $playerName = document.querySelector('section#game-settings-container input#username').value;
+    if (checkPlayerNameIsEmpty($playerName) === false)
     {
-        joinGame(playerName, selectedLobbyInfo.gameid);
-    }
-    else
-    {
-        displayError("Username is required to join/create a game! (15 characters long)");
+        joinGame($playerName, $selectedLobbyInfo.gameid);
     }
 
 }
@@ -44,3 +40,14 @@ function saveGameToStorage(playerName, gameId, token)
     saveToStorage(_config.localStorageTokenObject, tokenObject);
     redirect('lobby.html');
 }
+
+function checkPlayerNameIsEmpty($playerName)
+{
+    if ($playerName !== "")
+    {
+        return false;
+    }
+    displayError("Username is required to join/create a game! (15 characters long)");
+    return true;
+}
+

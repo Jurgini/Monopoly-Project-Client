@@ -88,65 +88,52 @@ function renderTiles(onGoingGame) {
 
 function renderTilesAhead(currentTile) {
     const $containerTilesAhead = document.querySelector("#next-positions-container");
-    $containerTilesAhead.querySelectorAll("template").forEach(($template)=>{
-        if ($containerTilesAhead.contains($template)) {
-            $containerTilesAhead.innerHTML = $template.outerHTML;
-        }
-        else {
-            $containerTilesAhead.innerHTML += $template.outerHTML;
-        }
-    });
+
     fetchFromServer(`/tiles/${currentTile}`, 'GET').then(async (tile) => {
         let currentTileNumber;
-        console.log(tile.position);
         currentTileNumber = tile.position;
         for (let i = 0; i <= 12; i++) {
             await fetchFromServer(`/tiles/${(currentTileNumber + i) % 40}`, 'GET').then(async (tile) => {
-                displayCard(tile, $containerTilesAhead);
+                displayCard(tile, $containerTilesAhead, document.querySelector(`#tile-spot-${i}`));
             });
         }
     });
 }
 
 
-async function displayCard(tile, $container) {
+async function displayCard(tile, $container, $insertContainer) {
     const tileType = tile.type;
-    if (_config.tileTypes.normal.includes(tileType))
-    {
-        displayNormalCard(tile, $container);
-    }
-    else if (_config.tileTypes.special.includes(tileType))
-    {
-        displaySpecialCard(tile, $container);
-    }
-    else
-    {
-        switch(tileType)
-        {
+    let $template;
+    if (_config.tileTypes.normal.includes(tileType)) {
+        $template = displayNormalCard(tile, $container);
+    } else if (_config.tileTypes.special.includes(tileType)) {
+        $template = displaySpecialCard(tile, $container);
+    } else {
+        switch (tileType) {
             case "railroad":
-                displayRailroadCard(tile, $container);
+                $template = displayRailroadCard(tile, $container);
                 break;
             case "utility":
-                displayUtilityCard(tile, $container);
+                $template = displayUtilityCard(tile, $container);
                 break;
             case "Water Works":
-                displayUtilityCard(tile, $container);
+                $template = displayUtilityCard(tile, $container);
                 break;
             case "Electric Company":
-                displayUtilityCard(tile, $container);
+                $template = displayUtilityCard(tile, $container);
                 break;
             case "Tax Income":
-                displayIncomeTaxCard(tile, $container);
+                $template = displayIncomeTaxCard(tile, $container);
                 break;
             case "Luxury Tax":
-                displayIncomeTaxCard(tile, $container);
+                $template = displayIncomeTaxCard(tile, $container);
                 break;
             default:
                 break;
         }
     }
 
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    $insertContainer.innerHTML = $template.outerHTML;
 }
 
 function displayNormalCard(tile, $container) {
@@ -173,8 +160,8 @@ function displaySpecialCard(tile, $container) {
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/${tileTypeClass}.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 
+    return $template;
 }
 
 function displayUtilityCard(tile, $container) {
@@ -211,8 +198,7 @@ function displayIncomeTaxCard(tile, $container) {
     const cardTitle = tileType.toUpperCase();
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
-    switch (tileType)
-    {
+    switch (tileType) {
         case "Tax Income":
             $template.querySelector('.card-extra .tax').textContent = "You hold a dorm party, you pay €200 for the preparations";
             break;

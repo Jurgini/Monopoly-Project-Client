@@ -40,6 +40,10 @@ function init() {
     document.querySelectorAll("figure").forEach(figure => {
         figure.addEventListener("click", choosePawn);
     });
+    document.querySelector("input[type='submit']").addEventListener("click",(e)=>{
+        e.preventDefault();
+        redirect("game.html");
+    });
 
 }
 

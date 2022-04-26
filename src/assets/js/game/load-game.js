@@ -19,7 +19,7 @@ function renderOwnedProperties(onGoingGame) {
 function getGameDetails() {
     fetchFromServer(`/games/${loadFromStorage('game').gameId}`, 'GET')
         .then(onGoingGame => {
-            /* RENDERING GAME INFORMATION */
+            saveToStorage('currentGame', onGoingGame);
             const players = onGoingGame.players;
             renderCards(onGoingGame);
             renderCurrentPlayer(onGoingGame);

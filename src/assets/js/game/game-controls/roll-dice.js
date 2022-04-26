@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", init);
 loadTokenFromStorage();
 
 const game = loadFromStorage(_config.localStorageGameObject);
-const gameId = game.gameId
+const gameId = game.gameId;
 
 function init() {
     reloadGame();
@@ -13,9 +13,14 @@ function reloadGame() {
     fetchFromServer(`/games/${gameId}`, 'GET').then(response => {
         getGameDetails();
         if (response.canRoll === true && response.currentPlayer === game.playerName) {
+            const $diceButton = document.querySelector("#dice-box button");
+            $diceButton.hidden = false;
+            $diceButton.addEventListener("click", rollDice);
 
-            document.querySelector("#dice-box button").hidden = false;
-            document.querySelector("#dice-box button").addEventListener("click", rollDice);
+            const $bankruptButton = document.querySelector("#bankruptcy button");
+            $bankruptButton.hidden = false;
+            $bankruptButton.addEventListener('click', proposeBankruptcy);
+
         } else {
             setTimeout(reloadGame, _config.delay);
         }
@@ -24,6 +29,7 @@ function reloadGame() {
 
 function rollDice() {
     document.querySelector("#dice-box button").hidden = true;
+    document.querySelector("#bankruptcy button").hidden = true;
 
     fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/dice`, "POST").then(response => {
         const dice = response.lastDiceRoll;

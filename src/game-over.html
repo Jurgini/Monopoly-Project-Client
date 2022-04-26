@@ -11,18 +11,27 @@
         <link rel="stylesheet" href="assets/css/pages/reset.css">
         <link rel="stylesheet" href="assets/css/pages/screen.css">
         <link rel="stylesheet" href="assets/css/pages/game-end.css">
+
+        <script src="assets/js/config.js"></script>
+
+        <script src="assets/js/data-connector/error-handler.js"></script>
+        <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+        <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+
+        <script src="assets/js/extra/redirect.js"></script>
+        <script src="assets/js/extra/game-over.js"></script>
     </head>
     <body>
         <header>
             <h2>GAME OVER!</h2>
         </header>
         <main>
-            <h3>{PLAYER X}</h3>
+            <h3 id="victor">N/A</h3>
             <h3>WON THE GAME!</h3>
-            <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/1st-place-medal_1f947.png" id="medal" alt="Winner" title="Winner">
+            <img src="assets/media/winner.png" alt="Victory Trophy" title="Victory Trophy" height="240" width="240"/>
             <input type="submit" id="play-again" value="play again">
             <input type="submit" id="same-settings" value="play again with the same settings">
-            <form method="POST" action="index.html">
+            <form>
                 <input type="submit" id="return-menu" value="return to menu">
             </form>
         </main>

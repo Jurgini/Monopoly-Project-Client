@@ -23,6 +23,13 @@ function removeFromStorage(key)
     }
 }
 
+function clearGameFromLocalStorage()
+{
+    removeFromStorage("game");
+    removeFromStorage("token");
+    removeFromStorage("pawns");
+}
+
 function loadTokenFromStorage()
 {
     if (loadFromStorage(_config.localStorageGameObject))

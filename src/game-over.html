@@ -11,15 +11,16 @@
         <link rel="stylesheet" href="assets/css/pages/reset.css">
         <link rel="stylesheet" href="assets/css/pages/screen.css">
         <link rel="stylesheet" href="assets/css/pages/game-end.css">
+        <script src="assets/js/extra/winner.js"></script>
     </head>
     <body>
         <header>
             <h2>GAME OVER!</h2>
         </header>
         <main>
-            <h3>{PLAYER X}</h3>
+            <h3 id="winner"></h3>
             <h3>WON THE GAME!</h3>
-            <img src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/1st-place-medal_1f947.png" id="medal" alt="Winner" title="Winner">
+            <img src="assets/media/winner.png" id="medal" alt="Winner" title="Winner">
             <input type="submit" id="play-again" value="play again">
             <input type="submit" id="same-settings" value="play again with the same settings">
             <form method="POST" action="index.html">

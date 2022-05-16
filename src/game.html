@@ -23,18 +23,26 @@
 
     <script src="assets/js/game/load-game.js"></script>
     <script src="assets/js/extra/redirect.js"></script>
-    <script src="assets/js/game/disable-game.js"></script>
     <script src="assets/js/game/game-controls/roll-dice.js"></script>
+
+    <script src="assets/js/game/game-logic/end-game.js"></script>
+    <script src="assets/js/game/game-logic/go-bankrupt.js"></script>
 
 
 </head>
 <body>
-<main>
+<header>
     <div id="game-info">
         <p>GAME INFO</p>
         <p id="available-houses"></p>
         <p id="available-hotels"></p>
     </div>
+    <div id="bankruptcy">
+        <button hidden>Go bankrupt</button>
+    </div>
+</header>
+<main>
+
 
     <div id="gridbox">
 

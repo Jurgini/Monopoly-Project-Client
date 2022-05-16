@@ -1,4 +1,4 @@
-"use strict";
+g"use strict";
 
 loadTokenFromStorage();
 

@@ -47,7 +47,7 @@ function checkPlayerNameIsEmpty($playerName)
     {
         return false;
     }
-    displayError("Username is required to join/create a game! (15 characters long)");
+    displayError("Username is required to join/create a game! (max. 15 characters long)");
     return true;
 }
 

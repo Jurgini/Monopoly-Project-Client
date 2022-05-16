@@ -217,7 +217,7 @@ function displayIncomeTaxCard(tile, $container) {
             $template.querySelector('.card-extra .tax').textContent = "You hold a dorm party, you pay €200 for the preparations";
             break;
         case "Luxury Tax":
-            $template.querySelector('.card-extra .tax').textContent = "You're feeling good, you keep a tour general!";
+            $template.querySelector('.card-extra .tax').textContent = "You're feeling good, you buy everyone a round of drinks!";
             break;
         default:
             break;

@@ -8,7 +8,7 @@ function checkGame(){
             if (ongoingGame.ended === true){
                 endGame(ongoingGame);
             }
-        })
+        });
 
 }
 function endGame(ongoingGame){
@@ -17,7 +17,7 @@ function endGame(ongoingGame){
     removeFromStorage("pawns");
     console.log(ongoingGame);
     if (ongoingGame.winner != null){
-        saveToStorage("gameWinner", ongoingGame.winner)
+        saveToStorage("gameWinner", ongoingGame.winner);
     }
     redirect("game-over.html");
 }

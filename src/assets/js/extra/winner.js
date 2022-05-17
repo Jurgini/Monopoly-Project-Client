@@ -1,6 +1,6 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", showVictor)
+document.addEventListener("DOMContentLoaded", showVictor);
 
 function showVictor(){
     let victor;

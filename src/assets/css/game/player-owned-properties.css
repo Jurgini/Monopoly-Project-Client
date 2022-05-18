@@ -139,7 +139,7 @@
     background-color: darkblue;
 }
 
-.reading-rr {
+#players-container .reading-rr {
     grid-area: reading-rr;
     background-color: black;
 }

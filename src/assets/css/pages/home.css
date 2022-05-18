@@ -70,6 +70,12 @@ section {
     margin: 0.8rem 0.3rem 0.8rem 0.8rem   ;
     width: 7rem;
 }
+
+input[type="submit"]:hover{
+    background: #900000;
+    cursor: pointer;
+}
+
 #create-game-container input[type="submit"] {
     box-shadow: 0 0 0 0.18rem #BC3334;
     border: 0.17rem solid white;
@@ -80,11 +86,6 @@ section {
     text-transform: uppercase;
     width: 100%;
     margin-top: 1rem;
-}
-
-input[type="submit"]:hover{
-    background: #900000;
-    cursor: pointer;
 }
 
 input[type="text"], input[type="number"] {

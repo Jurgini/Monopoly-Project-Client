@@ -22,6 +22,8 @@
     <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
 
     <script src="assets/js/game/load-game.js"></script>
+    <script src="assets/js/game/game-controls/roll-dice.js"></script>
+
 
 
 </head>
@@ -40,11 +42,13 @@
             <div>
                 <div id="dice-box">
                     <p></p>
-                    <input type="submit" value="CLICK ME"/>
                     <div>
-
+                        <img src="assets/media/dices/6.png" id="dice-1" title="6" alt="6">
+                        <img src="assets/media/dices/6.png" id="dice-2" title="6" alt="6">
                     </div>
+                    <button hidden>Roll dice!</button>
                 </div>
+<<<<<<< HEAD
                 <div id="current-position">CURRENT POSITION</div>
                 <div id="alert">
                         <dialog id="confirm-popup">
@@ -75,6 +79,9 @@
                             </form>
                         </dialog>
                 </div>
+=======
+                <div id="alert">ALERT BOX (RIGHT)</div>
+>>>>>>> 1f645037811ae57b889c75ff4878580be2e0949c
             </div>
 
         </div>
@@ -175,7 +182,7 @@
         <div id="players-container">
 
             <template id="player-info-template">
-                <div class="player-info">
+                <div class="player-info" id="">
                     <img src="" alt="">
                     <div>
                         <p class="player-balance">player: $1500</p>
@@ -212,7 +219,6 @@
                     </div>
                 </div>
             </template>
-
         </div>
 
     </div>

@@ -1,7 +1,7 @@
 "use strict";
 
 const _config = {
-    groupnumber: '00',
+    groupnumber: '18',
     gameprefix: 'group18',
     localStorageGameObject: "game",
     localStorageTokenObject: "token",
@@ -11,7 +11,7 @@ const _config = {
     tileTypes: {
         normal: ["street"],
         special: ["chance", "Jail","Go","community chest","Free Parking","Go to Jail"],
-        other2: ["railroad", "utility", "Water Works", "Electric Company", "Tax Income", "Luxury Tax"],
+        other: ["railroad", "utility", "Water Works", "Electric Company", "Tax Income", "Luxury Tax"],
     },
     getAPIUrl: function() { return `https://project-i.ti.howest.be/monopoly-${this.groupnumber}/api`;}
 };

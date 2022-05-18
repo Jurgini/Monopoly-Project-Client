@@ -111,35 +111,31 @@ function renderTilesAhead(currentTile) {
 
 async function displayCard(tile, $container) {
     const tileType = tile.type;
+    let $template;
+
     if (_config.tileTypes.normal.includes(tileType))
     {
-        displayNormalCard(tile, $container);
+        $template = displayNormalCard(tile, $container);
     }
     else if (_config.tileTypes.special.includes(tileType))
     {
-        displaySpecialCard(tile, $container);
+        $template = displaySpecialCard(tile, $container);
     }
     else
     {
         switch(tileType)
         {
             case "railroad":
-                displayRailroadCard(tile, $container);
+                $template = displayRailroadCard(tile, $container);
                 break;
             case "utility":
-                displayUtilityCard(tile, $container);
-                break;
             case "Water Works":
-                displayUtilityCard(tile, $container);
-                break;
             case "Electric Company":
-                displayUtilityCard(tile, $container);
+                $template = displayUtilityCard(tile, $container);
                 break;
             case "Tax Income":
-                displayIncomeTaxCard(tile, $container);
-                break;
             case "Luxury Tax":
-                displayIncomeTaxCard(tile, $container);
+                $template = displayIncomeTaxCard(tile, $container);
                 break;
             default:
                 break;
@@ -173,7 +169,7 @@ function displaySpecialCard(tile, $container) {
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/${tileTypeClass}.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
-    $container.insertAdjacentHTML('beforeend', $template.outerHTML);
+    return $template;
 
 }
 

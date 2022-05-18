@@ -143,3 +143,19 @@ body {
 .player-taking-turn {
     box-shadow: #900000 0 0 1rem;
 }
+button
+{
+    box-shadow: 0 0 0 0.18rem #BC3334;
+    border: 0.17rem solid white;
+    background-color: #BC3334;
+    color: white;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    margin: 0.8rem 0.3rem 0.8rem 0.8rem   ;
+    width: 7rem;
+}
+dialog
+{
+    position: unset;
+}

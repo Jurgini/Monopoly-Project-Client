@@ -227,25 +227,44 @@ function displayIncomeTaxCard(tile, $container) {
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }
 
+function initPopup()
+{
+    return document.querySelector("div#alert");
+}
+
 function displayPopupConfirm(title, text, accept, deny) {
-    const $template = getTemplate('normal-confirmpopup');
-    $template.querySelector('h2').textContent = title;
-    $template.querySelector('.popup-text').textContent = text;
-    $template.querySelector('.button1').textContent = accept;
-    $template.querySelector('.button2').textContent = deny;
+    const $dialog = document.querySelector('#confirm-popup');
+    $dialog.querySelector('.title').textContent = title;
+    $dialog.querySelector('.popup-text').textContent = text;
+    $dialog.querySelector('.accept').textContent = accept;
+    $dialog.querySelector('.deny').textContent = deny;
+
+    $dialog.showModal();
+    console.log($dialog)
+    $dialog.addEventListener('close', function(event) {
+        return $dialog.returnValue;
+    })
 }
 
-function displayPopupAlertNormalCard(title, text, confirm) {
-    const $template = getTemplate('normal-alertpopup');
-    $template.querySelector('h2').textContent = title
-    $template.querySelector('.popup-text').textContent = text
-    $template.querySelector('.accept').textContent = confirm
+function displayPopupAlert(title, text, confirm) {
+    const $dialog =document.querySelector('#alert-popup');
+    $dialog.querySelector('h2').textContent = title;
+    $dialog.querySelector('.popup-text').textContent = text;
+    $dialog.querySelector('.accept').textContent = confirm;
+
+    if(typeof $dialog.showModal === "function")
+    {
+        $dialog.showModal();
+    }
+    else
+    {
+        alert("?")
+    }
+    $dialog.addEventListener('close', function onClose()
+    {
+        return $dialog.returnValue;
+    });
 }
-
-function displayPopupSpecialCard(tile) {
-
-}
-
 function getTemplate(tileType) {
     return document.querySelector(`template#${tileType}`).content.firstElementChild.cloneNode(true);
 }

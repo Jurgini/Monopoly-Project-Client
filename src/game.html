@@ -47,21 +47,33 @@
                 </div>
                 <div id="current-position">CURRENT POSITION</div>
                 <div id="alert">
-                    <template id="normal-confirmpoppup">
-                        <h2></h2>
-                        <p class="popup-text"></p>
-                        <button type="button" class="button1">Buy</button>
-                        <button type="button" class="button2"></button>
-                    </template>
-                    <template id="normal-alertpopup">
-                        <h2></h2>
-                        <p class="popup-text"></p>
-                        <button type="button" class="accept">Buy</button>
-                    </template>
-                    <template id="special-popup">
-                        <p class="popup-text"></p>
-                        <button type="button" id="accept">OK</button>
-                    </template>
+                        <dialog id="confirm-popup">
+                            <form method="dialog">
+                                <h2 class="title"></h2>
+                                <p class="popup-text"></p>
+                                <button type="submit" class="accept" id="accept" value="true"></button>
+                                <button type="submit" class="deny" id="deny" value="false"></button>
+                            </form>
+                        </dialog>
+                        <dialog id="alert-popup">
+                            <form method="dialog">
+                                <h2 class="title"></h2>
+                                <p class="popup-text"></p>
+                                <button type="submit" class="accept" value="true"></button>
+                            </form>
+                        </dialog>
+                        <dialog id="special-popup">
+                            <form method="dialog">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <p class="popup-text"></p>
+                                        <button type="submit" class="accept"></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </dialog>
                 </div>
             </div>
 

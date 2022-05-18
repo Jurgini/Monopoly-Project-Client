@@ -38,7 +38,6 @@ function showPlayers(playersInGame, $container) {
         showPlayer(player, $container);
     });
 }
-
 function showPlayer(player, $container) {
     const $template = document.querySelector('template').content.firstElementChild.cloneNode(true);
     $template.querySelector('.playername').textContent = player.name;

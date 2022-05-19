@@ -114,17 +114,11 @@ async function displayCard(tile, $container, $insertContainer) {
                 $template = displayRailroadCard(tile, $container);
                 break;
             case "utility":
-                $template = displayUtilityCard(tile, $container);
-                break;
             case "Water Works":
-                $template = displayUtilityCard(tile, $container);
-                break;
             case "Electric Company":
                 $template = displayUtilityCard(tile, $container);
                 break;
             case "Tax Income":
-                $template = displayIncomeTaxCard(tile, $container);
-                break;
             case "Luxury Tax":
                 $template = displayIncomeTaxCard(tile, $container);
                 break;

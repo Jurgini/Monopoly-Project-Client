@@ -177,7 +177,6 @@ function displayRailroadCard(tile, $container) {
     const cardTitle = tileName.toUpperCase();
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
-    $template.querySelector('.rent span').textContent = `€${tile.rent}`;
     $template.querySelector('.icon').insertAdjacentHTML('beforeend', ` <img src="assets/media/card-addons/railroad.png" alt='${tileTypeClass}' title='${tileTypeClass}'>`);
     $template.querySelector('.card-extra .mortgage span').textContent = `€${tile.mortgage}`;
     $template.querySelector('.card-extra .card-price').textContent = `€${tile.cost}`;

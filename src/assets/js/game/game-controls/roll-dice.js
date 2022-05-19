@@ -9,14 +9,13 @@ let previousResponse = null;
 function init() {
     reloadGame();
 }
+
 // TODO: clean the code
 function reloadGame() {
     fetchFromServer(`/games/${gameId}`, 'GET').then(response => {
-        if (previousResponse === null)
-        {
+        if (previousResponse === null) {
             previousResponse = response;
-        }
-        else if (previousResponse.turns.length !== response.turns.length){
+        } else if (previousResponse.turns.length !== response.turns.length) {
             previousResponse = response;
             getGameDetails();
         }
@@ -47,7 +46,7 @@ function rollDice() {
         return response;
 
     }).then(response => {
-       displayPopupAlert("move","you have thrown " + (response.lastDiceRoll[0]+response.lastDiceRoll[1]),"Go");
+        displayPopupAlert("move", "you have thrown " + (response.lastDiceRoll[0] + response.lastDiceRoll[1]), "Go");
     }).then(response => {
         if (response.directSale !== null) {
 
@@ -59,7 +58,16 @@ function rollDice() {
             }
             fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/properties/${response.directSale}`, method).then(reloadGame);
         } else {
-            reloadGame();
+            let currentTile = response.players.find(player => player.name === response.currentPlayer).currentTile;
+
+            for (let user in response.players) {
+                if (response.currentPlayer !== user.name) {
+                    if (currentTile in user.properties) {
+                        displayPopupAlert("Pay rent",`You landed on ${response.directSale} you have to pay ${user}`);
+                        fetchFromServer(`/games/${gameId}/players/${game.playerName}/properties/${currentTile}/visitors/${user.name}/rent`, 'DELETE').then(reloadGame);
+                    }
+                }
+            }
         }
     });
 }

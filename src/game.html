@@ -47,6 +47,23 @@
 
         <div id="current-container">
             <p></p>
+            <div id="alert">
+                <dialog id="confirm-popup">
+                    <form method="dialog"> <!-- Not valid approved by JVD on 2022-05-20, reference https://github.com/validator/validator/issues/962 -->
+                        <h2 class="title">Popup Title</h2>
+                        <p class="popup-text"></p>
+                        <button type="submit" class="accept" id="accept" value="true"></button>
+                        <button type="submit" class="deny" id="deny" value="false"></button>
+                    </form>
+                </dialog>
+                <dialog id="alert-popup">
+                    <form method="dialog"> <!-- Not valid approved by JVD on 2022-05-20, reference https://github.com/validator/validator/issues/962 -->
+                        <h2 class="title">Popup Title</h2>
+                        <p class="popup-text"></p>
+                        <button type="submit" class="accept" value="true"></button>
+                    </form>
+                </dialog>
+            </div>
             <div>
                 <div id="dice-box">
                     <p></p>
@@ -55,23 +72,6 @@
                         <img src="assets/media/dices/6.png" id="dice-2" title="6" alt="6">
                     </div>
                     <button hidden>Roll dice!</button>
-                </div>
-                <div id="alert">
-                    <dialog id="confirm-popup">
-                        <form method="dialog"> <!-- Not valid approved by JVD on 2022-05-20, reference https://github.com/validator/validator/issues/962 -->
-                            <h2 class="title">Popup Title</h2>
-                            <p class="popup-text"></p>
-                            <button type="submit" class="accept" id="accept" value="true"></button>
-                            <button type="submit" class="deny" id="deny" value="false"></button>
-                        </form>
-                    </dialog>
-                    <dialog id="alert-popup">
-                        <form method="dialog"> <!-- Not valid approved by JVD on 2022-05-20, reference https://github.com/validator/validator/issues/962 -->
-                            <h2 class="title">Popup Title</h2>
-                            <p class="popup-text"></p>
-                            <button type="submit" class="accept" value="true"></button>
-                        </form>
-                    </dialog>
                 </div>
             </div>
         </div>

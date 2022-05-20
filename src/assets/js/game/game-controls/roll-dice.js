@@ -53,23 +53,25 @@ function rollDice() {
 
     }).then(response => {
         displayPopupAlert("move", "you have thrown " + (response.lastDiceRoll[0] + response.lastDiceRoll[1]), "Go").then(() => {
-            if (response.directSale == null) {
-                let currentTile = response.players.find(player => player.name === response.currentPlayer).currentTile;
+            if (response.directSale !== null) {
+                let currentTile = response.players.find(player => player.name === game.playerName).currentTile;
 
                 let method;
                 displayPopupConfirm("Buy tile", `you have landed on ${currentTile} do you want to buy it?`, "buy", "don't buy").then(answer => {
-                    if (answer.action) //
+                    if (answer.action === 'true') //
                     {
                         method = "POST";
                     } else {
                         method = "DELETE";
                     }
+                    console.log(method);
                     fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/properties/${currentTile}`, method).then(reloadGame);
                 });
 
             } else {
+                let currentTile = response.players.find(player => player.name === game.playerName).currentTile;
 
-                for (let user in response.players) {
+                for (let user of response.players) {
                     if (response.currentPlayer !== user.name) {
                         if (currentTile in user.properties) {
                             //displayPopupAlert("Pay rent",`You landed on ${response.directSale} you have to pay ${user}`);

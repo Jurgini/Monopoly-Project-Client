@@ -105,22 +105,22 @@ async function displayCard(tile, $container, $insertContainer) {
     const tileType = tile.type;
     let $template;
     if (_config.tileTypes.normal.includes(tileType)) {
-        $template = displayNormalCard(tile, $container);
+        $template = displayNormalCard(tile);
     } else if (_config.tileTypes.special.includes(tileType)) {
-        $template = displaySpecialCard(tile, $container);
+        $template = displaySpecialCard(tile);
     } else {
         switch (tileType) {
             case "railroad":
-                $template = displayRailroadCard(tile, $container);
+                $template = displayRailroadCard(tile);
                 break;
             case "utility":
             case "Water Works":
             case "Electric Company":
-                $template = displayUtilityCard(tile, $container);
+                $template = displayUtilityCard(tile);
                 break;
             case "Tax Income":
             case "Luxury Tax":
-                $template = displayIncomeTaxCard(tile, $container);
+                $template = displayIncomeTaxCard(tile);
                 break;
             default:
                 break;
@@ -130,7 +130,7 @@ async function displayCard(tile, $container, $insertContainer) {
     $insertContainer.innerHTML = $template.outerHTML;
 }
 
-function displayNormalCard(tile, $container) {
+function displayNormalCard(tile) {
     const $template = getTemplate('normal-card');
     addTileColor($template, tile);
     $template.querySelector('h2.title').textContent = tile.name;
@@ -146,7 +146,7 @@ function displayNormalCard(tile, $container) {
     return $template;
 }
 
-function displaySpecialCard(tile, $container) {
+function displaySpecialCard(tile) {
     const $template = getTemplate('special-card');
     const tileType = tile.type;
     const tileTypeClass = tileType.toLowerCase().replaceAll(' ', '-');
@@ -158,7 +158,7 @@ function displaySpecialCard(tile, $container) {
     return $template;
 }
 
-function displayUtilityCard(tile, $container) {
+function displayUtilityCard(tile) {
     const $template = getTemplate('utility-card');
     const tileName = tile.name;
     const cardTitle = tileName.toUpperCase();
@@ -170,7 +170,7 @@ function displayUtilityCard(tile, $container) {
 
 }
 
-function displayRailroadCard(tile, $container) {
+function displayRailroadCard(tile) {
     const $template = getTemplate('railroad-card');
     const tileName = tile.type;
     const tileTypeClass = tileName.toLowerCase().replaceAll(' ', '-');
@@ -184,13 +184,14 @@ function displayRailroadCard(tile, $container) {
     return $template;
 }
 
-function displayIncomeTaxCard(tile, $container) {
+function displayIncomeTaxCard(tile) {
     const $template = getTemplate('tax-income-card');
     const tileType = tile.type;
     const tileTypeClass = tileType.toLowerCase().replaceAll(' ', '-');
     const cardTitle = tileType.toUpperCase();
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
+    // todo change content to tile info
     switch (tileType) {
         case "Tax Income":
             $template.querySelector('.card-extra .tax').textContent = "You hold a dorm party, you pay €200 for the preparations";

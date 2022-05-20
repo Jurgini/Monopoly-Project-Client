@@ -18,6 +18,7 @@ function createGame(e)
         fetchFromServer('/games', "POST", gameBody)
             .then(response => {
                 joinGame($playerName, response.id);
-            });
+            })
+            .catch(err => checkError('createGame', err));
     }
 }

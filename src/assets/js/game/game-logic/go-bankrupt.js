@@ -11,6 +11,7 @@ function goBankrupt()
 {
     fetchFromServer(`/games/${loadFromStorage(_config.localStorageGameObject).gameId}/players/${loadFromStorage(_config.localStorageGameObject).playerName}/bankruptcy`, "POST")
         .then(response => {
+            //todo play with response
             redirect("bankruptcy.html");
         });
 }

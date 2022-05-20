@@ -92,11 +92,10 @@ function renderTiles(onGoingGame) {
 
 function renderTilesAhead(currentTile) {
     const $containerTilesAhead = document.querySelector("#next-positions-container");
-    $containerTilesAhead.querySelectorAll("template").forEach(($template)=>{
+    $containerTilesAhead.querySelectorAll("template").forEach(($template) => {
         if ($containerTilesAhead.contains($template)) {
             $containerTilesAhead.innerHTML = $template.outerHTML;
-        }
-        else {
+        } else {
             $containerTilesAhead.innerHTML += $template.outerHTML;
         }
     });
@@ -112,8 +111,7 @@ function renderTilesAhead(currentTile) {
     });
 }
 
-function initPopup()
-{
+function initPopup() {
     return document.querySelector("div#alert");
 }
 
@@ -125,45 +123,38 @@ function displayPopupConfirm(title, text, accept, deny) {
     $dialog.querySelector('.deny').textContent = deny;
 
     $dialog.showModal();
-    $dialog.addEventListener('close', function(event) {
-        return $dialog.returnValue;
-    });
+    return new Promise((resolve => {
+        $dialog.addEventListener('close', function (event) {
+            resolve({action: $dialog.returnValue});
+        });
+    }));
+
 }
 
 function displayPopupAlert(title, text, confirm) {
-    const $dialog =document.querySelector('#alert-popup');
+    const $dialog = document.querySelector('#alert-popup');
     $dialog.querySelector('h2').textContent = title;
     $dialog.querySelector('.popup-text').textContent = text;
     $dialog.querySelector('.accept').textContent = confirm;
 
-    if(typeof $dialog.showModal === "function")
-    {
+    if (typeof $dialog.showModal === "function") {
         $dialog.showModal();
-    }
-    else
-    {
+    } else {
         alert("?")
     }
-    $dialog.addEventListener('close', function onClose()
-    {
+    $dialog.addEventListener('close', function onClose() {
         return $dialog.returnValue;
     });
 }
 
 async function displayCard(tile, $container) {
     const tileType = tile.type;
-    if (_config.tileTypes.normal.includes(tileType))
-    {
+    if (_config.tileTypes.normal.includes(tileType)) {
         displayNormalCard(tile, $container);
-    }
-    else if (_config.tileTypes.special.includes(tileType))
-    {
+    } else if (_config.tileTypes.special.includes(tileType)) {
         displaySpecialCard(tile, $container);
-    }
-    else
-    {
-        switch(tileType)
-        {
+    } else {
+        switch (tileType) {
             case "railroad":
                 displayRailroadCard(tile, $container);
                 break;
@@ -252,8 +243,7 @@ function displayIncomeTaxCard(tile, $container) {
     const cardTitle = tileType.toUpperCase();
     $template.classList.add(tileTypeClass);
     $template.querySelector('.title').textContent = cardTitle;
-    switch (tileType)
-    {
+    switch (tileType) {
         case "Tax Income":
             $template.querySelector('.card-extra .tax').textContent = "You hold a dorm party, you pay €200 for the preparations";
             break;

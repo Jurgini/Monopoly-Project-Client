@@ -111,41 +111,7 @@ function renderTilesAhead(currentTile) {
     });
 }
 
-function initPopup() {
-    return document.querySelector("div#alert");
-}
 
-function displayPopupConfirm(title, text, accept, deny) {
-    const $dialog = document.querySelector('#confirm-popup');
-    $dialog.querySelector('.title').textContent = title;
-    $dialog.querySelector('.popup-text').textContent = text;
-    $dialog.querySelector('.accept').textContent = accept;
-    $dialog.querySelector('.deny').textContent = deny;
-
-    $dialog.showModal();
-    return new Promise((resolve => {
-        $dialog.addEventListener('close', function (event) {
-            resolve({action: $dialog.returnValue});
-        });
-    }));
-
-}
-
-function displayPopupAlert(title, text, confirm) {
-    const $dialog = document.querySelector('#alert-popup');
-    $dialog.querySelector('h2').textContent = title;
-    $dialog.querySelector('.popup-text').textContent = text;
-    $dialog.querySelector('.accept').textContent = confirm;
-
-    if (typeof $dialog.showModal === "function") {
-        $dialog.showModal();
-    } else {
-        alert("?")
-    }
-    $dialog.addEventListener('close', function onClose() {
-        return $dialog.returnValue;
-    });
-}
 
 async function displayCard(tile, $container) {
     const tileType = tile.type;

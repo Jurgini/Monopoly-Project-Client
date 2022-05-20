@@ -59,7 +59,7 @@ function rollDice() {
 
             let method;
             displayPopupConfirm("Buy tile", `you have landed on ${response.directSale} do you want to buy it?`, "buy", "don't buy").then(answer => {
-                if(answer) //
+                if(answer.action) //
                 {
                     method = "POST";
                 } else {

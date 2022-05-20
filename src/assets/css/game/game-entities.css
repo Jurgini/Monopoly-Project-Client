@@ -8,6 +8,10 @@ hr {
 
 /* MULTIPLE CARD TYPES ARE SPLIT HERE */
 
+.card-panel {
+    margin: 0 1rem;
+}
+
 .normal-card, .special-card, .utility-card, .railroad-card, .tax-income-card {
     max-width: 20rem;
     width: 15rem;

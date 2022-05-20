@@ -15,6 +15,21 @@ function loadFromStorage(key) {
     return false;
 }
 
+function removeFromStorage(key)
+{
+    if (localStorage.getItem(key) != null)
+    {
+        localStorage.removeItem(key);
+    }
+}
+
+function clearGameFromLocalStorage()
+{
+    removeFromStorage("game");
+    removeFromStorage("token");
+    removeFromStorage("pawns");
+}
+
 function loadTokenFromStorage()
 {
     if (loadFromStorage(_config.localStorageGameObject))
@@ -26,4 +41,3 @@ function loadTokenFromStorage()
         _token = null;
     }
 }
-

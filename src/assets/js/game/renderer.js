@@ -3,7 +3,7 @@
 function loadAvailableLobbies()
 {
     const $container = document.querySelector('div#lobby-overview');
-    fetchFromServer(`/games?started=false&prefix=${_config.gameprefix}`, 'GET') // TODO: When we have our own server this needs to be changed to the lobbyName feature
+    fetchFromServer(`/games`, 'GET') // TODO: When we have our own server this needs to be changed to the lobbyName feature
         .then(availableGames =>
         {
             renderAvailableLobbies(availableGames, $container);

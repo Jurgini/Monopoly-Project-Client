@@ -119,7 +119,7 @@ function displayPopupAlert(title, text, confirm) {
 /* -=[ALL ABOUT CARDS]=- */
 
 function renderTiles(onGoingGame) {
-    const currentTile = onGoingGame.players.find(player => player.name === onGoingGame.currentPlayer).currentTile;
+    const currentTile = onGoingGame.players.find(player => player.name === game.playerName).currentTile;
     renderTilesAhead(currentTile);
 }
 

@@ -52,9 +52,11 @@ function rollDice() {
         return response;
 
     }).then(response => {
-        displayPopupAlert("move", "you have thrown " + (response.lastDiceRoll[0] + response.lastDiceRoll[1]), "Go").then(() => {
-            if (response.directSale !== null) {
-                let currentTile = response.players.find(player => player.name === game.playerName).currentTile;
+        displayPopupAlert("move", "you have thrown " + (response.lastDiceRoll[0] + response.lastDiceRoll[1]), "Go").then(reloadGame).then(() => {
+            console.log(response.directSale);
+            let currentTile = response.players.find(player => player.name === game.playerName).currentTile;
+
+            if (response.directSale !== null && response.directSale === currentTile) {
 
                 let method;
                 displayPopupConfirm("Buy tile", `you have landed on ${currentTile} do you want to buy it?`, "buy", "don't buy").then(answer => {
@@ -69,14 +71,16 @@ function rollDice() {
                 });
 
             } else {
-                let currentTile = response.players.find(player => player.name === game.playerName).currentTile;
-
-                for (let user of response.players) {
-                    if (response.currentPlayer !== user.name) {
-                        if (currentTile in user.properties) {
-                            //displayPopupAlert("Pay rent",`You landed on ${response.directSale} you have to pay ${user}`);
-                            fetchFromServer(`/games/${gameId}/players/${game.playerName}/properties/${currentTile}/visitors/${user.name}/rent`, 'DELETE').then(reloadGame);
-                        }
+                if (response.directSale === null && game.playerName === response.currentPlayer) {
+                    for (const user of response.players){
+                        console.log(user.name);
+                        console.log(user.properties.filter(property => property.name !== "").length);
+                        // if (user.properties.filter(property => property.name === currentTile).length > 0) {
+                        //     console.log("BOEEJAA");
+                        //
+                        // }
+                        displayPopupAlert("Pay rent", `You landed on ${currentTile} you have to pay ${user.name}`,"pay");
+                        fetchFromServer(`/games/${gameId}/players/${user.name}/properties/${currentTile}/visitors/${game.playerName}/rent`, 'DELETE').then(reloadGame);
                     }
                 }
             }

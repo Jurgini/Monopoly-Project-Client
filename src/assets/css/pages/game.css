@@ -9,7 +9,6 @@ header {
 
 body {
     width: 100%;
-    /*background-color: #BFDBAE;*/
     background-image: url("../../media/background.png");
     background-blend-mode: soft-light;
     font-family: 'Fredoka One', cursive;
@@ -31,9 +30,8 @@ body {
     margin: auto auto auto auto;
 }
 
-
 #game-info {
-    position: absolute;
+    position: relative;
     left: 1rem;
     top: 1rem;
 }
@@ -74,7 +72,7 @@ body {
     margin-top: 1rem;
 }
 
-#dice-box, #current-position, #alert {
+#dice-box, #current-position {
     background-color: rgba(200, 200, 200, 0.20);
     box-shadow: 0 0 5rem rgba(200, 200, 200, 1);
     padding: 1rem;
@@ -111,6 +109,10 @@ button {
     border-radius: 0.3rem;
     width: 100%;
     margin-top: 1rem;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 #dice-box button:hover {
@@ -195,6 +197,19 @@ button {
 .player-taking-turn {
     box-shadow: #900000 0 0 1rem;
 }
-
-
-
+form button
+{
+    box-shadow: 0 0 0 0.18rem #BC3334;
+    border: 0.17rem solid white;
+    background-color: #BC3334;
+    color: white;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    margin: 0.8rem 0.3rem 0.8rem 0.8rem   ;
+    width: 7rem;
+}
+dialog
+{
+    position: unset;
+}

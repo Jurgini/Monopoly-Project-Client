@@ -47,23 +47,28 @@ function rollDice() {
 
     }).then(response => {
         displayPopupAlert("move", "you have thrown " + (response.lastDiceRoll[0] + response.lastDiceRoll[1]), "Go");
+        return response;
     }).then(response => {
         if (response.directSale !== null) {
 
             let method;
-            if (displayPopupConfirm("Buy tile", `you have landed on ${response.directSale} do you want to buy it?`, "buy", "don't buy")) {
-                method = "POST";
-            } else {
-                method = "DELETE";
-            }
-            fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/properties/${response.directSale}`, method).then(reloadGame);
+            displayPopupConfirm("Buy tile", `you have landed on ${response.directSale} do you want to buy it?`, "buy", "don't buy").then(answer => {
+                if(answer) //
+                {
+                    method = "POST";
+                } else {
+                    method = "DELETE";
+                }
+                fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/properties/${response.directSale}`, method).then(reloadGame);
+            });
+
         } else {
             let currentTile = response.players.find(player => player.name === response.currentPlayer).currentTile;
 
             for (let user in response.players) {
                 if (response.currentPlayer !== user.name) {
-                    if (currentTile in user.properties) {
-                        displayPopupAlert("Pay rent",`You landed on ${response.directSale} you have to pay ${user}`);
+                    if (currentTile in user.properties){
+                        //displayPopupAlert("Pay rent",`You landed on ${response.directSale} you have to pay ${user}`);
                         fetchFromServer(`/games/${gameId}/players/${game.playerName}/properties/${currentTile}/visitors/${user.name}/rent`, 'DELETE').then(reloadGame);
                     }
                 }

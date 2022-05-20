@@ -2,10 +2,10 @@
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-areas:
-            ".             .           .                   .           .               .              .              .          short-line-rr         ."
-            ".             connecticut virginia            new-york    illinois-avenue marvin-gardens pennsylvania   .          baltimore-and-ohio-rr ."
-            "baltic        vermont     states              tennessee   indiana-avenue  ventnor        north-carolina boardwalk  pennsylvania-rr       water-works"
-            "mediterranean oriental    saint-charles-place saint-james kentucky-avenue atlantic       pacific        park-place reading-rr            electric-company";
+            ".             .           .                   .           .               .              .              .                                                                 station-gent-sint-pieters        ."
+            ".                   martelarenlaan  rijsselstraat          sint-pietersplein       rue-saint-gilles      vrijwilligerslaan     grote-pieter-potstraat   .                 station-antwerp-central ."
+            "marksesteenweg      demerstraat     t-zand                 korenmarkt              rue-des-celestines    kroonlaan             groenplaats             naamsestraat       station-brussels         water-works"
+            "etienne-sabbelaan   grote-markt     eiermarkt              overpoortstraat         boulevard-davroy      grotere-markt          meir                    oude-markt          station-leuven           electric-company";
 
     height: 4rem;
     width: 10rem;
@@ -29,133 +29,133 @@
     opacity: 0.4;
 }
 
-.mediterranean {
-    grid-area: mediterranean;
+.marksesteenweg {
+    grid-area: marksesteenweg;
     background-color: saddlebrown
 }
 
-.baltic {
-    grid-area: baltic;
+.etienne-sabbelaan {
+    grid-area: etienne-sabbelaan;
     background-color: saddlebrown
 }
 
-.oriental {
-    grid-area: oriental;
+.martelarenlaan {
+    grid-area: martelarenlaan;
     background-color: lightblue;
 }
 
-.vermont {
-    grid-area: vermont;
+.demerstraat {
+    grid-area: demerstraat;
     background-color: lightblue;
 }
 
-.connecticut {
-    grid-area: connecticut;
+.grote-markt {
+    grid-area: grote-markt;
     background-color: lightblue;
 }
 
-.saint-charles-place {
-    grid-area: saint-charles-place;
+.rijsselstraat {
+    grid-area: rijsselstraat;
     background-color: purple;
 }
 
-.states {
-    grid-area: states;
+.t-zand {
+    grid-area: t-zand;
     background-color: purple;
 }
 
-.virginia {
-    grid-area: virginia;
+.eiermarkt {
+    grid-area: eiermarkt;
     background-color: purple;
 }
 
-.saint-james {
-    grid-area: saint-james;
+.sint-pietersplein {
+    grid-area: sint-pietersplein;
     background-color: orange;
 }
 
-.tennessee {
-    grid-area: tennessee;
+.korenmarkt {
+    grid-area: korenmarkt;
     background-color: orange;
 }
 
-.new-york {
-    grid-area: new-york;
+.overpoortstraat {
+    grid-area: overpoortstraat;
     background-color: orange;
 }
 
-.kentucky-avenue {
-    grid-area: kentucky-avenue;
+.rue-saint-gilles {
+    grid-area: rue-saint-gilles;
     background-color: red;
 }
 
-.indiana-avenue {
-    grid-area: indiana-avenue;
+.rue-des-celestines {
+    grid-area: rue-des-celestines;
     background-color: red;
 }
 
-.illinois-avenue {
-    grid-area: illinois-avenue;
+.boulevard-davroy {
+    grid-area: boulevard-davroy;
     background-color: red;
 }
 
-.atlantic {
-    grid-area: atlantic;
+.vrijwilligerslaan {
+    grid-area: vrijwilligerslaan;
     background-color: yellow;
 }
 
-.ventnor {
-    grid-area: ventnor;
+.kroonlaan {
+    grid-area: kroonlaan;
     background-color: yellow;
 }
 
-.marvin-gardens {
-    grid-area: marvin-gardens;
+.grotere-markt {
+    grid-area: grotere-markt;
     background-color: yellow;
 }
 
-.pacific {
-    grid-area: pacific;
+.grote-pieter-potstraat {
+    grid-area: grote-pieter-potstraat;
     background-color: green;
 }
 
-.north-carolina {
-    grid-area: north-carolina;
+.groenplaats {
+    grid-area: groenplaats;
     background-color: green;
 }
 
-.pennsylvania {
-    grid-area: pennsylvania;
+.meir {
+    grid-area: meir;
     background-color: green;
 }
 
-.park-place {
-    grid-area: park-place;
+.naamsestraat {
+    grid-area: naamsestraat;
     background-color: darkblue;
 }
 
-.boardwalk {
-    grid-area: boardwalk;
+.oude-markt {
+    grid-area: oude-markt;
     background-color: darkblue;
 }
 
-#players-container .reading-rr {
-    grid-area: reading-rr;
+#players-container .station-gent-sint-pieters{
+    grid-area: station-gent-sint-pieters;
     background-color: black;
 }
 
-.pennsylvania-rr {
-    grid-area: pennsylvania-rr;
+.station-antwerp-central {
+    grid-area: station-antwerp-central;
     background-color: black;
 }
 
-.baltimore-and-ohio-rr {
-    grid-area: baltimore-and-ohio-rr;
+.station-brussels {
+    grid-area: station-brussels;
     background-color: black;
 }
 
-.short-line-rr {
-    grid-area: short-line-rr;
+.station-leuven {
+    grid-area: station-leuven;
     background-color: black;
 }
 

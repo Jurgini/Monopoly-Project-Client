@@ -78,37 +78,41 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
     $template.querySelector('.player-balance').textContent = `${playerInOnGoingGame.name}: €${playerInOnGoingGame.money}`;
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }
-function initPopup()
-{
+
+function initPopup() {
     return document.querySelector("div#alert");
 }
+
 function displayPopupConfirm(title, text, accept, deny) {
     const $dialog = document.querySelector('#confirm-popup');
     $dialog.querySelector('.title').textContent = title;
     $dialog.querySelector('.popup-text').textContent = text;
     $dialog.querySelector('.accept').textContent = accept;
     $dialog.querySelector('.deny').textContent = deny;
+
     $dialog.showModal();
-    $dialog.addEventListener('close', function(event) {
-        return $dialog.returnValue;
+
+    return new Promise((resolve) => {
+        $dialog.addEventListener('close', function onClose() {
+            return resolve({action: $dialog.returnValue});
+        });
     });
 }
+
 function displayPopupAlert(title, text, confirm) {
-    const $dialog =document.querySelector('#alert-popup');
+    const $dialog = document.querySelector('#alert-popup');
     $dialog.querySelector('h2').textContent = title;
     $dialog.querySelector('.popup-text').textContent = text;
     $dialog.querySelector('.accept').textContent = confirm;
-    if(typeof $dialog.showModal === "function")
-    {
+    if (typeof $dialog.showModal === "function") {
         $dialog.showModal();
-    }
-    else
-    {
+    } else {
         alert("?")
     }
-    $dialog.addEventListener('close', function onClose()
-    {
-        return $dialog.returnValue;
+    return new Promise((resolve) => {
+        $dialog.addEventListener('close', function onClose() {
+            return resolve({action: $dialog.returnValue});
+        });
     });
 }
 

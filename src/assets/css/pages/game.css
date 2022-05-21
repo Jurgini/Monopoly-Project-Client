@@ -194,8 +194,12 @@ button:hover {
     margin-bottom: 2rem;
 }
 
-.player-taking-turn {
-    box-shadow: #900000 0 0 1rem;
+.player-location {
+    font-size: 0.7rem;
+}
+
+#players-container div.player-taking-turn {
+    box-shadow: #BC3334 0 0 1rem;
 }
 form button
 {

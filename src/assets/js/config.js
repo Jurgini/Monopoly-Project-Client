@@ -1,7 +1,7 @@
 "use strict";
 
 const _config = {
-    groupnumber: '18',
+    groupnumber: '00',
     gameprefix: 'group18',
     localStorageGameObject: "game",
     localStorageTokenObject: "token",
@@ -13,5 +13,6 @@ const _config = {
         special: ["chance", "Jail","Go","community chest","Free Parking","Go to Jail"],
         other: ["railroad", "utility", "Water Works", "Electric Company", "Tax Income", "Luxury Tax"],
     },
-    getAPIUrl: function() { return `https://project-i.ti.howest.be/monopoly-${this.groupnumber}/api`;}
+    //getAPIUrl: function() { return `https://project-i.ti.howest.be/monopoly-${this.groupnumber}/api`;}
+    getAPIUrl: function() { return `http://localhost:8080`;}
 };

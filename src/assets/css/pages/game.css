@@ -118,7 +118,10 @@ button:hover {
 #dice-box button:hover {
     background-color: #cccccc;
 }
-
+#bankruptcy {
+    position: fixed;
+    right: 1rem;
+}
 #bankruptcy button:hover {
     background-color: #ff3029;
     border-color: #ff3029;

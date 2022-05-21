@@ -47,6 +47,23 @@
 
         <div id="current-container">
             <p></p>
+            <div id="alert">
+                <dialog id="confirm-popup">
+                    <form method="dialog"> <!-- Not valid approved by JVD on 2022-05-20, reference https://github.com/validator/validator/issues/962 -->
+                        <h2 class="title">Popup Title</h2>
+                        <p class="popup-text"></p>
+                        <button type="submit" class="accept" id="accept" value="true"></button>
+                        <button type="submit" class="deny" id="deny" value="false"></button>
+                    </form>
+                </dialog>
+                <dialog id="alert-popup">
+                    <form method="dialog"> <!-- Not valid approved by JVD on 2022-05-20, reference https://github.com/validator/validator/issues/962 -->
+                        <h2 class="title">Popup Title</h2>
+                        <p class="popup-text"></p>
+                        <button type="submit" class="accept" value="true"></button>
+                    </form>
+                </dialog>
+            </div>
             <div>
                 <div id="dice-box">
                     <p></p>
@@ -57,7 +74,6 @@
                     <button hidden>Roll dice!</button>
                 </div>
             </div>
-
         </div>
 
         <div id="next-positions-container">
@@ -151,6 +167,7 @@
                         </div>
                         <div class="card-extra">
                             <p class="tax"></p>
+                            <p class="card-price"></p>
                         </div>
                     </div>
                 </div>
@@ -194,32 +211,32 @@
                     <div>
                         <p class="player-balance">player: $1500</p>
                         <div class="player-properties">
-                            <div class="square mediterranean not-bought"></div>
-                            <div class="square baltic not-bought"></div>
-                            <div class="square oriental not-bought"></div>
-                            <div class="square vermont not-bought"></div>
-                            <div class="square connecticut not-bought"></div>
-                            <div class="square saint-charles-place not-bought"></div>
-                            <div class="square states not-bought"></div>
-                            <div class="square virginia not-bought"></div>
-                            <div class="square saint-james not-bought"></div>
-                            <div class="square tennessee not-bought"></div>
-                            <div class="square new-york not-bought"></div>
-                            <div class="square kentucky-avenue not-bought"></div>
-                            <div class="square indiana-avenue not-bought"></div>
-                            <div class="square illinois-avenue not-bought"></div>
-                            <div class="square atlantic not-bought"></div>
-                            <div class="square ventnor not-bought"></div>
-                            <div class="square marvin-gardens not-bought"></div>
-                            <div class="square pacific not-bought"></div>
-                            <div class="square north-carolina not-bought"></div>
-                            <div class="square pennsylvania not-bought"></div>
-                            <div class="square park-place not-bought"></div>
-                            <div class="square boardwalk not-bought"></div>
-                            <div class="square reading-rr not-bought"></div>
-                            <div class="square pennsylvania-rr not-bought"></div>
-                            <div class="square baltimore-and-ohio-rr not-bought"></div>
-                            <div class="square short-line-rr not-bought"></div>
+                            <div class="square marksesteenweg not-bought"></div>
+                            <div class="square etienne-sabbelaan not-bought"></div>
+                            <div class="square martelarenlaan not-bought"></div>
+                            <div class="square demerstraat not-bought"></div>
+                            <div class="square grote-markt not-bought"></div>
+                            <div class="square rijsselstraat not-bought"></div>
+                            <div class="square t-zand not-bought"></div>
+                            <div class="square eiermarkt not-bought"></div>
+                            <div class="square sint-pietersplein not-bought"></div>
+                            <div class="square korenmarkt not-bought"></div>
+                            <div class="square overpoortstraat not-bought"></div>
+                            <div class="square rue-saint-gilles not-bought"></div>
+                            <div class="square rue-des-celestines not-bought"></div>
+                            <div class="square boulevard-davroy not-bought"></div>
+                            <div class="square vrijwilligerslaan not-bought"></div>
+                            <div class="square kroonlaan not-bought"></div>
+                            <div class="square grotere-markt not-bought"></div>
+                            <div class="square grote-pieter-potstraat not-bought"></div>
+                            <div class="square groenplaats not-bought"></div>
+                            <div class="square meir not-bought"></div>
+                            <div class="square naamsestraat not-bought"></div>
+                            <div class="square oude-markt not-bought"></div>
+                            <div class="square station-gent-sint-pieters not-bought"></div>
+                            <div class="square station-antwerp-central not-bought"></div>
+                            <div class="square station-brussels not-bought"></div>
+                            <div class="square station-leuven not-bought"></div>
                             <div class="square electric-company not-bought"></div>
                             <div class="square water-works not-bought"></div>
                         </div>

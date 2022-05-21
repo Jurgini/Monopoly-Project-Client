@@ -1,58 +1,10 @@
-# Monopoly web project group [number]
+# Monopoly Student Edition
+This is the clinet-repo of the Monopoly student edition.
 
-## Before you start
-Search for the string XX and **replace it with your group number**.
+## Known bugs
 
-## Parent group
-https://git.ti.howest.be/TI/2021-2022/s2/programming-project/projects/group-18
-
-## Remote urls
-### Your own project
-* https://project-i.ti.howest.be/monopoly-18/
-* https://project-i.ti.howest.be/monopoly-18/api/
-
-### Provided API
-* https://project-i.ti.howest.be/monopoly-api-spec/
-
-
-## Please complete the following before committing the final version on the project
-Please **add** any **instructions** required to
-* Make your application work if applicable
-* Be able to test the application (login data)
-* View the wireframes
-
-Also clarify
-* If there are known **bugs**
-* If you haven't managed to finish certain required functionality
-
-## Instructions for local CI testing
-You can **run** the validator and Sonar with CSS and JS rules **locally.** There is no need to push to the server to check if you are compliant with our rules. In the interest of sparing the server, please result to local testing as often as possible.
-
-If everyone will push to test, the remote will not last.
-
-Please consult the Sonar guide at [https://git.ti.howest.be/TI/2021-2022/s2/programming-project/documentation/monopoly-documentation/-/blob/main/sonar-guide/Sonar%20guide.md](https://git.ti.howest.be/TI/2021-2022/s2/programming-project/documentation/monopoly-documentation/-/blob/main/sonar-guide/Sonar%20guide.md)
-
-## Client
-In order to help you along with planning, we've provided a client roadmap
-[https://git.ti.howest.be/TI/2021-2022/s2/programming-project/documentation/monopoly-documentation/-/blob/main/roadmaps/client-roadmap.md](https://git.ti.howest.be/TI/2021-2022/s2/programming-project/documentation/monopoly-documentation/-/blob/main/roadmaps/client-roadmap.md)
-
-## File structure
-All files should be places in the `src` directory.
-
-**Do not** change the file structure of the folders outside of that directory. Within, you may do as you please.
-
-
-## Default files
-
-### CSS
-The `reset.css` has aleady been supplied, but it's up to you and your team to add the rest of the styles. Please feel free to split those up in multiple files. We'll handle efficient delivery for products in production in later semesters.
-
-### JavaScript
-A demonstration for connecting with the API has already been set up. We urge you to separate your JS files as **atomically as possible**. Add folders as you please.
-
-## Extra tips for CSS Grid
-In case you get stuck or confused
-https://learncssgrid.com/
-
-And for your convenience, yet use with caution
-https://grid.layoutit.com/ 
+| Bug behaviour  | How to reproduce  | Why it hasn't been fixed    |
+|---|---|---|
+|  When a player goes bankrupt (= their money balance goes below 0 when buying or paying something), the actual bankruptcy screen is showed after a certain amount of turns in the game. The game status is getting edited (ended=true && player is removed out of game) (Not the "Go bankrupt" button usage!) |  Go bankrupt and keep rolling the dice when it's your turn | There is no direct link to the source of the bug. Tests and debugging is always different.  |
+| When the automatic bankrupt check, detects a bankrupt person AND if there's still one player left, both of the players get the winning screen instead of one them getting the bankrupt screen.  | Go bankrupt in a game with 2 players remaining (you included) while rolling the dice instead of pressing "Go bankrupt"  | Time management, prior first. (the core of the check does its job.)  |
+|   |   |   |

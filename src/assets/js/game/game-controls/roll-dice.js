@@ -64,22 +64,26 @@ function rollDice() {
                     } else {
                         method = "DELETE";
                     }
-                    console.log(method);
                     fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/properties/${currentTile}`, method).then(reloadGame);
                 });
 
             } else {
-                if (response.directSale === null && game.playerName === response.currentPlayer) {
-                    for (const user of response.players){
-                        console.log(user.name);
-                        console.log(user.properties.filter(property => property.name !== "").length);
-                        // if (user.properties.filter(property => property.name === currentTile).length > 0) {
-                        //     console.log("BOEEJAA");
-                        //
-                        // }
-                        displayPopupAlert("RENT", `You landed on ${currentTile}. You have to pay ${user.name}`,"pay");
-                        fetchFromServer(`/games/${gameId}/players/${user.name}/properties/${currentTile}/visitors/${game.playerName}/rent`, 'DELETE').then(reloadGame);
+                if (game.playerName === response.currentPlayer) {
+                    let propertyTiles = ["RAILROAD", "STREET", "UTILITY"];
+
+                    if (propertyTiles.includes(response.currentTileType))
+                    {
+                        displayPopupAlert("RENT", `You landed on ${currentTile}. You have to pay ${response.currentTileOwner}`,"pay");
+                        fetchFromServer(`/games/${gameId}/players/${response.currentTileOwner}/properties/${currentTile}/visitors/${game.playerName}/rent`, 'DELETE').then(reloadGame);
                     }
+                    // for (const user of response.players){
+                    //     console.log(user.name);
+                    //     if (user.properties.filter(property => property.name === currentTile).length > 0) {
+                    //         console.log("BOEEJAA");
+                    //         displayPopupAlert("RENT", `You landed on ${currentTile}. You have to pay ${user.name}`,"pay");
+                    //         fetchFromServer(`/games/${gameId}/players/${user.name}/properties/${currentTile}/visitors/${game.playerName}/rent`, 'DELETE').then(reloadGame);
+                    //     }
+                    // }
                 }
             }
         });

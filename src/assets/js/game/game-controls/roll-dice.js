@@ -52,15 +52,13 @@ function rollDice() {
         return response;
 
     }).then(response => {
-        displayPopupAlert("move", "you have thrown " + (response.lastDiceRoll[0] + response.lastDiceRoll[1]), "Go").then(reloadGame).then(() => {
-            console.log(response.directSale);
+        displayPopupAlert("DICE", "You've rolled a:  " + (response.lastDiceRoll[0] + response.lastDiceRoll[1]), "Go").then(reloadGame).then(() => {            console.log(response.directSale);
             let currentTile = response.players.find(player => player.name === game.playerName).currentTile;
 
             if (response.directSale !== null && response.directSale === currentTile) {
 
                 let method;
-                displayPopupConfirm("Buy tile", `you have landed on ${currentTile} do you want to buy it?`, "buy", "don't buy").then(answer => {
-                    if (answer.action === 'true') //
+                displayPopupConfirm("PROPERTY", `You landed on ${currentTile}. Do you want to buy it?`, "buy", "don't buy").then(answer => {                    if (answer.action === 'true') //
                     {
                         method = "POST";
                     } else {
@@ -79,7 +77,7 @@ function rollDice() {
                         //     console.log("BOEEJAA");
                         //
                         // }
-                        displayPopupAlert("Pay rent", `You landed on ${currentTile} you have to pay ${user.name}`,"pay");
+                        displayPopupAlert("RENT", `You landed on ${currentTile}. You have to pay ${user.name}`,"pay");
                         fetchFromServer(`/games/${gameId}/players/${user.name}/properties/${currentTile}/visitors/${game.playerName}/rent`, 'DELETE').then(reloadGame);
                     }
                 }

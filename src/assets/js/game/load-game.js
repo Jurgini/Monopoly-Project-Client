@@ -8,9 +8,7 @@ function init() {
 }
 
 function renderOwnedProperties(onGoingGame) {
-    console.log(onGoingGame);
     onGoingGame.players.forEach((player) => {
-        console.log(player.name + " " + player.currentTile);
         player.properties.forEach((property) => {
             const $ownedProperty = document.querySelector(`#player-card-${player.name} .${property.property.toLowerCase().replaceAll(' ', '-')}`);
             $ownedProperty.classList.toggle('not-bought');
@@ -24,11 +22,11 @@ function getGameDetails() {
         .then(onGoingGame => {
             saveToStorage('currentGame', onGoingGame);
             const players = onGoingGame.players;
-            renderCurrentPlayer(onGoingGame);
             renderGameInfo(onGoingGame);
             renderPlayersInfo(players);
             renderOwnedProperties(onGoingGame);
             renderTiles(onGoingGame);
+            renderCurrentPlayer(onGoingGame);
         });
 }
 
@@ -36,6 +34,8 @@ function getGameDetails() {
 function renderCurrentPlayer(onGoingGame) {
     const $turnText = document.querySelector('div#current-container p');
     $turnText.textContent = `${onGoingGame.currentPlayer}'s TURN`;
+    const $takingPlayerBox = document.querySelector(`#player-card-${onGoingGame.currentPlayer}`);
+    $takingPlayerBox.classList.add("player-taking-turn");
 }
 
 
@@ -76,6 +76,7 @@ function renderPlayerInfo(playerInOnGoingGame, playerPawn, $container) {
     $pawn.setAttribute('alt', playerPawn.displayName);
     $pawn.setAttribute('title', playerPawn.displayName);
     $template.querySelector('.player-balance').textContent = `${playerInOnGoingGame.name}: €${playerInOnGoingGame.money}`;
+    $template.querySelector('.player-location').textContent = `${playerInOnGoingGame.currentTile}`;
     $container.insertAdjacentHTML('beforeend', $template.outerHTML);
 }
 

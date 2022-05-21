@@ -11,6 +11,6 @@ function showVictor(){
         else { victor = "N/A";
         }
 
-    document.querySelector("h3#winner").textContent = victor;
+    document.querySelector("h3#victor").textContent = victor;
     removeFromStorage("gameWinner");
 }

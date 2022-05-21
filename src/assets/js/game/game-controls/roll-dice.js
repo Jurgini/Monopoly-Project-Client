@@ -52,35 +52,35 @@ function rollDice() {
         return response;
 
     }).then(response => {
-        displayPopupAlert("move", "you have thrown " + (response.lastDiceRoll[0] + response.lastDiceRoll[1]), "Go").then(reloadGame).then(() => {
-            console.log(response.directSale);
-            let currentTile = response.players.find(player => player.name === game.playerName).currentTile;
+        displayPopupAlert("DICE", "You've rolled a:  " + (response.lastDiceRoll[0] + response.lastDiceRoll[1]), "Go").then(reloadGame).then(() => {
+            console.log(response)
+            let currentTile = response.currentTile.name;
 
             if (response.directSale !== null && response.directSale === currentTile) {
-
                 let method;
-                displayPopupConfirm("Buy tile", `you have landed on ${currentTile} do you want to buy it?`, "buy", "don't buy").then(answer => {
-                    if (answer.action === 'true') //
+                displayPopupConfirm("PROPERTY",`You landed on ${currentTile}. Do you want to buy it for €${response.currentTile.cost}?`, "buy", "don't buy").then(answer => {
+                    if (answer.action === 'true')
                     {
                         method = "POST";
                     } else {
                         method = "DELETE";
                     }
-                    console.log(method);
                     fetchFromServer(`/games/${game.gameId}/players/${game.playerName}/properties/${currentTile}`, method).then(reloadGame);
                 });
 
             } else {
-                if (response.directSale === null && game.playerName === response.currentPlayer) {
-                    for (const user of response.players){
-                        console.log(user.name);
-                        console.log(user.properties.filter(property => property.name !== "").length);
-                        // if (user.properties.filter(property => property.name === currentTile).length > 0) {
-                        //     console.log("BOEEJAA");
-                        //
-                        // }
-                        displayPopupAlert("Pay rent", `You landed on ${currentTile} you have to pay ${user.name}`,"pay");
-                        fetchFromServer(`/games/${gameId}/players/${user.name}/properties/${currentTile}/visitors/${game.playerName}/rent`, 'DELETE').then(reloadGame);
+                console.log("current player: " + response.currentPlayer);
+                console.log("tile: " + response.currentTile.name);
+                console.log("tile owner: " + response.currentTileOwner);
+                if (response.directSale === null)
+                {
+                    const propertyTypes = ["STREET", "RAILROAD", "UTILITY"];
+                    let currentTileType = response.currentTile.type.toUpperCase().replace(" ", "_");
+
+                    if (game.playerName !== response.currentTileOwner && propertyTypes.includes(currentTileType))
+                    {
+                        displayPopupAlert("RENT", `You landed on ${currentTile}. You have to pay ${response.currentTileOwner}, €${response.currentTile.rent}`, "pay");
+                        fetchFromServer(`/games/${gameId}/players/${response.currentTileOwner}/properties/${currentTile}/visitors/${game.playerName}/rent`, 'DELETE').then(reloadGame);
                     }
                 }
             }

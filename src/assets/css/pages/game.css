@@ -118,7 +118,10 @@ button:hover {
 #dice-box button:hover {
     background-color: #cccccc;
 }
-
+#bankruptcy {
+    position: fixed;
+    right: 1rem;
+}
 #bankruptcy button:hover {
     background-color: #ff3029;
     border-color: #ff3029;
@@ -194,8 +197,12 @@ button:hover {
     margin-bottom: 2rem;
 }
 
-.player-taking-turn {
-    box-shadow: #900000 0 0 1rem;
+.player-location {
+    font-size: 0.7rem;
+}
+
+#players-container div.player-taking-turn {
+    box-shadow: #BC3334 0 0 1rem;
 }
 form button
 {
@@ -212,4 +219,11 @@ form button
 dialog
 {
     position: unset;
+}
+form[method="dialog"] p {
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+}
+form[method="dialog"] h2 {
+    border: none;
+    font-size: 1.5rem;
 }

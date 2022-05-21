@@ -41,17 +41,14 @@
     </div>
 </header>
 <main>
-
-
     <div id="gridbox">
-
         <div id="current-container">
             <p></p>
             <div id="alert">
                 <dialog id="confirm-popup">
                     <form method="dialog"> <!-- Not valid approved by JVD on 2022-05-20, reference https://github.com/validator/validator/issues/962 -->
                         <h2 class="title">Popup Title</h2>
-                        <p class="popup-text"></p>
+                        <p><span class="popup-text"></span><br><span class="popup-balance-info"></span></p>
                         <button type="submit" class="accept" id="accept" value="true"></button>
                         <button type="submit" class="deny" id="deny" value="false"></button>
                     </form>
@@ -209,7 +206,7 @@
                 <div class="player-info" id="">
                     <img src="" alt="">
                     <div>
-                        <p class="player-balance">player: $1500</p>
+                        <p><span class="player-balance"></span><br><span class="player-location"></span></p>
                         <div class="player-properties">
                             <div class="square marksesteenweg not-bought"></div>
                             <div class="square etienne-sabbelaan not-bought"></div>

@@ -5,7 +5,6 @@ loadTokenFromStorage();
 function checkGame() {
     fetchFromServer(`/games/${loadFromStorage(_config.localStorageGameObject).gameId}`, "GET")
         .then(onGoingGame => {
-            console.log(onGoingGame);
             if (onGoingGame.ended === false)
             {
                 setTimeout(checkGame, _config.delay);
@@ -13,7 +12,16 @@ function checkGame() {
             else
             {
                 saveToStorage("gameWinner", onGoingGame.winner);
-                endGame();
+                let bankruptPlayer = onGoingGame.players.filter(player => player.bankrupt === true);
+                onGoingGame.players.forEach(player => {
+                    if(player.name !== bankruptPlayer.name){
+                        console.log("go to endgame");
+                        endGame();
+
+                    }
+                });
+                goBankrupt();
+                console.log("go to bankrupot");
             }
         });
 

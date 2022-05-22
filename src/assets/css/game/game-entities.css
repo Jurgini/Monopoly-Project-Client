@@ -92,8 +92,8 @@ h2 {
 
 /* CARD COLORS */
 
-.PURPLE {
-    background: rgba(161, 27, 161, 0.5);
+.BROWN {
+    background: rgba(150, 115, 90, 0.61);
 }
 
 .BLACK {
@@ -130,5 +130,5 @@ h2 {
 }
 
 .jail {
-    background: #f07c1c;
+    background: rgb(240, 124, 28);
 }

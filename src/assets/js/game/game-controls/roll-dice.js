@@ -52,7 +52,7 @@ function rollDice() {
         return response;
 
     }).then(response => {
-        displayPopupAlert("DICE", "You've rolled a:  " + (response.lastDiceRoll[0] + response.lastDiceRoll[1]), "Go").then(reloadGame).then(() => {
+            reloadGame()
             console.log(response)
             let currentTile = response.currentTile.name;
 
@@ -84,7 +84,6 @@ function rollDice() {
                     }
                 }
             }
-        });
         return response;
-    });
+        });
 }

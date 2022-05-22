@@ -1,19 +1,6 @@
 image: monitor:5000/howest-java-node:11-azul-alpine-jdk
 stages:
-  - QA
   - deploy
-
-validateHTML:
-  stage: QA
-  script:
-    - npm install
-    - npm run validate-html
-
-sonar:
-  stage: QA
-  script:
-    - npm install
-    - npm run validate-sonar
 
 deploy:
   image: monitor:5000/deployproject:2

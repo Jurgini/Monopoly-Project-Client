@@ -5,20 +5,42 @@ loadTokenFromStorage();
 function checkGame() {
     fetchFromServer(`/games/${loadFromStorage(_config.localStorageGameObject).gameId}`, "GET")
         .then(onGoingGame => {
-            console.log(onGoingGame);
-            if (onGoingGame.ended === false)
-            {
+            if (onGoingGame.ended === false) {
+
+                let bankruptPlayer = onGoingGame.players.filter(player => player.bankrupt === true);
+                console.log(bankruptPlayer);
+                onGoingGame.players.forEach(player => {
+                    if (player.name === bankruptPlayer.name) {
+                        console.log("go to bankrupot");
+                        goBankrupt();
+
+                    }
+                });
+
                 setTimeout(checkGame, _config.delay);
+
             }
-            else
-            {
+
+            else {
+
                 saveToStorage("gameWinner", onGoingGame.winner);
+                let bankruptPlayer = onGoingGame.players.filter(player => player.bankrupt === true);
+                console.log(bankruptPlayer);
+                onGoingGame.players.forEach(player => {
+                    if (player.name === bankruptPlayer.name) {
+                        console.log("go to bankrupot");
+                        goBankrupt();
+                    }
+                });
+
+                console.log("go to endgame");
                 endGame();
             }
         });
 
 }
-function endGame(){
+
+function endGame() {
     clearGameFromLocalStorage();
     redirect("game-over.html");
 }

@@ -1,7 +1,7 @@
 "use strict";
 
 const _config = {
-    groupnumber: '00',
+    groupnumber: '18',
     gameprefix: 'group18',
     localStorageGameObject: "game",
     localStorageTokenObject: "token",
